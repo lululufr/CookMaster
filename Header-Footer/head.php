@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr" data-theme="dracula">
 <head>
     <meta charset="UTF-8">
