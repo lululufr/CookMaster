@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php session_start();
+require "./Function/function.php"; ?>
 
 <?php include("./Header-Footer/head.php");?>
 
@@ -17,6 +18,22 @@
     </div>
   </div>
 </div>
+
+<?php 
+
+$pdo = connectDB();
+
+					$query = $pdo->prepare("SELECT * FROM USER WHERE id=:id");
+          
+					$query->execute(["id"=>1]);
+					$user = $query->fetch();
+
+          foreach($user as $elem){
+            echo("<p>".$elem."</p>");
+          }
+          
+
+?>
 
 
 
