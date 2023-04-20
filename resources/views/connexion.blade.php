@@ -11,3 +11,7 @@
 
     <title>Cook Master</title>
 </head>
+<body>
+    <button class="btn btn-primary">{{ $title }}</button>
+</body>
+</html>
