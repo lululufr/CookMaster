@@ -17,14 +17,23 @@ use App\Http\Controllers\UserController;
 |
 */
 
+//page index
 Route::get('/', [PostController::class, 'index']);
 
+//page inscription
 Route::get('/register', [UserController::class, 'create']);
 
-Route::get('/login',function(){
-  return response('hello');
-}
-);
+//creation nouveau user
+Route::post('/users', [UserController::class, 'store']);
+
+//deconnexion user
+Route::post('/logout', [UserController::class, 'logout']);
+
+//connexion
+Route::post('/login', [UserController::class, 'login']);
+
+
+
 
 Route::get('/profil/{username}',function($username){
    return response("profile de ".$username);

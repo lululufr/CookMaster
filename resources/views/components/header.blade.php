@@ -16,7 +16,24 @@
 <div></div>
 
 <div class="justify-items-center grid grid-cols-3 m-5">
-<div><a href="/register" class="btn btn-ghost">register</a></div>
+
+@auth
+
+
+
+<form class="" method="POST" action="/logout">
+@csrf <!-- {{ csrf_field() }} -->
+Welcome {{auth()->user()->username}}
+<button type="submit" class="btn">Deconnexion</button>
+</form>
+
+@else
+<div><a href="/register" class="btn btn-ghost">register</a>
+<a href="/login" class="btn btn-ghost">login</a></div>
+
+@endauth
+
+
     <div>
         <ul class="menu menu-horizontal bg-primary text-secondary-content rounded-box p-2">
         <li tabindex="0">
