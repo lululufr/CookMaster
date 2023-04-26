@@ -21,7 +21,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', [PostController::class, 'index']);
 
 //page inscription
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->name('register');
 
 //creation nouveau user
 Route::post('/users', [UserController::class, 'register']);
@@ -31,6 +31,9 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 //connexion
 Route::post('/login', [UserController::class, 'login']);
+
+//Nouveau post
+Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 
 
 
