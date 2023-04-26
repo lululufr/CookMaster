@@ -24,7 +24,7 @@ Route::get('/', [PostController::class, 'index']);
 Route::get('/register', [UserController::class, 'create']);
 
 //creation nouveau user
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'register']);
 
 //deconnexion user
 Route::post('/logout', [UserController::class, 'logout']);

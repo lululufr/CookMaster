@@ -13,22 +13,23 @@
         <span class="label-text">Quel est votre pseudo ?</span>
         <span class="label-text-alt">Top Right label</span>
     </label>
-    <input name="username" type="text" placeholder="John B Le conquerant" class="input input-bordered w-full max-w-xs"/>
+    <input value="{{old('username')}}" name="username" type="text" placeholder="John B Le conquerant" class="input input-bordered w-full max-w-xs"/>
     
     @error('username')
             <label class="label">
                 <span class="label-text-alt">{{$message}}</span>
             </label>
     @enderror
-
     </div>
+
 
     <div class="form-control w-full max-w-xs m-5">
     <label class="label">
         <span class="label-text">Quel est votre email ?</span>
         <span class="label-text-alt">Top Right label</span>
     </label>
-    <input name="email" type="text" placeholder="John.conquerant@braveheart.fr" class="input input-bordered w-full max-w-xs" />
+    <input value="{{old('email')}}" name="email" type="text" placeholder="John.conquerant@braveheart.fr" class="input input-bordered w-full max-w-xs" />
+    
     @error('email')
             <label class="label">
                 <span class="label-text-alt">{{$message}}</span>
@@ -41,7 +42,7 @@
         <span class="label-text">Veuillez choisir un mot de passe?</span>
         <span class="label-text-alt">Top Right label</span>
     </label>
-    <input name="password" type="password" placeholder="azerty123!" class="input input-bordered w-full max-w-xs" />
+    <input value="{{old('password')}}" name="password" type="password" placeholder="azerty123!" class="input input-bordered w-full max-w-xs" />
         @error('password')
             <label class="label">
                 <span class="label-text-alt">{{$message}}</span>

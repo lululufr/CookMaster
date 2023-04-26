@@ -19,7 +19,7 @@ class UserController extends Controller
 
 
     //enregistrement du USER
-    public function store(Request $request){
+    public function register(Request $request){
 
         $formFields = $request->validate([
 
@@ -58,9 +58,21 @@ class UserController extends Controller
     public function login(Request $request){
 
       
+        $formFields = $request->validate([
 
+            'username'=> ['required'],
+            'password'=> 'required'
+        ]);
+            
+        if (auth()->attempt($formFields)){
 
-        return view('user.login');
+            $request->session()->regenerate();
+
+            return redirect('/')->with('message','Vous etes connecté');
+        }
+
+       return back()->withErrors(['username' => 'Identifiants incorrect'])->onlyInput('username');
+
     }
 
 }
