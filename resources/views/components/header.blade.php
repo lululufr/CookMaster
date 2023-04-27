@@ -19,7 +19,7 @@
 </head>
 <body>
 
-    <div class="navbar bg-secondary">
+    <div class="navbar bg-secondary sticky top-0">
         <div class="navbar-start">
             @auth
             <div class="dropdown">
@@ -29,7 +29,7 @@
                 <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="/profil/{{auth()->user()->username}}"> Votre profil</a></li>
                     <li><a>Portfolio</a></li>
-                    <li><a>About</a></li>
+                    <li><a href="/users/preferences" >Préférence</a></li>
                 </ul>
             </div>
                 <div class="avatar">
