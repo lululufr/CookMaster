@@ -30,7 +30,7 @@ class ProfilController extends Controller
             'langue' => $request->langue
         ]);
 
-        redirect('/users/preferences')->with('message', 'Préférences modifiées avec succès !');
+        return redirect('/users/preferences')->with('message', 'Préférences modifiées avec succès !');
 
     }
 

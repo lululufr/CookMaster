@@ -41,7 +41,7 @@ Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 //page de profil
 Route::get('/profil/{username}',[ProfilController::class, 'show_profil_page']);
 
-//page des préférences
+//page des préférences & parametre
 Route::get('/users/preferences',[ProfilController::class, 'show_preference_page']);
 Route::post('/users/preferences/change',[ProfilController::class, 'change_preference']);
 

@@ -18,8 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('theme')->default('dracula');
-            $table->string('langue')->default('fr')->nullable();
-            $table->string('profil_picture')->default('images/profil_pictures/default_profil_picture.png');
+            $table->string('langue')->default('Francais');
+            $table->string('profil_picture')->default('/images/profil_pictures/default_profil_picture.png');
+            $table->string('role')->default('admin');
+            $table->string('buying_plan')->default('free');
             $table->rememberToken();
             $table->timestamps();
         });
