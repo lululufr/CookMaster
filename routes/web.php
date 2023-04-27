@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfilController;
 
 
 /*
@@ -38,9 +39,6 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 
 
-Route::get('/profil/{username}',function($username){
-   return response("profile de ".$username);
+Route::get('/profil/{username}',[ProfilController::class, 'show_page']);
 
-
-});
 
