@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\indexController;
 use App\Http\Controllers\UserController;
 
 
@@ -18,7 +20,7 @@ use App\Http\Controllers\UserController;
 */
 
 //page index
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [IndexController::class, 'index']);
 
 //page inscription
 Route::get('/register', [UserController::class, 'create'])->name('register');
@@ -36,19 +38,9 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 
 
-
-
 Route::get('/profil/{username}',function($username){
    return response("profile de ".$username);
+
+
 });
 
-Route::get('/search',function(Request $request){
-  return $request->name;
-});
-//
-//Route::get('/connexion', function () {
-//    return view('connexion');
-//});
-
-
-//Route::get('/', 'App\Http\Controllers\connexionController@index');

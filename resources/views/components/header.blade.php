@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dracula">
+<html lang="fr" data-theme=
+@auth
+    {{auth()->user()->theme}}
+@else
+    "dracula"
+@endauth
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,16 +19,17 @@
 </head>
 <body>
 
+
 <div></div>
 
 <div class="justify-items-center grid grid-cols-3 m-5">
 
 @auth
 
-
-
 <form class="" method="POST" action="/logout">
 @csrf <!-- {{ csrf_field() }} -->
+
+
 Welcome {{auth()->user()->username}}
 <button type="submit" class="btn">Deconnexion</button>
 </form>
@@ -65,9 +72,12 @@ Welcome {{auth()->user()->username}}
         </li>
         </ul>
         </div>
-    <div></div>
+    <div>
+        @auth
+            <a href="/profil/{{auth()->user()->username}}" class="btn btn-primary"> Votre profil</a>
+        @endauth
+    </div>
 </div>
-
 
 
 

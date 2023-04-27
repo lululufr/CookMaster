@@ -57,13 +57,13 @@ class UserController extends Controller
 
     public function login(Request $request){
 
-      
+
         $formFields = $request->validate([
 
             'username'=> ['required'],
             'password'=> 'required'
         ]);
-            
+
         if (auth()->attempt($formFields)){
 
             $request->session()->regenerate();
