@@ -19,63 +19,52 @@
 </head>
 <body>
 
-
-<div></div>
-
-<div class="justify-items-center grid grid-cols-3 m-5">
-
-@auth
-
-<form class="" method="POST" action="/logout">
-@csrf <!-- {{ csrf_field() }} -->
-
-
-Welcome {{auth()->user()->username}}
-<button type="submit" class="btn">Deconnexion</button>
-</form>
-
-@else
-<div>
-    <a href="/register" class="btn btn-ghost">register</a>
-
-    <label for="login_modal" class="btn">Se connecter</label>
-</div>
-
-@endauth
-
-
-    <div>
-        <ul class="menu menu-horizontal bg-primary text-secondary-content rounded-box p-2">
-        <li tabindex="0">
-            <span>PROFIL</span>
-            <ul class="rounded-box bg-primary p-2">
-            <li><a>Mon profile</a></li>
-            <li><a>Mes contacts</a></li>
-            </ul>
-        </li>
-        <li tabindex="0">
-            <span>COOK</span>
-            <ul class="rounded-box bg-primary p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-            <li><a>Submenu 3</a></li>
-            </ul>
-        </li>
-
-        <li tabindex="0">
-            <span>PARAMETER</span>
-            <ul class="rounded-box bg-primary p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-            <li><a>Submenu 3</a></li>
-            </ul>
-        </li>
-        </ul>
+    <div class="navbar bg-base-100">
+        <div class="navbar-start">
+            @auth
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                </label>
+                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="/profil/{{auth()->user()->username}}"> Votre profil</a></li>
+                    <li><a>Portfolio</a></li>
+                    <li><a>About</a></li>
+                </ul>
+            </div>
         </div>
-    <div>
-        @auth
-            <a href="/profil/{{auth()->user()->username}}" class="btn btn-primary"> Votre profil</a>
         @endauth
+
+
+        <div class="navbar-center">
+            <a href="/" class="btn btn-ghost normal-case text-xl">COOK with ME</a>
+        </div>
+
+
+
+
+
+
+        <div class="navbar-end">
+
+                <div class="indicator">
+                    @auth
+                        <form class="" method="POST" action="/logout">
+                            @csrf <!-- {{ csrf_field() }} -->
+                            Welcome {{auth()->user()->username}}
+                            <button type="submit" class="btn btn-secondary">Deconnexion</button>
+                        </form>
+                    @else
+                        <div>
+                            <a href="/register" class="btn btn-primary">register</a>
+                            <label for="login_modal" class="btn btn-secondary">Se connecter</label>
+                        </div>
+                    @endauth
+                </div>
+
+        </div>
+    </div>
+
     </div>
 </div>
 
