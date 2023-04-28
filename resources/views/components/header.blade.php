@@ -19,6 +19,12 @@
 </head>
 <body>
 
+@if(session('message'))
+    <div class="alert alert-success">
+        {{session('message')}}
+    </div>
+@endif
+
     <div class="navbar bg-secondary sticky top-0">
         <div class="navbar-start">
             @auth

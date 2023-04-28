@@ -1,3 +1,8 @@
+@if(session('message'))
+    <div class="alert alert-success">
+        {{session('message')}}
+    </div>
+@endif
 <x-header/>
 
 <form action="/users/preferences/change" method="POST">
