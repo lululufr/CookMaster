@@ -27,7 +27,7 @@
         <label class="label">
             <span class="label-text">Choisissez votre Langue</span>
         </label>
-        <select class="select select-bordered" name="theme">
+        <select class="select select-bordered" name="langue">
             <option disabled selected>{{auth()->user()->langue}}</option>
             <option>Francais</option>
             <option>Anglais</option>
