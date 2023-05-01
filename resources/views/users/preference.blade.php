@@ -1,6 +1,6 @@
 @if(session('message'))
     <div class="alert alert-success">
-        {{session('message')}}
+        Préférences modifiés avec succes
     </div>
 @endif
 <x-header/>

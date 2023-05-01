@@ -34,7 +34,7 @@
                 </label>
                 <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="/profil/{{auth()->user()->username}}"> Votre profil</a></li>
-                    <li><a>Portfolio</a></li>
+                    <li><a href="/salles">Salles</a></li>
                     <li><a href="/users/preferences" >Préférence</a></li>
                 </ul>
             </div>
