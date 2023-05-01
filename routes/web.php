@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Models\Post;
 use App\Models\User;
 
@@ -7,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SallesController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,8 @@ Route::get('/profil/{username}',[ProfilController::class, 'show_profil_page']);
 Route::get('/users/preferences',[ProfilController::class, 'show_preference_page']);
 Route::post('/users/preferences/change',[ProfilController::class, 'change_preference']);
 
-//page des salles
 Route::get('/salles', [SallesController::class, 'show_salle_page']);
+//page des salles
+//messagerie
+Route::get('/message', [MessageController::class,'show_message_page']);
+Route::get('/message/afficher', [MessageController::class,'show_messages']);
