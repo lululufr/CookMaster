@@ -14,8 +14,34 @@
         <span class="label-text-alt">Top Right label</span>
     </label>
     <input value="{{old('username')}}" name="username" type="text" placeholder="John B Le conquerant" class="input input-bordered w-full max-w-xs"/>
-    
+
     @error('username')
+            <label class="label">
+                <span class="label-text-alt">{{$message}}</span>
+            </label>
+    @enderror
+    </div>
+<div class="form-control w-full max-w-xs m-5">
+    <label class="label">
+        <span class="label-text">Quel est votre prénom ?</span>
+        <span class="label-text-alt">Top Right label</span>
+    </label>
+    <input value="{{old('firstname')}}" name="firstname" type="text" placeholder="John" class="input input-bordered w-full max-w-xs"/>
+
+    @error('firstname')
+            <label class="label">
+                <span class="label-text-alt">{{$message}}</span>
+            </label>
+    @enderror
+    </div>
+<div class="form-control w-full max-w-xs m-5">
+    <label class="label">
+        <span class="label-text">Quel est votre nom ?</span>
+        <span class="label-text-alt">Top Right label</span>
+    </label>
+    <input value="{{old('lastname')}}" name="lastname" type="text" placeholder="Snow" class="input input-bordered w-full max-w-xs"/>
+
+    @error('lastname')
             <label class="label">
                 <span class="label-text-alt">{{$message}}</span>
             </label>
@@ -29,7 +55,7 @@
         <span class="label-text-alt">Top Right label</span>
     </label>
     <input value="{{old('email')}}" name="email" type="text" placeholder="John.conquerant@braveheart.fr" class="input input-bordered w-full max-w-xs" />
-    
+
     @error('email')
             <label class="label">
                 <span class="label-text-alt">{{$message}}</span>
