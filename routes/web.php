@@ -10,7 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SallesController;
-
+use App\Http\Controllers\AdminController;
+use App\http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,8 +48,21 @@ Route::get('/profil/{username}',[ProfilController::class, 'show_profil_page']);
 Route::get('/users/preferences',[ProfilController::class, 'show_preference_page']);
 Route::post('/users/preferences/change',[ProfilController::class, 'change_preference']);
 
-Route::get('/salles', [SallesController::class, 'show_salle_page']);
+
 //page des salles
+Route::get('/my_salles', [SallesController::class, 'show_my_salle_page']);
+
+
+
 //messagerie
 Route::get('/message', [MessageController::class,'show_message_page']);
 Route::get('/message/afficher', [MessageController::class,'show_messages']);
+
+//page admin
+Route::get('/admin', [AdminController::class,'show_admin_page']);
+
+
+//page des post
+Route::get('/newpost', [PostController::class,'show_post_page']);
+Route::post('/postcreation', [PostController::class,'create']);
+

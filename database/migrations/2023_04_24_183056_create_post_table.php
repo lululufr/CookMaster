@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
+        Schema::create('post', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->foreignIdFor(User::class);
             $table->string('tags');
-            $table->longText('description');
-            $table->string('images');
+            $table->longText('content');
+            $table->string('images')->nullable();
             $table->timestamps();
         });
     }

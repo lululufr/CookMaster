@@ -1,15 +1,5 @@
 <x-header/>
 
-    @section('content')
-    <h1>{{ $heading }}</h1>
-
-    <h2>
-    @foreach($posts as $post)
-        {{ $post['id']}}
-        {{$post['content']}}
-    @endforeach
-    </h2>
-
 <div class="justify-items-center grid grid-cols-1">
     <div></div>
         <div class="carousel w-6/12">

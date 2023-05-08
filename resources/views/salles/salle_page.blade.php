@@ -1,12 +1,19 @@
 <x-header/>
 
+<div>
+choix de la salle
+</div>
+<div>
+    Salle 1
+</div>
 
-<div class="grid w-80">
-    <div class="overflow-x-auto ">
+
+<div class="grid w-full">
+    <div class="overflow-x-auto p-a m-5">
         <table class="table w-full table-compact ">
             <!-- head -->
             <thead>
-            <tr>
+            <tr >
                 <th>horraire</th>
                 <th>Lundi</th>
                 <th>Mardi</th>
@@ -17,8 +24,8 @@
                 <th>Dimanche</th>
             </tr>
             </thead>
-            <tbody>
-                @for($i=0;$i<10;$i=$i+2)
+            <tbody >
+                @for($i=8;$i<24;$i=$i+2)
                     <tr>
                         <th>{{$i}} H</th>
                         <th>Lundi</th>
