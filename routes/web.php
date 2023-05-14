@@ -60,6 +60,7 @@ Route::get('/message/afficher', [MessageController::class,'show_messages']);
 
 //page admin
 Route::get('/admin', [AdminController::class,'show_admin_page']);
+Route::post('/admin/delete/{id}', [AdminController::class,'delete_user']);
 
 
 //page des post
