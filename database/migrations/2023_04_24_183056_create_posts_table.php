@@ -12,13 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->foreignIdFor(User::class);
             $table->string('tags');
             $table->longText('content');
             $table->string('images')->nullable();
             $table->timestamps();
+
         });
     }
 

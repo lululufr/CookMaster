@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SallesController;
 use App\Http\Controllers\AdminController;
-use App\http\Controllers\PostController;
+use App\http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +38,7 @@ Route::post('/logout', [UserController::class, 'logout']);
 //connexion
 Route::post('/login', [UserController::class, 'login']);
 
-//Nouveau post
+//Nouveau posts
 Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 
 //page de profil
@@ -67,7 +67,7 @@ Route::post('/admin/modify/apply/{id}', [AdminController::class,'modify_user_app
 
 
 
-//page des post
-Route::get('/newpost', [PostController::class,'show_post_page']);
-Route::post('/postcreation', [PostController::class,'create']);
+//page des posts
+Route::get('/newpost', [PostsController::class,'show_post_page']);
+Route::post('/postcreation', [PostsController::class,'create']);
 

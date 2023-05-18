@@ -45,6 +45,12 @@
                         <img src="{{auth()->user()->profil_picture}}" class="w-1/12"/>
                     </div>
                 </div>
+            @if(auth()->user()->admin != 'user')
+                    <div>
+                        <a href="/admin" class="btn btn-secondary">Admin</a>
+                    </div>
+            @endif
+
         </div>
         @else
             </div>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('theme')->default('dracula');
             $table->string('langue')->default('Francais');
             $table->string('profil_picture')->default('/images/profil_pictures/default_profil_picture.png');
-            $table->string('role')->default('admin');
+            $table->string('role')->default('user');
             $table->string('buying_plan')->default('free');
             $table->rememberToken();
             $table->timestamps();

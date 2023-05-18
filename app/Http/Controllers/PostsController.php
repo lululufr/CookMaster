@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+
+use App\Models\Posts;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
     //
 
@@ -19,14 +20,14 @@ class PostController extends Controller
     public function create(Request $request)
     {
 
-        $post = new Post;
-        $post->content= htmlspecialchars($request['content']);
-        $post->user_id=auth()->user()->id;
-        $post->tags=htmlspecialchars($request['tags']);
+        $post = new Posts;
+        $post->content = htmlspecialchars($request['content']);
+        $post->user_id = auth()->user()->id;
+        $post->tags = htmlspecialchars($request['tags']);
 
 // add more fields (all fields that users table contains without id)
         $post->save();
-        return view('welcome');
+        return redirect('/');
 
     }
 }
