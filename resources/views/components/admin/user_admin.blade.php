@@ -42,11 +42,10 @@
             <p class="py-4">Veuillez choisir l'action :</p>
 
 
-            <button class="btn btn-primary">Promouvoir</button>
-
-            <button class="btn btn-accent">Modifier</button>
-
-            <button class="btn btn-secondary">Send message</button>
+            <form action="/admin/modify/{{$id}}" method="POST">
+                @csrf
+                <button class="btn btn-accent">Modifier</button>
+            </form>
 
             <form action="/admin/delete/{{$id}}" method="POST">
                 @csrf
