@@ -16,26 +16,35 @@ void on_RequestButton_Click(GtkWidget *widget, gpointer data) {
 
     const gchar *key = gtk_entry_get_text(GTK_ENTRY(KeyEntry));
     const gchar *URI = gtk_entry_get_text(GTK_ENTRY(URIEntry));
+    GtkTextBuffer *OutputBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(data));
 
-    //CURL
+    // CURL
     CURL *curl;
     CURLcode res;
+    gchar output[4096];
 
     curl_global_init(CURL_GLOBAL_DEFAULT);
     curl = curl_easy_init();
 
     if (curl) {
         struct curl_slist *headers = NULL;
-        headers = curl_slist_append(headers, "X-API-Key: your_api_key"); // Example header
-        headers = curl_slist_append(headers, "Authorization: Bearer your_token"); // Example header
+        headers = curl_slist_append(headers, "X-API-Key: your_api_key"); // Exemple d'en-tête
+        headers = curl_slist_append(headers, "Authorization: Bearer your_token"); // Exemple d'en-tête
 
         curl_easy_setopt(curl, CURLOPT_URL, URI);
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
+        // Capturer la sortie dans la variable 'output'
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, output);
+
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
             fprintf(stderr, "Error: %s\n", curl_easy_strerror(res));
+        } else {
+            // Définir le texte du GtkTextBuffer associé à OutputText
+            gtk_text_buffer_set_text(OutputBuffer, output, -1);
         }
 
         curl_easy_cleanup(curl);
@@ -50,7 +59,7 @@ int main(int argc, char* argv[]) {
     GtkWidget *fenetre_principale = NULL;
     GtkWidget *URIEntry = NULL;
     GtkWidget *KeyEntry = NULL;
-    GtkTextBuffer *OutputText = NULL;
+    GtkTextView *OutputText = NULL;
     GtkWidget *RequestButton = NULL;
     GtkBuilder *builder = NULL;
     GError *error = NULL;
@@ -68,7 +77,7 @@ int main(int argc, char* argv[]) {
     URIEntry = GTK_WIDGET(gtk_builder_get_object(builder, "URIEntry"));
     KeyEntry = GTK_WIDGET(gtk_builder_get_object(builder, "KeyEntry"));
     RequestButton = GTK_WIDGET(gtk_builder_get_object(builder, "RequestButton"));
-    OutputText = GTK_WIDGET(gtk_builder_get_object(builder, "OutputText"));
+    OutputText = GTK_TEXT_VIEW(gtk_builder_get_object(builder, "OutputText"));
 
 
     //entrée dans la structure des pointeurs
