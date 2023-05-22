@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Models\Post;
+use App\Models\Posts;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
@@ -59,15 +59,22 @@ Route::get('/message', [MessageController::class,'show_message_page']);
 Route::get('/message/afficher', [MessageController::class,'show_messages']);
 
 //page admin
+Route::get('/admin_choice', [AdminController::class,'show_admin_choice']);
+
+
 Route::get('/admin', [AdminController::class,'show_admin_page']);
 Route::post('/admin/delete/{id}', [AdminController::class,'delete_user']);
-
 Route::post('/admin/modify/{id}', [AdminController::class,'modify_user']);
 Route::post('/admin/modify/apply/{id}', [AdminController::class,'modify_user_apply']);
 
+Route::get('/admin/room', [AdminController::class,'show_admin_room']);
+Route::post('/admin/room/modify/{id}', [AdminController::class,'modify_room']);
+Route::post('/admin/room/modify/apply/{id}', [AdminController::class,'modify_room_apply']);
 
 
 //page des posts
 Route::get('/newpost', [PostsController::class,'show_post_page']);
 Route::post('/postcreation', [PostsController::class,'create']);
+
+//page des salles ( EDT )
 

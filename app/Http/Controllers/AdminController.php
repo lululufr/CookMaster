@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rooms;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -63,5 +64,64 @@ class AdminController extends Controller
 
         return view('/admin/modify_user',['user'=>$user]);
     }
+
+
+    public function show_admin_choice()
+    {
+        return view('admin.admin_choice');
+    }
+
+    public function show_admin_room()
+    {
+        //affiche toutes les salles
+        $rooms = Rooms::all();
+        return view('admin.room_admin',['rooms'=>$rooms]);
+    }
+
+
+    public function modify_room($id)
+    {
+        $rooms = Rooms::where('id', $id)->firstOrFail();
+
+        return view('admin.modify_room',['rooms'=>$rooms]);
+    }
+
+
+    public function modify_room_apply($id, Request $request)
+    {
+        $rooms = Rooms::where('id', $id)->firstOrFail();
+        $table = $request->input('table');
+
+
+        switch ($table) {
+            case 'city':
+                $rooms->city = $request->input('new_content');
+                break;
+            case 'street':
+                $rooms->street = $request->input('new_content');
+                break;
+            case 'postal_code':
+                $rooms->postal_code = $request->input('new_content');
+                break;
+            case 'salle_number':
+                $rooms->salle_number = $request->input('new_content');
+                break;
+            case 'description':
+                $rooms->description = $request->input('new_content');
+                break;
+
+            //case 'password':
+            //$user->username = $request->input('new_content');
+            //break;
+
+        }
+
+        $rooms->save();
+
+        return view('admin.modify_room',['rooms'=>$rooms]);
+    }
+
+
+
 
 }

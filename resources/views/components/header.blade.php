@@ -47,7 +47,7 @@
                 </div>
             @if(auth()->user()->admin != 'user')
                     <div>
-                        <a href="/admin" class="btn btn-secondary">Admin</a>
+                        <a href="/admin_choice" class="btn btn-secondary">Admin</a>
                     </div>
             @endif
 

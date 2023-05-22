@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Room;
+use App\Models\Rooms;
 
 return new class extends Migration
 {
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('time_start');
             $table->time('time_end');
 
-            $table->foreignIdFor(Room::class);
+            $table->foreignIdFor(Rooms::class);
 
             $table->string('title');
             $table->string('tags');
