@@ -122,6 +122,27 @@ class AdminController extends Controller
     }
 
 
+    public function create_room_page()
+    {
+        return view('admin.create_room');
+    }
 
+    public function create_room_apply(Request $request)
+    {
+
+        $rooms = new Rooms();
+
+        $rooms->city = htmlspecialchars($request->input('city'));
+        $rooms->street = htmlspecialchars($request->input('street'));
+        $rooms->postal_code = htmlspecialchars($request->input('postal_code'));
+        $rooms->salle_number = htmlspecialchars($request->input('salle_number'));
+        $rooms->description = htmlspecialchars($request->input('description'));
+        $rooms->tags = htmlspecialchars($request->input('tags'));
+
+
+        $rooms->save();
+
+        return redirect('/admin/room')->with('message','Salle créée avec succes');
+    }
 
 }

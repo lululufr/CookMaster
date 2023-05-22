@@ -68,6 +68,9 @@ Route::post('/admin/modify/{id}', [AdminController::class,'modify_user']);
 Route::post('/admin/modify/apply/{id}', [AdminController::class,'modify_user_apply']);
 
 Route::get('/admin/room', [AdminController::class,'show_admin_room']);
+Route::get('/admin/room/create', [AdminController::class,'create_room_page']);
+Route::post('/admin/room/create/apply', [AdminController::class,'create_room_apply']);
+
 Route::post('/admin/room/modify/{id}', [AdminController::class,'modify_room']);
 Route::post('/admin/room/modify/apply/{id}', [AdminController::class,'modify_room_apply']);
 

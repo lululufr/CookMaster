@@ -1,5 +1,7 @@
 <x-header/>
 
+<a class="btn btn-secondary" href="/admin/room/create">Créer une nouvelle salle</a>
+
 
 <div class="overflow-x-auto w-full">
     <table class="table w-full">
