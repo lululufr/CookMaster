@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\FullCalendarController;
 use App\Models\Posts;
 use App\Models\User;
 
@@ -50,8 +51,9 @@ Route::post('/users/preferences/change',[ProfilController::class, 'change_prefer
 
 
 //page des salles
-Route::get('/my_salles', [SallesController::class, 'show_my_salle_page']);
-
+Route::get('/getevent', [FullCalendarController::class,'getEvent']);
+Route::post('/createevent',[FullCalendarController::class,'createEvent']);
+Route::post('/deleteevent',[FullCalendarController::class,'deleteEvent']);
 
 
 //messagerie
