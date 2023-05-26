@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme=
-@auth
-    {{auth()->user()->theme}}
-@else
-    "dracula"
-@endauth
->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind Blog Template</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
 
-<!--daisy UI-->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 
-    <title>Cook Master</title>
+        .font-family-karla {
+            font-family: karla;
+        }
+    </style>
+
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
-<body>
 
 @if(session('message'))
     <div class="alert alert-success">
@@ -25,68 +29,82 @@
     </div>
 @endif
 
-    <div class="navbar bg-secondary sticky top-0">
-        <div class="navbar-start">
-            @auth
-            <div class="dropdown">
-                <label tabindex="0" class="btn btn-ghost btn-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                </label>
-                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="/profil/{{auth()->user()->username}}"> Votre profil</a></li>
-                    <li><a href="/getevent">Salles</a></li>
-                    <li><a href="/users/preferences" >Préférence</a></li>
-                    <li><a href="/newpost" >Nouveau post</a></li>
+<body class="bg-white font-family-karla">
 
-                </ul>
-            </div>
-                <div class="avatar">
-                    <div class="w-9 rounded-full">
-                        <img src="{{auth()->user()->profil_picture}}" class="w-1/12"/>
-                    </div>
-                </div>
-            @if(auth()->user()->admin != 'user')
-                    <div>
-                        <a href="/admin_choice" class="btn btn-secondary">Admin</a>
-                    </div>
-            @endif
+<!-- Top Bar Nav -->
+<nav class="w-full py-4 bg-blue-800 shadow">
+    <div class="w-full container mx-auto flex flex-wrap items-center">
 
-        </div>
-        @else
-            </div>
+        <nav>
+            <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                @auth
 
-        @endauth
-
-
-        <div class="navbar-center">
-            <a href="/" class="btn btn-ghost normal-case text-xl">COOK with ME</a>
-        </div>
-
-
-
-
-
-
-        <div class="navbar-end">
-
-                <div class="indicator">
-                    @auth
-                        <form class="" method="POST" action="/logout">
-                            @csrf <!-- {{ csrf_field() }} -->
-                            Bonjour {{auth()->user()->username}}
-                            <button type="submit" class="btn btn-accent">Deconnexion</button>
-                        </form>
-                    @else
-                        <div>
-                            <a href="/register" class="btn btn-primary">register</a>
-                            <label for="login_modal" class="btn btn-secondary">Se connecter</label>
+                    <li class="avatar">
+                        <div class="w-9 rounded-full">
+                            <img src="{{auth()->user()->profil_picture}}"/>
                         </div>
-                    @endauth
-                </div>
-            </div>
+                    </li>
+                    <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/profil/{{auth()->user()->username}}">{{auth()->user()->username}}</a></li>
+                    <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/users/preferences">Préférence</a></li>
+                    @if(auth()->user()->admin != 'user')
+                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2 text" href="/admin_choice">ADMIN</a></li>
+                    @endif
+
+                    @else
+
+                    <li><a href="/register" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">register</a></li>
+                    <li><a href="/login_page" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Se connecter</a></li>
+
+                @endauth
+
+            </ul>
+        </nav>
+
+
+                    <form class="" method="POST" action="/logout">
+                        @csrf <!-- {{ csrf_field() }} -->
+                        <button type="submit" class="hover:bg-red-600 rounded py-2 px-4 mx-2">Deconnexion</button>
+                    </form>
+        </div>
+
+
+</nav>
+
+<!-- Text Header -->
+<header class="w-full container mx-auto">
+    <div class="flex flex-col items-center py-12">
+        <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="/">
+            COOK WITH ME
+        </a>
+        <p class="text-lg text-gray-600">
+            Cook together, cook better!
+        </p>
+    </div>
+</header>
+
+<!-- Topic Nav -->
+<nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
+    <div class="block sm:hidden">
+        <a
+            href="#"
+            class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+            @click="open = !open"
+        >
+            Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+        </a>
+    </div>
+    <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
+        <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
+            <a href="/getevent" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Salles</a>
+            <a href="/newpost" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nouveau Post</a>
+            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
         </div>
     </div>
-</div>
+</nav>
+
 
 
 
@@ -96,21 +114,4 @@
 @yield('content')
 
 
-<input type="checkbox" id="login_modal" class="modal-toggle" />
-<div class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-
-    <h3 class="font-bold text-lg">Veuillez saisir vos identifiants</h3>
-        <form method="POST" action="/login">
-        @csrf
-            <input name="username" type="text" placeholder="Identifiant" class="input input-bordered w-full max-w-xs">
-            <input name="password" type="password" placeholder="Mot de passe" class="input input-bordered w-full max-w-xs">
-
-            <button type="submit" class="btn btn-ghost">Se connecter</button>
-        </form>
-    <div class="modal-action">
-      <label for="login_modal" class="btn">Annuler</label>
-    </div>
-  </div>
-</div>
 

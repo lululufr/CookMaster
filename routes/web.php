@@ -39,6 +39,9 @@ Route::post('/logout', [UserController::class, 'logout']);
 //connexion
 Route::post('/login', [UserController::class, 'login']);
 
+Route::get('/login_page', [UserController::class, 'login_page']);
+
+
 //Nouveau posts
 Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 

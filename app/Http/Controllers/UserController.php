@@ -75,4 +75,10 @@ class UserController extends Controller
 
     }
 
+    public function login_page(){
+
+        return view('users.login');
+
+    }
+
 }
