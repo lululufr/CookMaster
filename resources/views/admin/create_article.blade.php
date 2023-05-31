@@ -1,3 +1,6 @@
+<x-header/>
+
+
 <form method="POST" action="/admin/article/create/apply">
     @csrf
     <input name="titre" class="input" placeholder="Nom de l'article"/>
