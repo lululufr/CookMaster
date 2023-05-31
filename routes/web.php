@@ -81,6 +81,9 @@ Route::post('/admin/room/create/apply', [AdminController::class,'create_room_app
 Route::post('/admin/room/modify/{id}', [AdminController::class,'modify_room']);
 Route::post('/admin/room/modify/apply/{id}', [AdminController::class,'modify_room_apply']);
 
+Route::get('/admin/article/create', [AdminController::class,'create_article_page']);
+Route::post('/admin/article/create/apply', [AdminController::class,'create_article_apply']);
+
 
 //page des posts
 Route::get('/newpost', [PostsController::class,'show_post_page']);

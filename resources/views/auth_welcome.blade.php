@@ -1,6 +1,6 @@
 <x-header/>
 
-<div class="flex flex-content">
+<div class="grid flex flex-content">
     @foreach($posts as $post)
 
         <x-posts.card_posts

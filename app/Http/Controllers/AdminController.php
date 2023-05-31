@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
 use App\Models\Rooms;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -145,4 +146,24 @@ class AdminController extends Controller
         return redirect('/admin/room')->with('message','Salle créée avec succes');
     }
 
+    public function create_article_page(){
+        return view('admin.create_article');
+    }
+
+    public function create_article_apply(Request $request){
+        $articles = new Articles();
+
+        $articles->titre = htmlspecialchars($request->input('titre'));
+        $articles->img = htmlspecialchars($request->input('prix'));
+        $articles->prix = htmlspecialchars($request->input('img'));
+        $articles->discount = htmlspecialchars($request->input('discount'));
+        $articles->tags = htmlspecialchars($request->input('tags'));
+        $articles->description = htmlspecialchars($request->input('description'));
+        $articles->lesson = htmlspecialchars($request->input('lesson'));
+
+
+        $articles->save();
+
+        return redirect('/admin/room')->with('message','Salle créée avec succes');
+    }
 }

@@ -18,20 +18,30 @@
     </div>
 </div>
 -->
+<div>
+    <div class="mx-4">
+        <div class="p-10">
+            <div class="flex flex-col items-center justify-center text-center">
+                <article class="flex flex-col shadow my-4">
+                    <!-- Article Image -->
+                    <a href="#" class="hover:opacity-75">
+                        @if($img)
+                            <figure><img src="{{$img}}" alt="Shoes" /></figure>
+                        @endif
+                    </a>
+                    <div class="bg-white flex flex-col justify-start p-6">
+                        <p class="text-blue-700 text-sm font-bold uppercase pb-4">{{$tags}}</p>
+                        <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{$titre}}</p>
+                        <br>
+                        <br>
+                        <p class="pb-6">{{$content}}</p>
 
-<article class="flex flex-col shadow my-4">
-    <!-- Article Image -->
-    <a href="#" class="hover:opacity-75">
-        @if($img)
-            <figure><img src="{{$img}}" alt="Shoes" /></figure>
-        @endif
-    </a>
-    <div class="bg-white flex flex-col justify-start p-6">
-        <p class="text-blue-700 text-sm font-bold uppercase pb-4">{{$tags}}</p>
-        <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{$title}}</p>
-        <p class="text-sm pb-3">
-            Published {{$time}}
-        </p>
-        <p class="pb-6">{{$content}}</p>
+                        <p class="text-sm pb-3">
+                            Published {{$time}}
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
     </div>
-</article>
+</div>
