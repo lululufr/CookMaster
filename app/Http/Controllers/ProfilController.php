@@ -19,7 +19,7 @@ class ProfilController extends Controller
     {
         $infos = User::where('username', auth()->user()->username)->firstOrFail();
 
-        return view('users.preference', ['infos' => $infos]);
+        return view('users.profil', ['infos' => $infos]);
     }
 
 
