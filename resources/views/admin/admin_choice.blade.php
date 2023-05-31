@@ -1,8 +1,18 @@
 <x-header/>
 
-<a href="/admin" class="btn btn-secondary">Utilisateur Administration</a>
 
-<a href="/admin/room" class="btn btn-secondary">Salles Administrations</a>
+
+<div>
+
+
+    <a href="/admin" class="hover:bg-red-600 rounded py-2 px-4 mx-2">Utilisateur Administration</a>
+
+    <a href="/admin/room" class="hover:bg-red-600 rounded py-2 px-4 mx-2">Salles Administrations</a>
+
+    <a href="/admin/article" class="hover:bg-red-600 rounded py-2 px-4 mx-2">Articles Administrations</a>
+
+
+</div>
 
 
 <x-footer/>
