@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\ShopController;
 use App\Models\Posts;
 use App\Models\User;
 
@@ -86,3 +87,9 @@ Route::post('/postcreation', [PostsController::class,'create']);
 
 //page des salles ( EDT )
 
+
+
+//BOUTIQUE
+
+Route::get('/shop', [ShopController::class,'show_shop_page']);
+Route::get('/shop/{id}', [ShopController::class,'show_item']);

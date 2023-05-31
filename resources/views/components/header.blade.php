@@ -24,8 +24,11 @@
 </head>
 
 @if(session('message'))
-    <div class="alert alert-success">
-        {{session('message')}}
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+         class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
+        <p>
+            {{session('message')}}
+        </p>
     </div>
 @endif
 
@@ -97,10 +100,12 @@
         <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
             <a href="/getevent" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Salles</a>
             <a href="/newpost" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nouveau Post</a>
+
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+
+            <a href="/shop" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Boutique</a>
         </div>
     </div>
 </nav>

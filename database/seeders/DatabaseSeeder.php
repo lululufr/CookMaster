@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Articles;
 use App\Models\Event;
 use App\Models\Posts;
 use App\Models\Rooms;
@@ -44,6 +45,10 @@ class DatabaseSeeder extends Seeder
 
         Event::factory()
             ->count(50)
+            ->create();
+
+        Articles::factory()
+            ->count(10)
             ->create();
 
 

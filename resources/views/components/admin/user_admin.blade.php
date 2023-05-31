@@ -29,29 +29,17 @@
 
     <td>{{$email}}</td>
     <th>
-        <label for="modal{{$id}}{{$pseudo}}" class="btn">open modal</label>
+        <form action="/admin/modify/{{$id}}" method="POST">
+            @csrf
+            <button class="btn btn-accent">Modifier</button>
+        </form>
+
+        <form action="/admin/delete/{{$id}}" method="POST">
+            @csrf
+            <button class="btn btn-error">Supprimer</button>
+        </form>
     </th>
 </tr>
 
 
-<!-- Modal -->
-    <input type="checkbox" id="modal{{$id}}{{$pseudo}}" class="modal-toggle" />
-    <div class="modal">
-        <div class="modal-box p-3">
-            <h3 class="font-bold text-lg">Id : {{$id}} Pseudo : {{$pseudo}}</h3>
-            <p class="py-4">Veuillez choisir l'action :</p>
 
-
-            <form action="/admin/modify/{{$id}}" method="POST">
-                @csrf
-                <button class="btn btn-accent">Modifier</button>
-            </form>
-
-            <form action="/admin/delete/{{$id}}" method="POST">
-                @csrf
-                <button class="btn btn-error">Supprimer</button>
-            </form>
-
-        </div>
-    </div>
-<!-- Modal -->

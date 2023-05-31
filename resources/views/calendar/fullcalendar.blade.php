@@ -6,5 +6,6 @@
     {{$event->rooms->street}}
 @endforeach
 
+<div id="calendar"></div>
 
 <x-footer/>
