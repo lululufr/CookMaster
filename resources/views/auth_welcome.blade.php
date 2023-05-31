@@ -10,7 +10,9 @@
 
         time="{{$post->created_at}}"
 
-        img="{{$post->image_path}}"/>
+        img="{{$post->image_path}}"
+
+        titre="{{$post->titre}}"/>
 
         <!--username="//$post->User->username"-->
 

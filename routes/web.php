@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\StripePaymentController;
 use App\Models\Posts;
 use App\Models\User;
 
@@ -93,3 +94,7 @@ Route::get('/post/{id}', [PostsController::class,'detailed_post_view']);
 
 Route::get('/shop', [ShopController::class,'show_shop_page']);
 Route::get('/shop/{id}', [ShopController::class,'show_item']);
+    //paiement
+
+Route::get('/pay', [StripePaymentController::class,'payment_page']);
+Route::post('/pay', [StripePaymentController::class,'payment']);
