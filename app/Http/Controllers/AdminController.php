@@ -164,6 +164,6 @@ class AdminController extends Controller
 
         $articles->save();
 
-        return redirect('/admin/room')->with('message','Salle créée avec succes');
+        return redirect('/admin/article')->with('message','Salle créée avec succes');
     }
 }
