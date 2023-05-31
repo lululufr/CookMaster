@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Articles;
 use App\Models\Posts;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,10 @@ class PostsController extends Controller
 
     return view('post/post_page');
 
+    }
+    public function detailed_post_view($id){
+        $article = Articles::where('id', $id)->firstOrFail();
+        return view('post/detailed_view', ['article' => $article]);
     }
 
     public function create(Request $request)

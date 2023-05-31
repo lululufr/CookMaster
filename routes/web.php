@@ -84,7 +84,7 @@ Route::post('/admin/room/modify/apply/{id}', [AdminController::class,'modify_roo
 //page des posts
 Route::get('/newpost', [PostsController::class,'show_post_page']);
 Route::post('/postcreation', [PostsController::class,'create']);
-
+Route::get('/post/{id}', [PostsController::class,'detailed_post_view']);
 //page des salles ( EDT )
 
 

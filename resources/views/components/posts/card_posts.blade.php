@@ -1,6 +1,6 @@
 
 
-<div class="card w-96 bg-base-100 shadow-xl">
+<!--<div class="card w-96 bg-base-100 shadow-xl">
     @if($img)
     <figure><img src="{{$img}}" alt="Shoes" /></figure>
     @endif
@@ -12,9 +12,26 @@
         </h2>
         <p>{{$content}}</p>
         <div class="card-actions justify-end">
-            <!--<div class="badge badge-outline"></div>-->
+            <div class="badge badge-outline"></div>
             <div class="badge badge-outline">{{$time}}</div>
         </div>
     </div>
 </div>
+-->
 
+<article class="flex flex-col shadow my-4">
+    <!-- Article Image -->
+    <a href="#" class="hover:opacity-75">
+        @if($img)
+            <figure><img src="{{$img}}" alt="Shoes" /></figure>
+        @endif
+    </a>
+    <div class="bg-white flex flex-col justify-start p-6">
+        <p class="text-blue-700 text-sm font-bold uppercase pb-4">{{$tags}}</p>
+        <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{$title}}</p>
+        <p class="text-sm pb-3">
+            Published {{$time}}
+        </p>
+        <p class="pb-6">{{$content}}</p>
+    </div>
+</article>
