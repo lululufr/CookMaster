@@ -14,7 +14,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SallesController;
 use App\Http\Controllers\AdminController;
-use App\http\Controllers\PostsController;
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
