@@ -9,7 +9,7 @@ class FullCalendarController extends Controller
 
         $events = Event::all();
 
-        return view('calendar.fullcalendar', compact('events'));
+        return view('calendar.fullcalendar');
 
     }
     public function createEvent(Request $request){

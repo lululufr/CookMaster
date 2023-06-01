@@ -14,14 +14,19 @@ class EventFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
+        $faker = \Faker\Factory::create();
+
+        $start = $faker->dateTimeBetween('-1 week', '+1 week');
+        $duration = $faker->numberBetween(1, 2);
+
         return [
-            'title'=>fake()->sentence(),
-            'description'=>fake()->text(),
-            'rooms_id'=>fake()->numberBetween(1,50),
-            'start'=>fake()->dateTime(),
-            'end'=>fake()->dateTime(),
+            'title' => $faker->sentence,
+            'description' => $faker->text,
+            'rooms_id' => $faker->numberBetween(1, 50),
+            'duration' => $duration,
+            'start' => $start,
         ];
     }
 }

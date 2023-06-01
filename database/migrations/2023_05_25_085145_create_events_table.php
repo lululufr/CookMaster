@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->ForeignIdfor(Rooms::class);
             $table->dateTime('start');
-            $table->dateTime('end');
+            $table->integer('duration');
             $table->timestamps();
         });
     }
