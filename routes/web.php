@@ -101,3 +101,4 @@ Route::get('/shop/{id}', [ShopController::class,'show_item']);
 
 Route::get('/pay', [StripePaymentController::class,'payment_page']);
 Route::post('/pay', [StripePaymentController::class,'payment']);
+
