@@ -66,11 +66,14 @@
             </ul>
         </nav>
 
+                @auth
+                    <a href="/shop/cart/show">PANIER</a>
 
                     <form class="" method="POST" action="/logout">
                         @csrf <!-- {{ csrf_field() }} -->
                         <button type="submit" class="hover:bg-red-600 rounded py-2 px-4 mx-2">Deconnexion</button>
                     </form>
+                @endauth
         </div>
 
 

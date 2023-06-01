@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Articles::class);

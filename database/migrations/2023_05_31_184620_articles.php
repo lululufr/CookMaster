@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('titre');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->integer('prix');
             $table->integer('nb');
             $table->integer('discount')->nullable();
             $table->string('tags')->nullable();
             $table->longText('description');
-            $table->longText('lesson');
             $table->timestamps();
         });
     }

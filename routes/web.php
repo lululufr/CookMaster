@@ -97,6 +97,10 @@ Route::get('/post/{id}', [PostsController::class,'detailed_post_view']);
 
 Route::get('/shop', [ShopController::class,'show_shop_page']);
 Route::get('/shop/{id}', [ShopController::class,'show_item']);
+
+Route::get('/shop/cart/add/{id}', [ShopController::class,'add_item_cart']);
+Route::get('/shop/cart/show', [ShopController::class,'show_cart']);
+
     //paiement
 
 Route::get('/pay', [StripePaymentController::class,'payment_page']);

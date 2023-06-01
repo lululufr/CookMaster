@@ -19,7 +19,7 @@
                 </div>
 
                 <div>
-                    ACHETER
+                    <a href="/shop/cart/add/{{$id}}">ACHETER</a>
                 </div>
 
                 <div class="text-lg my-4">

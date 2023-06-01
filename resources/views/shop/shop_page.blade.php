@@ -7,6 +7,7 @@
     @foreach(\App\Models\Articles::all() as $article)
 
             <x-shop.article
+                id="{{$article->id}}"
                 titre="{{$article->titre}}"
                 prix="{{$article->prix}}"
                 img="{{$article->img}}"

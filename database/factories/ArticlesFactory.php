@@ -22,6 +22,7 @@ class ArticlesFactory extends Factory
             'prix'=>fake()->numberBetween(1,50),
             'nb'=>fake()->numberBetween(1,50),
             'discount'=>fake()->numberBetween(0,1),
+            'img'=>'#',
         ];
     }
 }
