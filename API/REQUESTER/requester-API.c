@@ -19,6 +19,49 @@ size_t write_callback(void *ptr, size_t size, size_t nmemb, char *output) {
     return total_size;
 }
 
+char * indentJsonString(const char* jsonString) {
+    int jsonStringLength = strlen(jsonString);
+    char* indentedJsonString = (char*)malloc((jsonStringLength * 2 + 1) * sizeof(char)); // Allocation de mémoire pour la chaîne indentée
+    int indentLevel = 0;
+    int currentPosition = 0;
+    int indentSize = 4;
+    for (int i = 0; i < jsonStringLength; i++) {
+        if (jsonString[i] == '{' || jsonString[i] == '[') {
+            // Ajouter une nouvelle ligne et l'indentation actuelle
+            indentedJsonString[currentPosition++] = jsonString[i];
+            indentedJsonString[currentPosition++] = '\n';
+            indentLevel++;
+
+            for (int j = 0; j < indentLevel * indentSize; j++) {
+                indentedJsonString[currentPosition++] = ' '; // Ajouter l'indentation
+            }
+        } else if (jsonString[i] == '}' || jsonString[i] == ']') {
+            // Ajouter une nouvelle ligne et l'indentation actuelle
+            indentedJsonString[currentPosition++] = '\n';
+            indentLevel--;
+
+            for (int j = 0; j < indentLevel * indentSize; j++) {
+                indentedJsonString[currentPosition++] = ' '; // Ajouter l'indentation
+            }
+
+            indentedJsonString[currentPosition++] = jsonString[i];
+        } else if (jsonString[i] == ',') {
+            indentedJsonString[currentPosition++] = jsonString[i];
+            indentedJsonString[currentPosition++] = '\n';
+
+            for (int j = 0; j < indentLevel * indentSize; j++) {
+                indentedJsonString[currentPosition++] = ' '; // Ajouter l'indentation
+            }
+        } else {
+            indentedJsonString[currentPosition++] = jsonString[i];
+        }
+    }
+
+    indentedJsonString[currentPosition] = '\0'; // Terminer la chaîne
+
+    return indentedJsonString;
+}
+
 static void print_hello (GtkWidget *widget,
              gpointer   data)
 {
@@ -59,7 +102,7 @@ static void print_hello (GtkWidget *widget,
         if (res != CURLE_OK) {
             fprintf(stderr, "Error: %s\n", curl_easy_strerror(res));
         } else {
-            gtk_text_buffer_set_text(buffer, output, -1);
+            gtk_text_buffer_set_text(buffer, indentJsonString(output) , -1);
 
             gtk_widget_queue_draw(textOutput);
         }
