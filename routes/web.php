@@ -86,7 +86,7 @@ Route::post('/admin/article/create/apply', [AdminController::class,'create_artic
 
 
 //page des posts
-Route::get('/newpost', [PostsController::class,'show_post_page']);
+Route::get('/new_post', [PostsController::class,'show_post_page']);
 Route::post('/postcreation', [PostsController::class,'create']);
 Route::get('/post/{id}', [PostsController::class,'detailed_post_view']);
 //page des salles ( EDT )
