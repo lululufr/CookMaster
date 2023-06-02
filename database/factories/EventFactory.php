@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use function PHPUnit\Framework\stringContains;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
@@ -24,8 +25,9 @@ class EventFactory extends Factory
         return [
             'title' => $faker->sentence,
             'description' => $faker->text,
-            'rooms_id' => $faker->numberBetween(1, 50),
+            'rooms_id' => $faker->numberBetween(1, 10),
             'duration' => $duration,
+            'tags' => 'test',
             'start' => $start,
         ];
     }

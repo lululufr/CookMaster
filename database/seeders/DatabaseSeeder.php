@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Rooms::factory()
-            ->count(50)
+            ->count(10)
             ->create();
 
         Event::factory()

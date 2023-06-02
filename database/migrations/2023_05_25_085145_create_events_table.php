@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->ForeignIdfor(Rooms::class);
+            $table->string('tags')->nullable(); // a lier au event
             $table->dateTime('start');
             $table->integer('duration');
             $table->timestamps();
