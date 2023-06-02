@@ -1,5 +1,7 @@
 <x-header/>
+<div>
 
+</div>
     <!-- Posts Section -->
     <div class="grid grid-cols-1 gap-4 place-content-center">
 
