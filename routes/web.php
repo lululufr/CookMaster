@@ -36,7 +36,7 @@ Route::get('/register', [UserController::class, 'create'])->name('register');
 Route::post('/users', [UserController::class, 'register']);
 
 //deconnexion user
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //connexion
 Route::post('/login', [UserController::class, 'login']);
@@ -51,19 +51,24 @@ Route::post('/newpost', [UserController::class, 'login'])->middleware('auth');
 Route::get('/profil/{username}',[ProfilController::class, 'show_profil_page']);
 
 //page des préférences & parametre
-Route::get('/users/preferences',[ProfilController::class, 'show_preference_page']);
-Route::post('/users/preferences/change',[ProfilController::class, 'change_preference']);
+Route::get('/users/preferences',[ProfilController::class, 'show_preference_page'])->middleware('auth');
+Route::post('/users/preferences/change',[ProfilController::class, 'change_preference'])->middleware('auth');
 
 
 //page des salles
-Route::get('/getevent', [FullCalendarController::class,'getEvent']);
-Route::post('/createevent',[FullCalendarController::class,'createEvent']);
-Route::post('/deleteevent',[FullCalendarController::class,'deleteEvent']);
+Route::get('/getevent', [FullCalendarController::class,'getEvent'])->middleware('auth');
+Route::post('/createevent',[FullCalendarController::class,'createEvent'])->middleware('auth');
+Route::post('/deleteevent',[FullCalendarController::class,'deleteEvent'])->middleware('auth');
 
 
 //messagerie
-Route::get('/message', [MessageController::class,'show_message_page']);
-Route::get('/message/afficher', [MessageController::class,'show_messages']);
+Route::get('/conversation', [MessageController::class,'show_conversation_page']);
+Route::get('/message/{id}', [MessageController::class,'show_message_page']);
+Route::post('/message/send', [MessageController::class,'send_messages']);
+
+
+
+
 
 //page admin
 Route::get('/admin_choice', [AdminController::class,'show_admin_choice']);

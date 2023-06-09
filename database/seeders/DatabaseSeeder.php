@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Articles;
 use App\Models\Event;
+use App\Models\Messages;
 use App\Models\Posts;
 use App\Models\Rooms;
 use App\Models\User;
@@ -49,6 +50,10 @@ class DatabaseSeeder extends Seeder
 
         Articles::factory()
             ->count(10)
+            ->create();
+
+        Messages::factory()
+            ->count(200)
             ->create();
 
 
