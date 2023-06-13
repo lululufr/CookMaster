@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('to_id')->index();
             $table->foreign('to_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->unsignedBigInteger('from_id')->index();
+            $table->foreign('from_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->text('content');
 

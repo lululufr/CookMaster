@@ -10,12 +10,11 @@ class MessageController extends Controller
     public function show_message_page(int $id)
     {
 
-        $messages = Messages::where('to_id', $id)->orderBy('created_at', 'desc')->get();
-        //where('to_id',auth()->user()->id)->limit(30)
+        $messages = Messages::query()->orWhere('from_id', $id)->orWhere('to_id', $id)->limit(20)->get();
 
 
 
-       return view('message.message_page')->with('messages', $messages);
+       return view('message.message_page')->with('messages', $messages)->with('id', $id);
     }
 
     public function show_messages(Request $request)
@@ -24,4 +23,20 @@ class MessageController extends Controller
 
         echo $message;
     }
+
+    public function send_messages(Request $request, int $id)
+    {
+        $message =  $request['message'];
+
+        $entry = new Messages();
+        $entry->to_id = $id;
+        $entry->from_id = auth()->user()->id;
+        $entry->content = $message;
+        $entry->save();
+
+        return redirect('/message/'.$id);
+
+    }
+
+
 }

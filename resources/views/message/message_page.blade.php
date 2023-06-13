@@ -1,27 +1,27 @@
 <x-header/>
 
+<div class="overscroll-contain">
 
-@foreach($messages as $message)
-    <div>
-    {{$message->content}}
-        @if($message->to_id == auth()->user()->id)
-            MOI
-        @else
-            recu
-        @endif
-    </div>
+    @foreach($messages as $message)
+        <div class=" box-content place-content-stretch flex-auto p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2">
 
-@endforeach
+            {{$message->content}}
+        </div>
+    @endforeach
 
+</div>
 
+<div>
+    <form method="POST" action="/message/{{$id}}/send">
+        @csrf
 
-<form method="GET" action="/message/afficher">
+        <input type="text" id="text" name="message"/>
 
-    <input type="text" id="idmessage" name="message"/>
+        <button type="submit">
+            Envoyer
+        </button>
 
-    <button type="submit">Envoyer</button>
-
-</form>
-
+    </form>
+</div>
 
 <x-footer/>

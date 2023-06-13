@@ -64,7 +64,7 @@ Route::post('/deleteevent',[FullCalendarController::class,'deleteEvent'])->middl
 //messagerie
 Route::get('/conversation', [MessageController::class,'show_conversation_page']);
 Route::get('/message/{id}', [MessageController::class,'show_message_page']);
-Route::post('/message/send', [MessageController::class,'send_messages']);
+Route::post('/message/{id}/send', [MessageController::class,'send_messages']);
 
 
 

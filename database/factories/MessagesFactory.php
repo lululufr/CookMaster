@@ -20,6 +20,7 @@ class MessagesFactory extends Factory
         return [
 
                 'to_id' => User::factory(),
+                'from_id' => User::factory(),
                 'content'=>fake()->text()
         ];
     }
