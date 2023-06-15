@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Articles;
+use App\Models\Chapters;
+use App\Models\Classes;
 use App\Models\Event;
 use App\Models\Messages;
 use App\Models\Posts;
@@ -54,6 +56,10 @@ class DatabaseSeeder extends Seeder
 
         Messages::factory()
             ->count(200)
+            ->create();
+
+        Classes::factory()
+            ->count(10)
             ->create();
 
 

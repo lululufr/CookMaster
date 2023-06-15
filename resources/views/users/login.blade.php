@@ -2,7 +2,7 @@
 
 
 
-<div class="modal modal-bottom sm:modal-middle">
+
         <form method="POST" action="/login" class="grid justify-items-center m-4">
             @csrf
             <h3 class="font-bold text-lg">Veuillez saisir vos identifiants </h3>
@@ -30,7 +30,7 @@
         <div class="modal-action">
             <label for="login_modal" class="btn">Annuler</label>
         </div>
-</div>
+
 
 
 <x-footer/>

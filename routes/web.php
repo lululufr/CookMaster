@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
@@ -121,3 +122,8 @@ Route::get('/shop/cart/show', [ShopController::class,'show_cart']);
 Route::get('/pay', [StripePaymentController::class,'payment_page']);
 Route::post('/pay', [StripePaymentController::class,'payment']);
 
+
+
+//FORMATIONS
+
+Route::get('/class', [ClassController::class,'class_page']);

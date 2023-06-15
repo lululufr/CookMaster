@@ -54,7 +54,7 @@
                         </div>
                     </li>
                     <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/profil/{{auth()->user()->username}}">{{auth()->user()->username}}</a></li>
-                    <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/users/preferences">Préférence</a></li>
+                    <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/conversation">Messages</a></li>
                     @if(auth()->user()->admin != 'user')
                         <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2 text" href="/admin_choice">ADMIN</a></li>
                     @endif
@@ -110,7 +110,7 @@
             <a href="/getevent" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Salles</a>
             <a href="/new_post" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nouveau Post</a>
 
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+            <a href="/class" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Formations</a>
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
 
