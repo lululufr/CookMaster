@@ -17,11 +17,23 @@ class MessageController extends Controller
        return view('message.message_page')->with('messages', $messages)->with('id', $id);
     }
 
-    public function show_messages(Request $request)
+    public function show_conversation()
     {
-        $message =  $request['message'];
 
-        echo $message;
+        $messages = Messages::where('to_id', auth()->user()->id)->orWhere('from_id', auth()->user()->id)->get();
+
+        $conversation = array();
+
+        foreach ($messages as $message) {
+            if ($message->from_in in $conversation) {
+
+            }else {
+
+
+            }
+        }
+
+        return view('message.conversation')->with('messages', $messages);
     }
 
     public function send_messages(Request $request, int $id)
