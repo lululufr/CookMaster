@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StripePaymentController;
 use App\Models\Posts;
@@ -42,6 +43,15 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/login', [UserController::class, 'login']);
 
 Route::get('/login_page', [UserController::class, 'login_page']);
+
+
+//les recherches :
+Route::get('/search_user', [SearchController::class, 'SearchUser'])->name('recherche.utilisateur');
+
+
+//
+
+
 
 
 //Nouveau posts
