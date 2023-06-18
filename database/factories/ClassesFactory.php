@@ -24,7 +24,7 @@ class ClassesFactory extends Factory
         $user = User::inRandomOrder()->first();
 
         return [
-            'chef' => $user->id,
+            'chef_id' => $user->id,
             'tags' => 'test',
             'description'=>fake()->text(),
             'title'=>fake()->title()

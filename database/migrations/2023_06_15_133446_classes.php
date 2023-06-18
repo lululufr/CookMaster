@@ -15,8 +15,9 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('title');
+            $table->string('img')->default('/images/classes/cap-cuisine.jpeg');
 
-            $table->foreignIdFor(User::class, 'chef')->references('id')->on('users');
+            $table->foreignIdFor(User::class, 'chef_id')->references('id')->on('users');
             $table->string('tags')->nullable();
             $table->longText('description');
             $table->timestamps();

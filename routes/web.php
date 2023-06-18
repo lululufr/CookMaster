@@ -127,3 +127,12 @@ Route::post('/pay', [StripePaymentController::class,'payment']);
 //FORMATIONS
 
 Route::get('/class', [ClassController::class,'class_page']);
+Route::get('/class/{id}/show', [ClassController::class,'class_chapters_page']);
+Route::get('/class/{id}/certif/check', [ClassController::class,'certif_check']);
+
+Route::get('/class/getcertification/{id}', [ClassController::class,'certification']);
+//chapter
+Route::get('/class/{id}/check', [ClassController::class,'chapters_check']);
+
+
+

@@ -5,7 +5,7 @@
     <!-- Posts Section -->
     <div class="grid grid-cols-1 gap-4 place-content-center">
 
-        <article class="flex flex-col shadow my-4">
+        <article class="flex flex-col shadow my-4 items-center">
             <!-- Article Image -->
             <a href="#" class="hover:opacity-75">
                 <img src="https://media.istockphoto.com/id/1154731746/fr/photo/cheeseburger-au-cola-et-frites-fran%C3%A7ais.jpg?s=612x612&w=0&k=20&c=yEvgjV_otTTBEqvxFNl2y_bV6D_US9P0OF-fFtoNQls=">
