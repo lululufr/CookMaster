@@ -14,7 +14,7 @@
                                     <b>Formation réalisée par le chef {{$class->chef->username}}</b>
                                     <div class="card-actions justify-end">
 
-                                        <form action="/class/show" method="GET">
+                                        <form action="/class/{{$class->id}}/show" method="GET">
                                             @csrf
                                             <button class="btn btn-primary">Suivre la formation</button>
 
@@ -29,6 +29,7 @@
 
             </div>
 
+{{ $classes->links() }}
 
 
 <x-footer/>

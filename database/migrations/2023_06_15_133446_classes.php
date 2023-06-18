@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('img')->default('/images/classes/cap-cuisine.jpeg');
 
-            $table->foreignIdFor(User::class, 'chef_id')->references('id')->on('users');
+            $table->foreignIdFor(User::class, 'chef_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('tags')->nullable();
             $table->longText('description');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
@@ -99,6 +100,10 @@ Route::post('/admin/room/modify/apply/{id}', [AdminController::class,'modify_roo
 
 Route::get('/admin/article/create', [AdminController::class,'create_article_page']);
 Route::post('/admin/article/create/apply', [AdminController::class,'create_article_apply']);
+
+Route::get('/admin/new/class', [AdminController::class,'new_class_page']);
+Route::get('/admin/create/class', [AdminController::class,'new_class']);
+
 
 
 //page des posts

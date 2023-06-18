@@ -1,5 +1,5 @@
 
-<div class="card w-96 bg-neutral text-neutral-content">
+<div class="card h-63 w-96">
     <div class="card-body items-center text-center">
         <h2 class="card-title">{{$title}}</h2>
         <p>{{$content}}</p>
@@ -11,18 +11,12 @@
                 @csrf
 
             <div class="collapse">
-                <input type="checkbox"/>
-                <div class="collapse-title text-xl font-medium">
-                    Modifier
-                </div>
-                <div class="collapse-content">
-                    <input type="hidden" name="table" value="{{$table}}"></input>
-                    <input class="input" name="new_content"></input>
 
-                    <button type="submit" class="btn btn-ghost">Valider</button>
-                </div>
-            </div>
+                <p>Nouveau {{$table}} : </p>
+                    <input name="new_content" type="text" class="input input-bordered input-primary w-full max-w-xs"/>
 
+                    <button type="submit" class="btn">Modifier</button>
+                </div>
         </form>
 
 

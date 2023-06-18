@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->id()->autoIncrement();
 
-            $table->foreignIdFor(Classes::class, 'belongs_to')->references('id')->on('classes');
+            $table->foreignIdFor(Classes::class, 'belongs_to')->references('id')->on('classes')->onDelete('cascade');
 
             $table->longText('location');
             $table->string('tags')->nullable();

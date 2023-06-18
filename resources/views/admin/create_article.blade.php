@@ -9,7 +9,7 @@
     <input name="discount" class="input" type="number" placeholder="réduction"/>
     <input name="tags" class="input" placeholder="tags"/>
     <input name="description" class="input" placeholder="La description"/>
-    <input name="lesson" class="input" placeholder="lesson"/>
+    <input name="lesson" class="input" placeholder="leçon"/>
 
     <button class="btn btn-secondary" type="submit">Créer</button>
 </form>

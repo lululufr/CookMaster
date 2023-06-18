@@ -3,7 +3,7 @@
 
 
 
-
+{{$users->links()}}
 <div class="overflow-x-auto w-full">
     <table class="table w-full">
         <!-- head -->
@@ -25,7 +25,7 @@
 
 
 
-        @foreach(\App\Models\User::all() as $user)
+        @foreach($users as $user)
             <tr>
                 <x-admin.user_admin
 

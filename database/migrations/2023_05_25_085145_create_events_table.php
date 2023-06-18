@@ -16,8 +16,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('description');
-            $table->ForeignIdfor(Rooms::class);
-            $table->string('tags')->nullable(); // a lier au event
+            $table->bigInteger('rooms_id')->unsigned()->index()->nullable();
+            $table->foreign('rooms_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('tags')->nullable(); // a lier au tags
             $table->dateTime('start');
             $table->integer('duration');
             $table->timestamps();
