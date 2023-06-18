@@ -65,13 +65,13 @@
     </div>
 
     <div class="content">
-        <p class="description">Félicitations à <span class="name">{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</span> pour avoir accompli avec succès la formation "{{ $certif->title }}".</p>
+        <p class="description">Félicitations à <span class="name">{{ $user->username }}</span> pour avoir accompli avec succès la formation "{{ $certif->title }}".</p>
         <p class="description">Ce certificat atteste de la participation active et de la réalisation exemplaire dans le domaine.</p>
         <p class="description">Nous sommes fiers de vous décerner ce certificat en reconnaissance de vos efforts et de votre engagement.</p>
     </div>
 
     <div class="signature">
-        <img src="/images/deco/SIGNATURE.svg" alt="Signature">
+        <img src="{{ asset('images/deco/signature.png') }}" alt="Signature">
     </div>
 </div>
 </body>

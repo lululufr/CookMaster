@@ -18,10 +18,9 @@ class ClassController extends Controller
     public function class_page()
     {
 
-        $classes = Classes::all();
+        $classes = Classes::paginate(8);
 
-
-        return view('class.class-page')->with('classes', $classes);
+        return view('class.class-page', compact('classes'));
     }
 
     public function class_chapters_page(int $id)
@@ -94,6 +93,7 @@ class ClassController extends Controller
     {
 
         $certif = Classes::find($id);
+        $user = auth()->user();
 
         if (!$certif) {
             return back()->with('message', 'Ce cours n\'existe pas');
@@ -103,14 +103,14 @@ class ClassController extends Controller
         $options->set('isRemoteEnabled', true); // Activer le chargement de ressources distantes (facultatif)
         $dompdf = new Dompdf($options);
 
-        $view = view('class.certif', compact('certif'));
+        $view = view('class.certif', compact('certif', 'user'));
 
         $dompdf->loadHtml($view->render());
         $dompdf->setPaper('a4', 'landscape');
 
         $dompdf->render();
 
-        return $dompdf->stream('certif.pdf');
+        return $dompdf->stream('certificat'."12421".$id."5526".'.pdf');
     }
 
 

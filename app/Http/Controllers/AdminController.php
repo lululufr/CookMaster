@@ -12,14 +12,16 @@ class AdminController extends Controller
 {
     public function show_admin_page()
     {
-        return view('admin/admin_page');
+        $users = User::paginate(20);
+
+        return view('admin/admin_page')->with('users', $users);
     }
 
     public function delete_user($id)
     {
         User::where('id', $id)->delete();
 
-        redirect('/admin')->with('success', 'User supprimé avec succes');
+        return redirect('/admin')->with('success', 'User supprimé avec succes');
 
     }
 
@@ -75,7 +77,7 @@ class AdminController extends Controller
     public function show_admin_room()
     {
         //affiche toutes les salles
-        $rooms = Rooms::all();
+        $rooms = Rooms::paginate(20);
         return view('admin.room_admin',['rooms'=>$rooms]);
     }
 
@@ -166,4 +168,15 @@ class AdminController extends Controller
 
         return redirect('/admin/article')->with('message','Salle créée avec succes');
     }
+
+
+
+    public function new_class_page(){
+
+        return view('admin.admin_class_page');
+
+    }
+
+
+
 }
