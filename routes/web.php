@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
@@ -79,7 +80,11 @@ Route::get('/message/{id}', [MessageController::class,'show_message_page']);
 Route::post('/message/{id}/send', [MessageController::class,'send_messages']);
 
 
-
+//events
+Route::get('/event/create', [EventController::class,'createEvent']);
+Route::post('/event/create', [EventController::class,'createEventApply']);
+Route::get('/event/modify', [EventController::class,'modifyEvent']);
+Route::post('/event/modify', [EventController::class,'modifyEventApply']);
 
 
 //page admin

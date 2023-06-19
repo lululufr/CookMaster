@@ -1,15 +1,5 @@
 <x-header/>
 
-
-
-
-
-
-
-
-
-
-
 <div>
     <form action="/getevent" method="get" class="form" id="rech">
         @csrf
@@ -59,9 +49,9 @@ foreach ($events as $event) {
 
 <div class="grid flex grid-rows-7 grid-flow-col gap-4">
 <?php
-
+$cpt = 0;
 foreach ($calendar as $day => $events) {
-    echo '<div class="grid grid-cols w-42 justify-items-center ">';
+    echo '<div class="grid grid-cols w-42 justify-items-center" >';
     echo '<h1 class="">' . $day . '</h1>';
     foreach ($events as $event) {
         ?>
@@ -70,7 +60,7 @@ foreach ($calendar as $day => $events) {
 
         <?php echo 'h-'.$event['duration'] * 16?>
 
-        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2">
+        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
             <p><?php echo $event['title'];?></p>
             <p><?php echo $event['start']; ?></p>
             <p><?php echo $event['rooms_id']; ?></p>
@@ -82,6 +72,16 @@ foreach ($calendar as $day => $events) {
         </div>
 
         <?php
+            echo '<dialog id="my_modal'.$event["id"].'" class="modal">
+                     <form method="dialog" class="modal-box w-11/12 max-w-5xl">
+                        <h3 class="font-bold text-lg">Hello!</h3>
+                        <p class="py-4">'.$event["title"].'</p>
+                        <p class="py-4">'.$event["description"].'</p>
+                        <div class="modal-action">
+                            <button class="btn"></button>
+                        </div>
+                    </form>
+                 </dialog>';
     }
     echo '</div>';
 }
