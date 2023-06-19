@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->longText('content')->nullable();
             $table->string('tags')->nullable();
+            $table->string('media')->nullable();
 
             $table->string('type')->default('lecon');
 

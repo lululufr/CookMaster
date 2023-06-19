@@ -9,7 +9,7 @@
         <figure><img src="images/deco/undraw_completed_03xt.svg" alt="Shoes" /></figure>
         <div class="card-body">
             <h2 class="card-title">Articles Administrations</h2>
-            <p>Modifier et ajouter des articles </p>
+            <p>Modifier et ajouter des articles dans la boutique </p>
             <div class="card-actions justify-end">
                 <a href="/admin/article/create" class="btn btn-primary">Articles Administrations</a>
             </div>

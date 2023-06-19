@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use App\Models\Chapters;
+use App\Models\Classes;
+use App\Models\Questions;
 use App\Models\Rooms;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -177,6 +180,53 @@ class AdminController extends Controller
 
     }
 
+    public function create_classes(Request $request)
+    {
 
+        // Create a new class
+        $class = new Classes();
+        $class->title = $request->input('title');
+        $class->img = '/images/classes/cap-cuisine.jpeg'; // Default image
+        $class->description = $request->input('description');
+        $class->chef_id = auth()->user()->id;
+        $class->save();
+
+        // Get the generated class ID
+        $classId = $class->id;
+
+        // Process the form data if any chapters are provided
+        if ($request->has('titre')) {
+            $titles = $request->input('titre');
+            $contenus = $request->input('contenu');
+            $medias = $request->file('media');
+
+            // Check if titles is an array and not an empty string
+            if (is_array($titles) && !empty($titles)) {
+                // Iterate over the chapters data
+                for ($i = 0; $i < count($titles); $i++) {
+                    // Create a new chapter
+                    $chapter = new Chapters();
+                    $chapter->classes_id = $classId;
+                    $chapter->title = $titles[$i];
+                    $chapter->content = $contenus[$i];
+
+                    // Check if media file is provided
+                    if (isset($medias[$i]) && $medias[$i]) {
+                        $mediaPath = $medias[$i]->store('media');
+                        $chapter->media = $mediaPath;
+                    }
+
+                    $chapter->save();
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'La classe a été créée avec succès.');
+    }
+        // Redirect or perform any other necessary actions
 
 }
+
+
+
+

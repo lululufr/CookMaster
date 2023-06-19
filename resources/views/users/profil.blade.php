@@ -5,6 +5,11 @@
 @endif
 <x-header/>
 <div class="form-control grid justify-items-center m-4 w-full max-w-xs">
+
+
+    <a href="/user/pref" class="btn">MES ELEMENTS</a>
+
+
     <form method="get">
         @csrf
         <div class="form-control w-full max-w-xs m-5">

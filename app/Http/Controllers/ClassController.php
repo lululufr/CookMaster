@@ -114,5 +114,13 @@ class ClassController extends Controller
     }
 
 
+    public function edit_class(int $id)
+    {
+
+        $chapters = Chapters::where('classes_id', $id)->first();
+
+
+        return view('class.class-chapters')->with('chapters', $chapters);
+    }
 
 }
