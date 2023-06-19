@@ -1,15 +1,5 @@
 <x-header/>
 
-
-
-
-
-
-
-
-
-
-
 <div>
     <form action="/getevent" method="get" class="form" id="rech">
         @csrf
@@ -61,7 +51,7 @@ foreach ($events as $event) {
 <?php
 
 foreach ($calendar as $day => $events) {
-    echo '<div class="grid grid-cols w-42 justify-items-center ">';
+    echo '<div class="grid grid-cols w-42 justify-items-center">';
     echo '<h1 class="">' . $day . '</h1>';
     foreach ($events as $event) {
         ?>
