@@ -51,9 +51,6 @@
         </div>
     </div>
 
-
-
-
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
         <figure><img src="images/deco/undraw_cooking_p7m1.svg" alt="Shoes" /></figure>
         <div class="card-body">
@@ -64,6 +61,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 
