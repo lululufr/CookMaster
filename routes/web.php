@@ -130,7 +130,7 @@ Route::get('/shop/cart/show', [ShopController::class,'show_cart']);
     //paiement
 
 Route::get('/pay', [StripePaymentController::class,'payment_page']);
-Route::post('/pay', [StripePaymentController::class,'payment']);
+Route::post('/pay', [StripePaymentController::class,'carts_payment']);
 
 
 
@@ -143,6 +143,11 @@ Route::get('/class/{id}/certif/check', [ClassController::class,'certif_check']);
 Route::get('/class/getcertification/{id}', [ClassController::class,'certification']);
 //chapter
 Route::post('/class/{id}/check', [ClassController::class,'chapters_check']);
+
+//acheter formation
+Route::get('/pay/classes/{id}', [ClassController::class,'pay_class']);
+
+
 
 
 

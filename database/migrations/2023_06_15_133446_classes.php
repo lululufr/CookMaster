@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->foreignIdFor(User::class, 'chef_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('tags')->nullable();
+            $table->integer('price')->nullable();
+
             $table->longText('description');
             $table->string('media')->default('images/classes/pp/default.png');
             $table->timestamps();

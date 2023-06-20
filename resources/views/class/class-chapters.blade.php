@@ -7,7 +7,11 @@
 
 <div class="m-5">
 
-
+@if(!\App\Models\Hasclasses::where('user_id', auth()->user()->id)->where('classes_id', $chapters[0]->classes->id)->first())
+    @php
+        return redirect('/pay/classes/'.$chapters[0]->classes->id)->with('price', $chapters[0]->classes->price);
+     @endphp
+@endif
 
 
         @foreach($chapters as $chapter)

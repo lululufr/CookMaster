@@ -25,6 +25,7 @@ class ShopController extends Controller
         $cart = new Carts();
         $cart->user_id = auth()->user()->id;
         $cart->articles_id = $id;
+        $cart->type = 'article';
         $cart->save();
 
         return redirect('/shop')->with('message', 'Article ajouté au panier');

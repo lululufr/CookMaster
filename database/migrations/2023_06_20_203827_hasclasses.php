@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Articles;
+use App\Models\Classes;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('hasclasses', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Articles::class);
-            $table->string('type');
-
+            $table->boolean('bought')->default(false);
+            $table->foreignIdFor(Classes::class, 'classes_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreignIdFor(User::class, 'user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

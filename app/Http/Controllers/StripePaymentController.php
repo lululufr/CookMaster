@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carts;
+use App\Models\Hasclasses;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +24,10 @@ class StripePaymentController extends Controller
         return view('shop.payment');
     }
 
-    public function payment(Request $request)
+
+
+
+    public function payment(Request $request, int $AMOUNT)
     {
         $validator = Validator::make($request->all(), [
             'fullName' => 'required',
@@ -32,15 +36,6 @@ class StripePaymentController extends Controller
             'year' => 'required',
             'cvv' => 'required'
         ]);
-
-
-
-        $carts = Carts::where('user_id', auth()->user()->id)->get();
-        $AMOUNT = 0;
-        foreach($carts as $cart) {
-            $AMOUNT += $cart->articles->prix;
-        }
-
 
 
         if ($validator->fails()) {
@@ -66,12 +61,38 @@ class StripePaymentController extends Controller
         }
 
 
+        return $charge;
+
+
+    }
+
+
+
+
+    public function carts_payment(Request $request){
+        $carts = Carts::where('user_id', auth()->user()->id)->get();
+        $AMOUNT = 0;
+        foreach($carts as $cart) {
+            $AMOUNT += $cart->articles->prix;
+        }
+
         foreach($carts as $cart) {
             $cart->delete();
         }
 
+        $charge = $this->payment($request, $AMOUNT);
+        //return $AMOUNT;
+
+        $hasclass = new Hasclasses();
+        $hasclass->user_id = auth()->user()->id;
+        $hasclass->classes_id = $cart->articles->id;
+        $hasclass->save();
+
         return view('shop.success')->with('charge', $charge);
+
     }
+
+
 
     private function createToken($cardData)
     {

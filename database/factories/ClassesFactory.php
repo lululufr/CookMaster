@@ -28,6 +28,7 @@ class ClassesFactory extends Factory
             'tags' => 'test',
             'description'=>fake()->text(),
             'title'=>fake()->title(),
+            'price'=>rand(10,120),
             'media'=>'images/classes/pp/default.png',
         ];
 
