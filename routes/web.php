@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventParticipateController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
@@ -84,6 +85,10 @@ Route::get('/event/create', [EventController::class,'createEvent']);
 Route::post('/event/create', [EventController::class,'createEventApply']);
 Route::get('/event/modify', [EventController::class,'modifyEvent']);
 Route::post('/event/modify', [EventController::class,'modifyEventApply']);
+
+
+//participation event
+Route::post('/eventParticipate', [EventParticipateController::class,'participate']);
 
 
 //page admin

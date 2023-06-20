@@ -1,5 +1,5 @@
 <x-header/>
-
+<?php use Illuminate\Support\Facades\Auth;?>
 <div>
     <form action="/getevent" method="get" class="form" id="rech">
         @csrf
@@ -70,19 +70,28 @@ foreach ($calendar as $day => $events) {
 
             <p><?php echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
         </div>
+        <dialog id="my_modal{{$event["id"]}}" class="modal">
+            <div class="modal-box w-11/12 max-w-5xl">
+                <h3 class="font-bold text-lg">Hello!</h3>
+                <p class="py-4">{{$event["title"]}}</p>
+                <p class="py-4">{{$event["description"]}}</p>
+                <form method="POST" action="/eventParticipate">
+                    @csrf
+                    <input type="hidden" name="event_id" value="{{ $event['id'] }}">
+                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                    <div>
+                        <button class="btn" type="submit">Participer</button>
+                    </div>
+                </form>
+                <form method="dialog">
+                    <div class="modal-action">
+                        <button class="btn">Annuler</button>
+                    </div>
+                </form>
+            </div>
 
-        <?php
-            echo '<dialog id="my_modal'.$event["id"].'" class="modal">
-                     <form method="dialog" class="modal-box w-11/12 max-w-5xl">
-                        <h3 class="font-bold text-lg">Hello!</h3>
-                        <p class="py-4">'.$event["title"].'</p>
-                        <p class="py-4">'.$event["description"].'</p>
-                        <div class="modal-action">
-                            <button class="btn"></button>
-                        </div>
-                    </form>
-                 </dialog>';
-    }
+        </dialog>
+    <?php }
     echo '</div>';
 }
 ?>
