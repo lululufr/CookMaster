@@ -150,6 +150,9 @@ Route::get('/user/pref', [UserPrefController::class,'index']);
 
 //modifier une formation
 Route::get('/class/{id}/edit', [ClassController::class,'edit_class']);
+Route::post('/class/chapter/{id}/edit/submit', [ClassController::class,'edit_class_submit']);
+Route::post('/class/{id}/addform', [ClassController::class,'edit_class_add_form']);
+Route::get('/class/{id}/delform', [ClassController::class,'edit_class_del_form']);
 
 
 

@@ -21,10 +21,7 @@
                                         </form>
 
                                         @if($class->chef->id == auth()->user()->id)
-                                            <form action="/class/{{$class->id}}/edit" method="GET">
-                                                @csrf
-                                                <button class="btn btn-primary">Modifier la formation</button>
-                                            </form>
+                                            <a href="/class/{{$class->id}}/edit" class="btn">Modifier la formation</a>
                                         @endif
 
 

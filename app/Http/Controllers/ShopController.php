@@ -27,7 +27,7 @@ class ShopController extends Controller
         $cart->articles_id = $id;
         $cart->save();
 
-        return redirect('/shop')->with('success', 'Article ajouté au panier');
+        return redirect('/shop')->with('message', 'Article ajouté au panier');
     }
 
     public function show_cart(){

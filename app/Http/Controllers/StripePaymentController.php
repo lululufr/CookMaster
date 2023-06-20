@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carts;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Exception\CardException;
 use Stripe\StripeClient;
+
 
 class StripePaymentController extends Controller
 {
@@ -31,6 +33,16 @@ class StripePaymentController extends Controller
             'cvv' => 'required'
         ]);
 
+
+
+        $carts = Carts::where('user_id', auth()->user()->id)->get();
+        $AMOUNT = 0;
+        foreach($carts as $cart) {
+            $AMOUNT += $cart->articles->prix;
+        }
+
+
+
         if ($validator->fails()) {
             $request->session()->flash('danger', $validator->errors()->first());
             return response()->redirectTo('/pay')->with('message', 'Payment failed. Pas validé');
@@ -46,12 +58,18 @@ class StripePaymentController extends Controller
             return response()->redirectTo('/pay')->with('message', 'Payment failed.Token ID vide');
         }
 
-        $charge = $this->createCharge($token['id'], 2000);
+        $charge = $this->createCharge($token['id'], $AMOUNT*100);
         if (!empty($charge) && $charge['status'] == 'succeeded') {
             $request->session()->flash('success', 'Payment completed.');
         } else {
             $request->session()->flash('danger', 'Payment failed : create charge.');
         }
+
+
+        foreach($carts as $cart) {
+            $cart->delete();
+        }
+
         return view('shop.success')->with('charge', $charge);
     }
 
