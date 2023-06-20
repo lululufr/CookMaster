@@ -71,6 +71,11 @@ foreach ($calendar as $day => $events) {
             <p><?php echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
         </div>
         <dialog id="my_modal{{$event["id"]}}" class="modal">
+            <?php
+                $isParticipating = \App\Models\EventParticipates::where('events_id', $event['id'])
+                    ->where('users_id', Auth::id())
+                    ->exists();
+            ?>
             <div class="modal-box w-11/12 max-w-5xl">
                 <h3 class="font-bold text-lg">Hello!</h3>
                 <p class="py-4">{{$event["title"]}}</p>
@@ -80,7 +85,7 @@ foreach ($calendar as $day => $events) {
                     <input type="hidden" name="event_id" value="{{ $event['id'] }}">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     <div>
-                        <button class="btn" type="submit">Participer</button>
+                        <button class="btn" type="submit"><?php echo $isParticipating? 'Participer':'Se désinscrire' ?></button>
                     </div>
                 </form>
                 <form method="dialog">
