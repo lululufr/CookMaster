@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Posts>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recipes>
  */
-class PostsFactory extends Factory
+class RecipesFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,6 +22,7 @@ class PostsFactory extends Factory
 
         'user_id' => $user->id,
         'tags' => "test",
+        'title' => fake()->sentence(),
         'content'=>fake()->text()
         ];
     }

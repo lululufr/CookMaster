@@ -108,7 +108,7 @@
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
         <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
             <a href="/getevent" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Salles</a>
-            <a href="/new_post" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nouveau Post</a>
+            <a href="/recipe/create" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nouvelle recette</a>
 
             <a href="/class" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Formations</a>
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>

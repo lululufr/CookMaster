@@ -2,7 +2,7 @@
 <div>
 
 </div>
-    <!-- Posts Section -->
+    <!-- Recipes Section -->
     <div class="grid grid-cols-1 gap-4 place-content-center">
 
         <article class="flex flex-col shadow my-4 items-center">

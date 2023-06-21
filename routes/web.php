@@ -8,7 +8,7 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StripePaymentController;
-use App\Models\Posts;
+use App\Models\Recipes;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
@@ -18,7 +18,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SallesController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RecipesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,9 +116,9 @@ Route::get('/admin/create/class', [AdminController::class,'new_class']);
 
 
 //page des posts
-Route::get('/new_post', [PostsController::class,'show_post_page']);
-Route::post('/postcreation', [PostsController::class,'create']);
-Route::get('/post/{id}', [PostsController::class,'detailed_post_view']);
+Route::get('/recipe/create', [RecipesController::class,'show_recipe_page']);
+Route::post('/recipe/create', [RecipesController::class,'create']);
+Route::get('/recipe/{id}', [RecipesController::class,'detailed_recipe_view']);
 //page des salles ( EDT )
 
 
