@@ -80,6 +80,10 @@ foreach ($calendar as $day => $events) {
                 <h3 class="font-bold text-lg">Hello!</h3>
                 <p class="py-4">{{$event["title"]}}</p>
                 <p class="py-4">{{$event["description"]}}</p>
+                <?php //si l'event a dépassé le nombre de participants max
+                if($event["max_participants"] <= \App\Models\EventParticipates::where('events_id', $event['id'])->count()){?>
+                <button class="btn" >Cet évènement est complet</button>
+                <?php }else{?>
                 <form method="POST" action="/eventParticipate">
                     @csrf
                     <input type="hidden" name="event_id" value="{{ $event['id'] }}">
@@ -88,6 +92,7 @@ foreach ($calendar as $day => $events) {
                         <button class="btn" type="submit"><?php echo $isParticipating? 'Participer':'Se désinscrire' ?></button>
                     </div>
                 </form>
+                <?php } ?>
                 <form method="dialog">
                     <div class="modal-action">
                         <button class="btn">Annuler</button>

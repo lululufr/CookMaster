@@ -23,6 +23,7 @@ class EventController extends Controller
         $event->rooms_id = intval($request['room']);
         $event->duration = intval($request['duration']);
         $event->tags = htmlspecialchars($request['tags']);
+        $event->max_participants = intval($request['max_participants']);
 
         /*$isRoomAvailable = $this->isRoomAvailable($event->rooms_id, $event->start, $event->duration);
         if (!$isRoomAvailable) {
