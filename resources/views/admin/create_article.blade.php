@@ -1,10 +1,11 @@
 <x-header/>
 
 
-<form method="POST" action="/admin/article/create/apply">
+<form method="POST" action="/admin/article/create/apply" enctype="multipart/form-data">
     @csrf
     <input name="titre" class="input" placeholder="Nom de l'article"/>
-    <input name="image" class="input" type="file" placeholder="image">
+    <label for="media">Image de couverture :</label>
+    <input type="file" name="media"><br>
     <input name="prix" class="input" type="number" placeholder="prix"/>
     <input name="discount" class="input" type="number" placeholder="réduction"/>
     <input name="nb" class="input" type="number" placeholder="Nombre d'article"/>

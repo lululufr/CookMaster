@@ -160,10 +160,10 @@ class AdminController extends Controller
 
         $articles->titre = htmlspecialchars($request->input('titre'));
 
-        if ($request->hasFile('image')) {
-            $mediaPath = $request->file('image')->store('articles','public');
+
+            $mediaPath = $request->file('media')->store('articles','public');
             $articles->img = $mediaPath;
-        }
+
 
 
         $articles->prix = htmlspecialchars($request->input('prix'));
