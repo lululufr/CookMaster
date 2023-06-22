@@ -163,6 +163,7 @@ Route::post('/class/chapter/{id}/edit/submit', [ClassController::class,'edit_cla
 Route::post('/class/{id}/addform', [ClassController::class,'edit_class_add_form']);
 Route::get('/class/{id}/delform', [ClassController::class,'edit_class_del_form']);
 
+Route::get('/class/{id}/delete', [AdminController::class,'delete_class']);
 
 
 

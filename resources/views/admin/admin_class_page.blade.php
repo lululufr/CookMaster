@@ -40,6 +40,10 @@
             <div>
                 <textarea name="description" placeholder="Description de la formation" required></textarea>
             </div>
+
+
+            <label for="media">Image de couverture :</label>
+            <input type="file" name="media_classes"><br><br>
         <!-- Partie Classes -->
         </div>
 

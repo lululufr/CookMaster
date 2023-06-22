@@ -6,42 +6,46 @@
 
 
 
+{{$articles->links()}}
 
-                @foreach(\App\Models\Articles::all() as $article)
-                <div class="">
-                    <x-shop.article
-                        id="{{$article->id}}"
-                        titre="{{$article->titre}}"
-                        prix="{{$article->prix}}"
-                        img="{{$article->img}}"
-                        nb="{{$article->nb}}"
-                        discount="{{$article->discount}}"
-                        tags="{{$article->tags}}"
-                        description="{{$article->description}}"
-                    />
+                @foreach($articles as $article)
+                    <div>
 
-                </div>
-                @endforeach
+                        <div class="mx-4">
+                            <div class="p-10">
+                                <div class="flex flex-col items-center justify-center text-center">
+                                    <img class="w-48 mr-6 mb-6" src="{{asset("storage/".$article->img)}}"/>
 
+                                    <h3 class="text-2xl mb-2">
 
+                                    </h3>
+                                    <div class="text-xl font-bold mb-4">{{$article->tags}}</div>
 
-                @foreach(\App\Models\Classes::all() as $article)
+                                    <div>
+                                        {{$article->prix}}
 
-                            <div class="">
+                                        discount : {{$article->discount}}
+                                    </div>
 
-                    <x-shop.article
-                        id="{{$article->id}}"
-                        titre="{{$article->title}}"
-                        prix="{{$article->price}}"
-                        img="{{$article->img}}"
-                        nb=""
-                        discount=""
-                        tags=""
-                        description="{{$article->description}}"
-                    />
+                                    <div>
+                                        <a href="/shop/cart/add/{{$article->id}}">ACHETER</a>
+                                    </div>
+
+                                    <div class="text-lg my-4">
+                                        <i class="fa-solid fa-location-dot"></i> {{$article->nb}} articles restants
+                                    </div>
+                                    <div class="border border-gray-200 w-full mb-6"></div>
+                                    <div>
+                                        <h3 class="text-3xl font-bold mb-4">{{$article->titre}}</h3>
+                                        <div class="text-lg space-y-6">
+                                            {{$article->description}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
                 @endforeach
-
 
 
             </div>

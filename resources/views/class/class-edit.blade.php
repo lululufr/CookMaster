@@ -14,7 +14,10 @@
 
             <div class="card-body">
                 <input class="textarea w-full input" type="text" name="title" placeholder="{{ $chapter->title }}" value="{{ $chapter->title }} " required>
+                @if(isset($chapter->media))
+                    <img src="{{asset("storage/".$chapter->media)}}" alt="Cuisine" class="img-fluid">
 
+                @endif
                 <textarea class="textarea w-full place-content-center place-items-center" name="content" placeholder="Description de la formation" required>
                     {{ $chapter->content }}
                 </textarea>
