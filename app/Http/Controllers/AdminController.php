@@ -183,28 +183,34 @@ class AdminController extends Controller
     public function create_classes(Request $request)
     {
 
-        // Create a new class
+
         $class = new Classes();
         $class->title = $request->input('title');
-        $class->img = '/images/classes/cap-cuisine.jpeg'; // Default image
+
+        if ($request->hasFile('media_classes')) {
+        $mediaPath = $request->file('media_classes')->store('/images/classes/class_img-couv');
+        $class->img = $mediaPath;
+    }
+
+        //$class->img = $request->input('media_classes'); // Default image
         $class->description = $request->input('description');
         $class->chef_id = auth()->user()->id;
         $class->save();
 
-        // Get the generated class ID
+
         $classId = $class->id;
 
-        // Process the form data if any chapters are provided
+
         if ($request->has('titre')) {
             $titles = $request->input('titre');
             $contenus = $request->input('contenu');
             $medias = $request->file('media');
 
-            // Check if titles is an array and not an empty string
+
             if (is_array($titles) && !empty($titles)) {
-                // Iterate over the chapters data
+
                 for ($i = 0; $i < count($titles); $i++) {
-                    // Create a new chapter
+
                     $chapter = new Chapters();
                     $chapter->classes_id = $classId;
                     $chapter->title = $titles[$i];
