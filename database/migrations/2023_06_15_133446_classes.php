@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('price')->nullable();
 
             $table->longText('description');
-            $table->string('media')->default('images/classes/pp/default.png');
+            $table->string('media')->default('images/classes/pp/default.png'); //unused
             $table->timestamps();
         });
     }

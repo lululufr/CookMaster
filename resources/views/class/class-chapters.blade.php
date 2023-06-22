@@ -1,5 +1,8 @@
 <x-header/>
 
+
+<img src="{{asset("storage/".$chapters[0]->classes->img)}}" alt="image" class="img-fluid w-96"/>
+
 <h1 class="uppercase text-5xl font-bold m-5">{{$chapters[0]->classes->title}}</h1>
 
 {{ $chapters->links() }}
@@ -7,11 +10,6 @@
 
 <div class="m-5">
 
-@if(!\App\Models\Hasclasses::where('user_id', auth()->user()->id)->where('classes_id', $chapters[0]->classes->id)->first())
-    @php
-        return redirect('/pay/classes/'.$chapters[0]->classes->id)->with('price', $chapters[0]->classes->price);
-     @endphp
-@endif
 
 
         @foreach($chapters as $chapter)
@@ -110,17 +108,19 @@
                     <div class="max-w-md">
                         <h1 class="text-5xl font-bold">{{$chapter->title}}</h1>
                         <p class="py-6">{{$chapter->content}}</p>
+                        @if(isset($chapter->media))
+                            <img src="{{asset("storage/".$chapter->media)}}" alt="Cuisine" class="img-fluid">
 
-                        <img src="{{$chapters[0]->classes->img}}" alt="Cuisine" class="img-fluid">
+                        @endif
 
+                        <!--
+                            <video controls>
+                                <source src="/images/classes/video/videodetestsurlesramen.mp4" type="video/mp4">
 
-                        <video controls>
-                            <source src="/images/classes/video/videodetestsurlesramen.mp4" type="video/mp4">
-
-                            Télécharger la video the
-                            <a href="/images/classes/video/videodetestsurlesramen.mp4">mp4</a>
-                        </video>
-
+                                Télécharger la video the
+                                <a href="/images/classes/video/videodetestsurlesramen.mp4">mp4</a>
+                            </video>
+                        -->
 
                         <p class="py-6">{{$chapter->tags}}</p>
 

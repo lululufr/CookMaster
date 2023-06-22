@@ -6,7 +6,7 @@
 
                             <div class="card bg-base-100 shadow-xl image-full mb-4">
                                 <figure>
-                                    <img src="{{asset("storage/".$class->img)}}" alt="Cuisine" class="img-fluid">
+                                    <img src="{{asset("storage/".$class->img)}}" alt="Cuisine" class="img-fluid w-96">
                                 </figure>
                                 <div class="card-body">
                                     <h2 class="card-title">{{$class->name}}</h2>

@@ -188,7 +188,7 @@ class AdminController extends Controller
         $class->title = $request->input('title');
 
         if ($request->hasFile('media_classes')) {
-        $mediaPath = $request->file('media_classes')->store('/images/classes/class_img-couv');
+        $mediaPath = $request->file('media_classes')->store('classes','public');
         $class->img = $mediaPath;
     }
 
@@ -218,7 +218,7 @@ class AdminController extends Controller
 
                     // Check if media file is provided
                     if (isset($medias[$i]) && $medias[$i]) {
-                        $mediaPath = $medias[$i]->store('media');
+                        $mediaPath = $medias[$i]->store('chapter','public');
                         $chapter->media = $mediaPath;
                     }
 
