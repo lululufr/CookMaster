@@ -88,7 +88,7 @@ Route::post('/event/modify', [EventController::class,'modifyEventApply']);
 
 
 //participation event
-Route::post('/eventParticipate', [EventParticipateController::class,'participate']);
+Route::post('/eventParticipate', [EventController::class,'participate']);
 
 
 //page admin
@@ -131,7 +131,7 @@ Route::get('/shop/{id}', [ShopController::class,'show_item']);
 Route::get('/shop/cart/add/{id}', [ShopController::class,'add_item_cart']);
 Route::get('/shop/cart/show', [ShopController::class,'show_cart']);
 
-    //paiement
+//paiement
 
 Route::get('/pay', [StripePaymentController::class,'payment_page']);
 Route::post('/pay', [StripePaymentController::class,'carts_payment']);

@@ -89,7 +89,7 @@ foreach ($calendar as $day => $events) {
                     <input type="hidden" name="event_id" value="{{ $event['id'] }}">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     <div>
-                        <button class="btn" type="submit"><?php echo $isParticipating? 'Participer':'Se désinscrire' ?></button>
+                        <button class="btn" type="submit"><?php echo $isParticipating? 'Se désinscrire':'Participer' ?></button>
                     </div>
                 </form>
                 <?php } ?>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventParticipates;
 use App\Models\Rooms;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -85,5 +86,29 @@ class EventController extends Controller
             //break;
 
         }
+    }
+    public function participate(Request $request)
+    {
+        $eventId = $request['event_id'];
+        $userId = $request['user_id'];
+
+        $existingParticipation = EventParticipates::where('events_id', $eventId)
+            ->where('users_id', $userId)
+            ->first();
+        $participantCount = EventParticipates::where('events_id', $eventId)->count();
+        if($participantCount >= Event::where('id', $eventId)->first()->max_participants){
+            return back()->with('error', 'The event is full.');
+        }
+        if ($existingParticipation ) {
+            $existingParticipation->delete();
+            return back();
+        }
+
+        $eventParticipate = new EventParticipates;
+        $eventParticipate->events_id = $eventId;
+        $eventParticipate->users_id = $userId;
+        $eventParticipate->save();
+
+        return back();
     }
 }
