@@ -159,17 +159,24 @@ class AdminController extends Controller
         $articles = new Articles();
 
         $articles->titre = htmlspecialchars($request->input('titre'));
-        $articles->img = htmlspecialchars($request->input('prix'));
-        $articles->prix = htmlspecialchars($request->input('img'));
-        $articles->discount = htmlspecialchars($request->input('discount'));
+
+        if ($request->hasFile('image')) {
+            $mediaPath = $request->file('image')->store('articles','public');
+            $articles->img = $mediaPath;
+        }
+
+
+        $articles->prix = htmlspecialchars($request->input('prix'));
         $articles->tags = htmlspecialchars($request->input('tags'));
         $articles->description = htmlspecialchars($request->input('description'));
-        $articles->lesson = htmlspecialchars($request->input('lesson'));
+
+        $articles->nb = htmlspecialchars($request->input('nb'));
+
 
 
         $articles->save();
 
-        return redirect('/admin/article')->with('message','Salle créée avec succes');
+        return redirect('/shop')->with('message','Article créée avec succes');
     }
 
 
@@ -230,6 +237,28 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'La classe a été créée avec succès.');
     }
         // Redirect or perform any other necessary actions
+
+
+    public function delete_class(int $id){
+
+        $class = Classes::find($id);
+        $chapter = Chapters::where('classes_id', $id)->get();
+
+
+        foreach ($chapter as $chap) {
+            $chap->delete();
+            $question = Questions::where('chapters_id', $chap->id)->get();
+            foreach ($question as $quest) {
+                $quest->delete();
+            }
+
+        }
+
+        $class->delete();
+
+        return redirect('/class');
+
+    }
 
 }
 

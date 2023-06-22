@@ -23,6 +23,9 @@
                                         @if($class->chef->id == auth()->user()->id)
                                             <a href="/class/{{$class->id}}/edit" class="btn">Modifier la formation</a>
                                         @endif
+                                        @if(auth()->user()->role == "admin")
+                                            <a href="/class/{{$class->id}}/delete" class="btn bg-orange-600">SUPPRIMER</a>
+                                        @endif
 
 
                                     </div>

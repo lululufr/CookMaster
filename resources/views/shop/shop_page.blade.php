@@ -6,42 +6,23 @@
 
 
 
+{{$articles->links()}}
 
-                @foreach(\App\Models\Articles::all() as $article)
-                <div class="">
-                    <x-shop.article
-                        id="{{$article->id}}"
-                        titre="{{$article->titre}}"
-                        prix="{{$article->prix}}"
-                        img="{{$article->img}}"
-                        nb="{{$article->nb}}"
-                        discount="{{$article->discount}}"
-                        tags="{{$article->tags}}"
-                        description="{{$article->description}}"
-                    />
+                @foreach($articles as $article)
 
-                </div>
+                    <div class="card">
+                        <x-shop.article
+                            id="{{$article->id}}"
+                            titre="{{$article->titre}}"
+                            prix="{{$article->prix}}"
+                            img="{{asset("storage/".$article->img)}}"
+                            nb="{{$article->nb}}"
+                            discount="{{$article->discount}}"
+                            tags="{{$article->tags}}"
+                            description="{{$article->description}}"
+                        />
+                    </div>
                 @endforeach
-
-
-
-                @foreach(\App\Models\Classes::all() as $article)
-
-                            <div class="">
-
-                    <x-shop.article
-                        id="{{$article->id}}"
-                        titre="{{$article->title}}"
-                        prix="{{$article->price}}"
-                        img="{{$article->img}}"
-                        nb=""
-                        discount=""
-                        tags=""
-                        description="{{$article->description}}"
-                    />
-                            </div>
-                @endforeach
-
 
 
             </div>
