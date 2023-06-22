@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Articles::class);
+            $table->string('type');
 
             $table->timestamps();
         });

@@ -8,7 +8,7 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StripePaymentController;
-use App\Models\Recipes;
+use App\Http\Controllers\UserPrefController;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
@@ -111,7 +111,7 @@ Route::get('/admin/article/create', [AdminController::class,'create_article_page
 Route::post('/admin/article/create/apply', [AdminController::class,'create_article_apply']);
 
 Route::get('/admin/new/class', [AdminController::class,'new_class_page']);
-Route::get('/admin/create/class', [AdminController::class,'new_class']);
+Route::post('/admin/create/class', [AdminController::class,'create_classes']);
 
 
 
@@ -134,7 +134,7 @@ Route::get('/shop/cart/show', [ShopController::class,'show_cart']);
     //paiement
 
 Route::get('/pay', [StripePaymentController::class,'payment_page']);
-Route::post('/pay', [StripePaymentController::class,'payment']);
+Route::post('/pay', [StripePaymentController::class,'carts_payment']);
 
 
 
@@ -146,7 +146,24 @@ Route::get('/class/{id}/certif/check', [ClassController::class,'certif_check']);
 
 Route::get('/class/getcertification/{id}', [ClassController::class,'certification']);
 //chapter
-Route::get('/class/{id}/check', [ClassController::class,'chapters_check']);
+Route::post('/class/{id}/check', [ClassController::class,'chapters_check']);
+
+//acheter formation
+Route::get('/pay/classes/{id}', [ClassController::class,'pay_class']);
+
+
+
+
+
+Route::get('/user/pref', [UserPrefController::class,'index']);
+
+//modifier une formation
+Route::get('/class/{id}/edit', [ClassController::class,'edit_class']);
+Route::post('/class/chapter/{id}/edit/submit', [ClassController::class,'edit_class_submit']);
+Route::post('/class/{id}/addform', [ClassController::class,'edit_class_add_form']);
+Route::get('/class/{id}/delform', [ClassController::class,'edit_class_del_form']);
+
+
 
 
 

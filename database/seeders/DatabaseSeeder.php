@@ -62,6 +62,11 @@ class DatabaseSeeder extends Seeder
             ->count(10)
             ->create();
 
+        Chapters::factory()
+            ->count(40)
+            ->create();
+
+
 
 
     }

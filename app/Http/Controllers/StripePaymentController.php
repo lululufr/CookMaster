@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carts;
+use App\Models\Hasclasses;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Exception\CardException;
 use Stripe\StripeClient;
+
 
 class StripePaymentController extends Controller
 {
@@ -21,7 +24,10 @@ class StripePaymentController extends Controller
         return view('shop.payment');
     }
 
-    public function payment(Request $request)
+
+
+
+    public function payment(Request $request, int $AMOUNT)
     {
         $validator = Validator::make($request->all(), [
             'fullName' => 'required',
@@ -30,6 +36,7 @@ class StripePaymentController extends Controller
             'year' => 'required',
             'cvv' => 'required'
         ]);
+
 
         if ($validator->fails()) {
             $request->session()->flash('danger', $validator->errors()->first());
@@ -46,14 +53,46 @@ class StripePaymentController extends Controller
             return response()->redirectTo('/pay')->with('message', 'Payment failed.Token ID vide');
         }
 
-        $charge = $this->createCharge($token['id'], 2000);
+        $charge = $this->createCharge($token['id'], $AMOUNT*100);
         if (!empty($charge) && $charge['status'] == 'succeeded') {
             $request->session()->flash('success', 'Payment completed.');
         } else {
             $request->session()->flash('danger', 'Payment failed : create charge.');
         }
-        return view('shop.success')->with('charge', $charge);
+
+
+        return $charge;
+
+
     }
+
+
+
+
+    public function carts_payment(Request $request){
+        $carts = Carts::where('user_id', auth()->user()->id)->get();
+        $AMOUNT = 0;
+        foreach($carts as $cart) {
+            $AMOUNT += $cart->articles->prix;
+        }
+
+        foreach($carts as $cart) {
+            $cart->delete();
+        }
+
+        $charge = $this->payment($request, $AMOUNT);
+        //return $AMOUNT;
+
+        $hasclass = new Hasclasses();
+        $hasclass->user_id = auth()->user()->id;
+        $hasclass->classes_id = $cart->articles->id;
+        $hasclass->save();
+
+        return view('shop.success')->with('charge', $charge);
+
+    }
+
+
 
     private function createToken($cardData)
     {

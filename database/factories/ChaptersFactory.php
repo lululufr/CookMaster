@@ -23,9 +23,10 @@ class ChaptersFactory extends Factory
         return [
 
             'tags' => 'test',
-            'belongs_to' => $class->id,
-            'description'=>fake()->text(),
-            'title'=>fake()->title()
+            'classes_id' => $class->id,
+            'content'=>fake()->text(),
+            'title'=>fake()->title(),
+            'type'=>'lecon',
 
         ];
     }

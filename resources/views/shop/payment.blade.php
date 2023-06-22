@@ -1,5 +1,46 @@
-
 <x-header/>
+
+@php
+
+$carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
+
+@endphp
+
+
+
+@php($tt = 0)
+
+<div class="overflow-x-auto">
+    <table class="table">
+        <!-- head -->
+        <thead>
+        <tr>
+            <th>Prix :</th>
+            <th>Article n°</th>
+            <th>Nom : °</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($carts as $cart)
+            @php($tt += $cart->articles->prix)
+
+        <tr>
+            <th>{{$cart->articles->prix}} €</th>
+            <td>{{$cart->articles->id}}</td>
+            <td>{{$cart->articles->titre}}</td>
+
+        </tr>
+
+        @endforeach
+
+        </tbody>
+    </table>
+</div>
+
+<b>TOTAL : {{$tt}} € </b>
+
+
 
 <div class="row">
     <aside class="col-sm-6 offset-3">
@@ -66,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm </button>
+                            <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm et payer {{$tt}} €</button>
                         </form>
                     </div>
                 </div>

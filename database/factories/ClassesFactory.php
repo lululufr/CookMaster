@@ -27,7 +27,12 @@ class ClassesFactory extends Factory
             'chef_id' => $user->id,
             'tags' => 'test',
             'description'=>fake()->text(),
-            'title'=>fake()->title()
+            'title'=>fake()->title(),
+            'price'=>rand(10,120),
+            'media'=>'images/classes/pp/default.png',
         ];
+
+
+
     }
 }

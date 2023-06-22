@@ -114,5 +114,69 @@ class ClassController extends Controller
     }
 
 
+    public function edit_class(int $id)
+    {
+
+        $chapters = Chapters::where('classes_id', $id)->get();
+
+        $class_id = $chapters[0]->classes->id;
+
+
+        return view('class.class-edit')->
+        with('chapters', $chapters)
+        ->with('class_id', $class_id);
+    }
+
+
+    public function edit_class_submit(Request $request, int $id)
+    {
+        $chapters = Chapters::findOrFail($id);
+
+        $chapters->title = $request->input('title');
+        $chapters->content = $request->input('content');
+        $chapters->save();
+
+        return redirect('/class/'.$chapters->classes->id.'/edit');
+    }
+
+    public function edit_class_add_form(Request $request, int $id)
+    {
+
+        $questions = $request->input('questions');
+
+
+        $chapter = new Chapters();
+        $chapter->title = 'questionnaire';
+        $chapter->type = 'question';
+        $chapter->classes_id = $id;
+        $chapter->save();
+
+        foreach ($questions as $question) {
+            $questionText = $question['question'];
+            $answerText = $question['answer'];
+
+            $question = new Questions();
+            $question->question = $questionText;
+            $question->reponse = $answerText;
+            $question->chapters_id = $chapter->id;
+            $question->type = "libre"; // a modifier plus tard
+            $question->save();
+
+        }
+
+        return redirect('/class/'.$id.'/edit');
+    }
+
+    public function edit_class_del_form(int $id)
+    {
+        $question = Questions::where('chapters_id',$id);
+        $question->delete();
+
+        $chapter = Chapters::where('id',$id);
+        $chapter->delete();
+
+        return back();
+    }
+
 
 }

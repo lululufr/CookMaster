@@ -20,6 +20,10 @@
 
                                         </form>
 
+                                        @if($class->chef->id == auth()->user()->id)
+                                            <a href="/class/{{$class->id}}/edit" class="btn">Modifier la formation</a>
+                                        @endif
+
 
                                     </div>
                                 </div>
