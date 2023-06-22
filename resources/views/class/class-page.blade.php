@@ -6,7 +6,7 @@
 
                             <div class="card bg-base-100 shadow-xl image-full mb-4">
                                 <figure>
-                                    <img src="{{$class->img}}" alt="Cuisine" class="img-fluid">
+                                    <img src="{{asset("storage/".$class->img)}}" alt="Cuisine" class="img-fluid w-96">
                                 </figure>
                                 <div class="card-body">
                                     <h2 class="card-title">{{$class->name}}</h2>
@@ -22,6 +22,9 @@
 
                                         @if($class->chef->id == auth()->user()->id)
                                             <a href="/class/{{$class->id}}/edit" class="btn">Modifier la formation</a>
+                                        @endif
+                                        @if(auth()->user()->role == "admin")
+                                            <a href="/class/{{$class->id}}/delete" class="btn bg-orange-600">SUPPRIMER</a>
                                         @endif
 
 

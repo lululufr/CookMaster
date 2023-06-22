@@ -9,10 +9,15 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
 
-    public function show_shop_page(){
-        return view('shop.shop_page');
-    }
+    public function show_shop_page()
+    {
 
+        $articles = Articles::paginate(20);
+
+
+        return view('shop.shop_page')->with('articles', $articles);
+    }
+    
     public function show_item($id){
 
         $article = Articles::where('id', $id)->firstOrFail();

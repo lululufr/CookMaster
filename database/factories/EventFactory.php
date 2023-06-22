@@ -26,6 +26,7 @@ class EventFactory extends Factory
             'title' => $faker->sentence,
             'description' => $faker->text,
             'rooms_id' => $faker->numberBetween(1, 10),
+            'max_participants' => $faker->numberBetween(1, 15),
             'duration' => $duration,
             'tags' => 'test',
             'start' => $start,

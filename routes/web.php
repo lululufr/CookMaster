@@ -3,12 +3,12 @@
 
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventParticipateController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\UserPrefController;
-use App\Models\Posts;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
@@ -18,7 +18,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SallesController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RecipesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,6 +87,10 @@ Route::get('/event/modify', [EventController::class,'modifyEvent']);
 Route::post('/event/modify', [EventController::class,'modifyEventApply']);
 
 
+//participation event
+Route::post('/eventParticipate', [EventParticipateController::class,'participate']);
+
+
 //page admin
 Route::get('/admin_choice', [AdminController::class,'show_admin_choice']);
 
@@ -112,9 +116,9 @@ Route::post('/admin/create/class', [AdminController::class,'create_classes']);
 
 
 //page des posts
-Route::get('/new_post', [PostsController::class,'show_post_page']);
-Route::post('/postcreation', [PostsController::class,'create']);
-Route::get('/post/{id}', [PostsController::class,'detailed_post_view']);
+Route::get('/recipe/create', [RecipesController::class,'show_recipe_page']);
+Route::post('/recipe/create', [RecipesController::class,'create']);
+Route::get('/recipe/{id}', [RecipesController::class,'detailed_recipe_view']);
 //page des salles ( EDT )
 
 
@@ -159,6 +163,7 @@ Route::post('/class/chapter/{id}/edit/submit', [ClassController::class,'edit_cla
 Route::post('/class/{id}/addform', [ClassController::class,'edit_class_add_form']);
 Route::get('/class/{id}/delform', [ClassController::class,'edit_class_del_form']);
 
+Route::get('/class/{id}/delete', [AdminController::class,'delete_class']);
 
 
 

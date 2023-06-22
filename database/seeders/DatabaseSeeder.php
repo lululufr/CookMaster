@@ -8,7 +8,7 @@ use App\Models\Chapters;
 use App\Models\Classes;
 use App\Models\Event;
 use App\Models\Messages;
-use App\Models\Posts;
+use App\Models\Recipes;
 use App\Models\Rooms;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             ->count(50)
             ->create();
 
-        Posts::factory()
+        Recipes::factory()
             ->count(50)
             ->create();
 

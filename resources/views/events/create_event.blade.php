@@ -23,6 +23,9 @@
         <input name="description" class="input" placeholder="La description"/>
     </div>
     <div class="form-control w-full max-w-xs m-5">
+        <input name="max_participants" class="int" min="1" placeholder="Nombre maximum de participants"/>
+    </div>
+    <div class="form-control w-full max-w-xs m-5">
         <input name="lesson" class="input" placeholder="Leçon qui sera enseignée"/>
     </div>
     <div class="form-control w-full max-w-xs m-5">

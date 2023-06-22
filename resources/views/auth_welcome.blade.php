@@ -14,7 +14,7 @@
 
         titre="{{$post->titre}}"/>
 
-        <!--username="//$post->User->username"-->
+        <!--username="//$recipe->User->username"-->
 
 
     @endforeach

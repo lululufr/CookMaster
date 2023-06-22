@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('rooms_id')->unsigned()->index()->nullable();
             $table->foreign('rooms_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->string('tags')->nullable(); // a lier au tags
+            $table->integer('max_participants')->default(10);
             $table->dateTime('start');
             $table->integer('duration');
             $table->timestamps();

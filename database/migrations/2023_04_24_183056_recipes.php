@@ -12,12 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('recipes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->foreignIdFor(User::class);
+            $table->string('title');
             $table->string('tags');
             $table->longText('content');
-            $table->string('images')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
 
         });
