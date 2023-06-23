@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Recipes;
+use http\Client\Curl\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use function PHPUnit\Framework\stringContains;
 
@@ -22,6 +24,8 @@ class EventFactory extends Factory
         $start = $faker->dateTimeBetween('-1 week', '+1 week');
         $duration = $faker->numberBetween(1, 2);
 
+        $user = \App\Models\User::inRandomOrder()->where('role','chef')->first()->username;
+
         return [
             'title' => $faker->sentence,
             'description' => $faker->text,
@@ -30,6 +34,8 @@ class EventFactory extends Factory
             'duration' => $duration,
             'tags' => 'test',
             'start' => $start,
+            'chef_username' => $user ,
+            'recipes_id' => Recipes::inRandomOrder()->first()->id,
         ];
     }
 }

@@ -13,7 +13,7 @@
                     <input type="text" name="amount[]" required><br><br>
 
                     <label for="units">unitées :</label>
-                    <input type="text" name="units[]" required><br><br>
+                    <input type="text" name="units[]"><br><br>
 
                     <button class="supprimerFormulaire" type="button">X</button>
                 </div>

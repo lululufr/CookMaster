@@ -17,20 +17,44 @@ class EventController extends Controller
     }
     public function createEventApply(Request $request)
     {
+        $roomId = intval($request['room']);
+        $start = Carbon::parse($request['start'])->format('Y-m-d H:i:s');
+        $duration = intval($request['duration']);
+
+
+        // Calcul de la date de fin en ajoutant la durée à la date de début
+        $end = Carbon::parse($start)->addHours($duration)->format('Y-m-d H:i:s');
+
+        // Vérification si la salle est déjà utilisée pendant la période spécifiée
+        $existingEvent = Event::where('rooms_id', $request['room'])
+            ->where(function ($query) use ($start, $end) {
+                $query->where(function ($q) use ($start, $end) {
+                    $q->where('start', '>=', $start)
+                        ->where('start', '<', $end);
+                })->orWhere(function ($q) use ($start, $end) {
+                    $q->where('start', '<=', $start)
+                        ->whereRaw('start + INTERVAL duration HOUR > ?', [$start]);
+                });
+            })
+            ->first();
+        if ($existingEvent) {
+            // La salle est déjà utilisée pendant la période spécifiée, affichez un message d'erreur ou effectuez une action appropriée
+            return back()->with('error', 'La salle est déjà réservée pendant cette période.');
+        }
+
+        // Création de l'événement car la salle est disponible
         $event = new Event;
         $event->title = htmlspecialchars($request['title']);
-        $event->start = Carbon::parse($request['start'])->format('Y-m-d H:i:s');
+        $event->start = $start;
         $event->description = htmlspecialchars($request['description']);
-        $event->rooms_id = intval($request['room']);
-        $event->duration = intval($request['duration']);
+        $event->rooms_id = $roomId;
+        $event->duration = $duration;
         $event->tags = htmlspecialchars($request['tags']);
         $event->max_participants = intval($request['max_participants']);
-
-        /*$isRoomAvailable = $this->isRoomAvailable($event->rooms_id, $event->start, $event->duration);
-        if (!$isRoomAvailable) {
-            return redirect()->back()->with('error', 'The room is not available at the specified date and time.');
-        }*/
+        $event->chef_username = htmlspecialchars($request['chef_username']);
+        $event->recipes_id = intval($request['lesson']);
         $event->save();
+
         return redirect('/');
     }
     /*private function isRoomAvailable($roomId, $startDateTime, $duration)

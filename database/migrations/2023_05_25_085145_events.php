@@ -18,7 +18,12 @@ return new class extends Migration
             $table->string('description');
             $table->bigInteger('rooms_id')->unsigned()->index()->nullable();
             $table->foreign('rooms_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('tags')->nullable(); // a lier au tags
+            $table->string('chef_username');
+            $table->foreign('chef_username')->references('username')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('recipes_id');
+            $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('is_validated')->default(0);
+            $table->string('tags')->nullable();
             $table->integer('max_participants')->default(10);
             $table->dateTime('start');
             $table->integer('duration');

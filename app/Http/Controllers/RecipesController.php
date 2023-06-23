@@ -33,11 +33,8 @@ class RecipesController extends Controller
         $recipe->title = $request['title'];
 
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension(); // getting image extension
-            $filename = time().'.'.$extension;
-            $file->move('uploads/recipe/', $filename);
-            $recipe->image = $filename;
+            $mediaPath = $request->file('image')->store('recipes','public');
+            $recipe->image = $mediaPath;
         }
 
         $recipe->save();

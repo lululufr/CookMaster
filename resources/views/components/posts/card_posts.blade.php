@@ -26,7 +26,7 @@
                     <!-- Article Image -->
                     <a href="#" class="hover:opacity-75">
                         @if($img)
-                            <figure><img src="{{$img}}" alt="Shoes" /></figure>
+                            <figure><img src="{{asset("storage/".$img)}}" alt="Shoes" /></figure>
                         @endif
                     </a>
                     <div class="bg-white flex flex-col justify-start p-6">
@@ -45,3 +45,4 @@
         </div>
     </div>
 </div>
+

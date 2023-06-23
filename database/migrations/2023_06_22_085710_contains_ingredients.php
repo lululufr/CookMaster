@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contains_ingredients', function (Blueprint $table) {
             $table->id();
             $table->integer('amount');
-            $table->string('unit');
+            $table->string('unit')->nullable();
             $table->unsignedBigInteger('recipes_id');
             $table->foreign('recipes_id')->references('id')->on('recipes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('ingredients_name');
