@@ -10,6 +10,9 @@
     <a href="/user/pref" class="btn">MES ELEMENTS</a>
 
 
+    <h2>PLAN actuelle : {{auth()->user()->buying_plan}}</h2>
+
+
     <form method="get">
         @csrf
         <div class="form-control w-full max-w-xs m-5">

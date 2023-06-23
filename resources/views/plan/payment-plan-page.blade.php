@@ -1,44 +1,7 @@
 <x-header/>
 
-@php
+<h2>TOTAL : {{$prix}}</h2>
 
-$carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
-
-@endphp
-
-
-
-@php($tt = 0)
-
-<div class="overflow-x-auto">
-    <table class="table">
-        <!-- head -->
-        <thead>
-        <tr>
-            <th>Prix :</th>
-            <th>Article n°</th>
-            <th>Nom : °</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($carts as $cart)
-            @php($tt += $cart->articles->prix)
-
-        <tr>
-            <th>{{$cart->articles->prix}} €</th>
-            <td>{{$cart->articles->id}}</td>
-            <td>{{$cart->articles->titre}}</td>
-
-        </tr>
-
-        @endforeach
-
-        </tbody>
-    </table>
-</div>
-
-<b>TOTAL : {{$tt}} € </b>
 
 <div class="container mx-auto">
     <div class="flex justify-center">
@@ -58,10 +21,10 @@ $carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
                                 <p class="alert alert-{{$status}}">{{ Session::get($status) }}</p>
                             @endif
                         @endforeach
-                        <form role="form" method="POST" id="paymentForm" action="{{ url('/pay')}}">
+                        <form role="form" method="POST" id="paymentForm" action="/plan/purchase/{{$plan}}">
                             @csrf
                             <div class="mb-4">
-                                <label for="username">Nom complet (on the card)</label>
+                                <label for="username">Nom complet sur la carte</label>
                                 <input type="text" class="input form-input" name="fullName" placeholder="Full Name">
                             </div>
                             <div class="mb-4">
@@ -104,7 +67,7 @@ $carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
                                     </div>
                                 </div>
                             </div>
-                            <button class="subscribe btn btn-primary btn-block mt-4" type="submit">Payer : {{$tt}} €</button>
+                            <button class="subscribe btn btn-primary btn-block mt-4" type="submit">Payer : {{$prix}} €</button>
                         </form>
                     </div>
                 </div>
@@ -112,77 +75,5 @@ $carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
         </div>
     </div>
 </div>
-
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-<script type="text/javascript">
-
-    $(function() {
-
-        /*------------------------------------------
-        --------------------------------------------
-        Stripe Payment Code
-        --------------------------------------------
-        --------------------------------------------*/
-
-        var $form = $(".require-validation");
-
-        $('form.require-validation').bind('submit', function(e) {
-            var $form = $(".require-validation"),
-                inputSelector = ['input[type=email]', 'input[type=password]',
-                    'input[type=text]', 'input[type=file]',
-                    'textarea'].join(', '),
-                $inputs = $form.find('.required').find(inputSelector),
-                $errorMessage = $form.find('div.error'),
-                valid = true;
-            $errorMessage.addClass('hide');
-
-            $('.has-error').removeClass('has-error');
-            $inputs.each(function(i, el) {
-                var $input = $(el);
-                if ($input.val() === '') {
-                    $input.parent().addClass('has-error');
-                    $errorMessage.removeClass('hide');
-                    e.preventDefault();
-                }
-            });
-
-            if (!$form.data('cc-on-file')) {
-                e.preventDefault();
-                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                Stripe.createToken({
-                    number: $('.card-number').val(),
-                    cvc: $('.card-cvc').val(),
-                    exp_month: $('.card-expiry-month').val(),
-                    exp_year: $('.card-expiry-year').val()
-                }, stripeResponseHandler);
-            }
-
-        });
-
-        /*------------------------------------------
-        --------------------------------------------
-        Stripe Response Handler
-        --------------------------------------------
-        --------------------------------------------*/
-        function stripeResponseHandler(status, response) {
-            if (response.error) {
-                $('.error')
-                    .removeClass('hide')
-                    .find('.alert')
-                    .text(response.error.message);
-            } else {
-                /* token contains id, last4, and card type */
-                var token = response['id'];
-
-                $form.find('input[type=text]').empty();
-                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                $form.get(0).submit();
-            }
-        }
-
-    });
-</script>
-
 
 <x-footer/>
