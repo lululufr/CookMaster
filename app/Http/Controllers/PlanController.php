@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlanController extends Controller
 {
@@ -69,13 +70,14 @@ class PlanController extends Controller
 
         $charge = $payment->payment($request, $prix);
 
-        $user = User::where('id', auth()->user()->id)->firstOrFail();
+        $user = auth()->user();
 
-        $user->update(['buying_plan' => $plan]);
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['buying_plan' => $plan]);
 
-        $user->save();
+        $user->buying_plan = $plan;
 
-        
 
         return view('shop.success')->with('charge',  $charge);
     }
