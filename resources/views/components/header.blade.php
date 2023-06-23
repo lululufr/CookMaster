@@ -70,7 +70,13 @@
         </nav>
 
                 @auth
-                    <a href="/shop/cart/show">PANIER</a>
+                    <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/shop/cart/show">PANIER</a></li>
+                    </ul>
+
+                    <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/plan">PLAN</a></li>
+                    </ul>
 
                     <form class="" method="POST" action="/logout">
                         @csrf <!-- {{ csrf_field() }} -->

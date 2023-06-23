@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventParticipateController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StripePaymentController;
@@ -164,6 +165,12 @@ Route::post('/class/{id}/addform', [ClassController::class,'edit_class_add_form'
 Route::get('/class/{id}/delform', [ClassController::class,'edit_class_del_form']);
 
 Route::get('/class/{id}/delete', [AdminController::class,'delete_class']);
+
+
+
+Route::get('/plan', [PlanController::class,'index']);
+Route::get('/plan/purchase/{plan}', [PlanController::class,'purchase_plan']);
+Route::post('/plan/purchase/{plan}', [PlanController::class,'pay_plan']);
 
 
 

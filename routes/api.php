@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/event/get/', [EventController::class,'api_event_get']);

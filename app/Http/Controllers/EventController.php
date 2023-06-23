@@ -135,4 +135,15 @@ class EventController extends Controller
 
         return back();
     }
+
+
+    public function api_event_get(){
+
+        $events = Event::all();
+
+        return $events;
+    }
+
+
+
 }
