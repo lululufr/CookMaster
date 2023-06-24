@@ -36,6 +36,7 @@ class EventFactory extends Factory
             'start' => $start,
             'chef_username' => $user ,
             'recipes_id' => Recipes::inRandomOrder()->first()->id,
+            'is_validated' => $faker->numberBetween(0,1),
         ];
     }
 }

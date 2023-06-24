@@ -57,25 +57,6 @@ class EventController extends Controller
 
         return redirect('/');
     }
-    /*private function isRoomAvailable($roomId, $startDateTime, $duration)
-    {
-        $startDateTime = Carbon::parse($startDateTime);
-        $endDateTime = $startDateTime->copy()->addMinutes($duration);
-
-        $eventsCount = Event::where('rooms_id', $roomId)
-            ->where(function ($query) use ($startDateTime, $endDateTime) {
-                $query->where(function ($query) use ($startDateTime, $endDateTime) {
-                    $query->where('start', '>=', $startDateTime)
-                        ->where('start', '<', $endDateTime);
-                })->orWhere(function ($query) use ($startDateTime, $endDateTime) {
-                    $query->where('start', '<=', $startDateTime)
-                        ->whereRaw("DATE_ADD(start, INTERVAL duration MINUTE) > ?", [$startDateTime]);
-                });
-            })
-            ->count();
-
-        return $eventsCount === 0;
-    }*/
 
     public function modifyEvent(){
 
@@ -135,15 +116,5 @@ class EventController extends Controller
 
         return back();
     }
-
-
-    public function api_event_get(){
-
-        $events = Event::all();
-
-        return $events;
-    }
-
-
 
 }

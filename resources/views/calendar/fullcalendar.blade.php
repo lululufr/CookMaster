@@ -21,11 +21,7 @@
 
 
 <?php
-
-
 use App\Models\Event;
-
-//$events = Event::all()->toArray();
 
 $calendar = [
     'Monday' => [],
@@ -70,6 +66,8 @@ foreach ($calendar as $day => $events) {
 
             <p><?php echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
         </div>
+
+
         <dialog id="my_modal{{$event["id"]}}" class="modal">
             <?php
                 $isParticipating = \App\Models\EventParticipates::where('events_id', $event['id'])
@@ -99,7 +97,6 @@ foreach ($calendar as $day => $events) {
                     </div>
                 </form>
             </div>
-
         </dialog>
     <?php }
     echo '</div>';
