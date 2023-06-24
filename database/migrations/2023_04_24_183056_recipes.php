@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->foreignIdFor(User::class);
             $table->string('title');
-            $table->string('tags');
             $table->longText('content');
             $table->string('image')->nullable();
             $table->timestamps();

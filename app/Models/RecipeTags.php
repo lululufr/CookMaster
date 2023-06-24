@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContainsIngredients extends Model
+class RecipeTags extends Model
 {
     public function recipe()
     {
-        return $this->belongsTo(Recipes::class, 'recipes_id');
+        return $this->belongsTo(Recipes::class, 'recipe_id');
     }
 }

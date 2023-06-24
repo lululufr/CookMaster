@@ -32,7 +32,6 @@ class EventFactory extends Factory
             'rooms_id' => $faker->numberBetween(1, 10),
             'max_participants' => $faker->numberBetween(1, 15),
             'duration' => $duration,
-            'tags' => 'test',
             'start' => $start,
             'chef_username' => $user ,
             'recipes_id' => Recipes::inRandomOrder()->first()->id,

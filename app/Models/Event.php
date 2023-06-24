@@ -14,6 +14,9 @@ class Event extends Model
         return $this->belongsTo(Rooms::class);
     }
 
-
+    public function users_count()
+    {
+        return $this->hasMany(EventParticipates::class,'event_id');
+    }
 
 }

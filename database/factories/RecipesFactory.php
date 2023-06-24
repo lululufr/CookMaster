@@ -21,7 +21,6 @@ class RecipesFactory extends Factory
         return [
 
         'user_id' => $user->id,
-        'tags' => "test",
         'title' => fake()->sentence(),
         'content'=>fake()->text()
         ];
