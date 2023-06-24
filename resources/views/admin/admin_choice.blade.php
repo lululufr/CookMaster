@@ -62,7 +62,16 @@
         </div>
     </div>
 
-
+    <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
+        <figure><img src="images/deco/undraw_drink_coffee_jdqb.svg" alt="Coffe" /></figure>
+        <div class="card-body">
+            <h2 class="card-title">Mon calendrier</h2>
+            <p>Voir son calendrier de chef</p>
+            <div class="card-actions justify-end">
+                <a href="/admin/chef/calendar" type="submit" class="btn btn-primary">Mon calendrier</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -115,6 +115,10 @@ Route::get('/admin/new/class', [AdminController::class,'new_class_page']);
 Route::post('/admin/create/class', [AdminController::class,'create_classes']);
 
 
+Route::get('/admin/chef/calendar', [FullCalendarController::class,'chefgetEvents']);
+Route::post('/admin/event/activation', [FullCalendarController::class,'changeValidationStatus']);
+
+
 
 //page des posts
 Route::get('/recipe/create', [RecipesController::class,'show_recipe_page']);
