@@ -23,7 +23,6 @@ return new class extends Migration
             $table->unsignedBigInteger('recipe_id');
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_validated')->default(0);
-            $table->string('tags')->nullable();
             $table->integer('max_participants')->default(10);
             $table->dateTime('start');
             $table->integer('duration');

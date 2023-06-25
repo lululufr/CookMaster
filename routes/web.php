@@ -116,7 +116,7 @@ Route::post('/admin/create/class', [AdminController::class,'create_classes']);
 
 
 Route::get('/admin/chef/calendar', [FullCalendarController::class,'chefgetEvents']);
-Route::post('/admin/event/activation', [FullCalendarController::class,'changeValidationStatus']);
+Route::post('/admin/event/activation', [EventController::class,'changeValidationStatus']);
 
 
 

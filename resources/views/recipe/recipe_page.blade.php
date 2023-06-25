@@ -30,14 +30,21 @@
     $(document).ready(function() {
         $('#addTag').click(function() {
             var formulairetag = `
-            <div class="card bg-base-300">
+            <div class="card bg-base-300 class="grid grid-col-7">
                 <div class="elementFormulaire">
+                    <div class="col-span-1"></div>
                     <label for="tags" >tag :</label>
-                    <input type="text" name="tags[]"><br><br>
-                    <button class="supprimerFormulaire" type="button">X</button>
-                </div>
+                    <select name="tags[]" class="col-span-5 w-full">
+                    @foreach(\App\Models\Tags::all() as $tag)
+            <option value="{{$tag->name}}">{{$tag->name}}</option>
+                    @endforeach
+            </select>
+            <div class="col-span-1"></div>
+
+            <button class="supprimerFormulaire" type="button">X</button>
             </div>
-            `;
+        </div>
+`;
 
             $('#tagAdd').append(formulairetag);
         });
@@ -50,10 +57,10 @@
         <textarea name="content" class="border border-gray-400 p-2 w-80" placeholder="contenu" required></textarea>
         <input type="file" name="image">
 
-        <div id="tagAdd"></div>
+        <div id="tagAdd" class="form-control w-full max-w-xs m-5"></div>
         <button class="btn" type="button" id="addTag">Ajouter un tag</button>
 
-        <div id="formulairesGeneres"></div>
+        <div id="formulairesGeneres" ></div>
         <button class="btn" type="button" id="genererFormulaire">Ajouter un ingrédient</button>
 
         <input type="submit" placeholder="créer">

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recipe_tags', function (Blueprint $table) {
+        Schema::create('utensil_event_uses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('recipe_id');
-            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('tag_name');
-            $table->foreign('tag_name')->references('name')->on('tags')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('utensil_id');
+            $table->foreign('utensil_id')->references('id')->on('utensils')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -29,12 +29,12 @@ class EventFactory extends Factory
         return [
             'title' => $faker->sentence,
             'description' => $faker->text,
-            'rooms_id' => $faker->numberBetween(1, 10),
+            'room_id' => $faker->numberBetween(1, 10),
             'max_participants' => $faker->numberBetween(1, 15),
             'duration' => $duration,
             'start' => $start,
             'chef_username' => $user ,
-            'recipes_id' => Recipes::inRandomOrder()->first()->id,
+            'recipe_id' => Recipes::inRandomOrder()->first()->id,
             'is_validated' => $faker->numberBetween(0,1),
         ];
     }

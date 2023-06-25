@@ -65,12 +65,6 @@ class FullCalendarController extends Controller
 
     }
 
-    public function changeValidationStatus(Request $request){
-        Event::where('id', $request->id)->update(['is_validated' => Event::where('id', $request->id)->first()->is_validated ? 0 : 1]);
-        return back();
-    }
-
-
     public function createEvent(Request $request){
         $data = array_except($request->all(), ['_token']);
         $events = Event::insert($data);
