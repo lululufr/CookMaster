@@ -52,11 +52,11 @@ class EventController extends Controller
         $event->recipe_id = intval($request['lesson']);
         $event->save();
         $i=0;
-        if ($request->input('tags') !== null) {
-            foreach ($request->input('tags') as $tag) {
+        if ($request->input('tag') !== null) {
+            foreach ($request->input('tag') as $tag) {
                 $event_tag = new EventTags;
                 $event_tag->tag_name = $tag;
-                $event_tag->events_id = $event->id;
+                $event_tag->event_id = $event->id;
                 $event_tag->save();
                 ++$i;
             }
@@ -119,10 +119,10 @@ class EventController extends Controller
         $eventId = $request['event_id'];
         $userId = $request['user_id'];
 
-        $existingParticipation = EventParticipates::where('events_id', $eventId)
-            ->where('users_id', $userId)
+        $existingParticipation = EventParticipates::where('event_id', $eventId)
+            ->where('user_id', $userId)
             ->first();
-        $participantCount = EventParticipates::where('events_id', $eventId)->count();
+        $participantCount = EventParticipates::where('event_id', $eventId)->count();
         if($participantCount >= Event::where('id', $eventId)->first()->max_participants){
             return back()->with('error', 'The event is full.');
         }
@@ -132,8 +132,8 @@ class EventController extends Controller
         }
 
         $eventParticipate = new EventParticipates;
-        $eventParticipate->events_id = $eventId;
-        $eventParticipate->users_id = $userId;
+        $eventParticipate->event_id = $eventId;
+        $eventParticipate->user_id = $userId;
         $eventParticipate->save();
 
         return back();

@@ -59,7 +59,7 @@ foreach ($calendar as $day => $events) {
         w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
             <p><?php echo $event['title'];?></p>
             <p><?php echo $event['start']; ?></p>
-            <p><?php echo $event['rooms_id']; ?></p>
+            <p><?php echo $event['room_id']; ?></p>
 
 
             <p><?php echo strtotime($event['start']) - time()?></p> <!-- si event passé-->
@@ -70,8 +70,8 @@ foreach ($calendar as $day => $events) {
 
         <dialog id="my_modal{{$event["id"]}}" class="modal">
             <?php
-                $isParticipating = \App\Models\EventParticipates::where('events_id', $event['id'])
-                    ->where('users_id', Auth::id())
+                $isParticipating = \App\Models\EventParticipates::where('event_id', $event['id'])
+                    ->where('user_id', Auth::id())
                     ->exists();
             ?>
             <div class="modal-box w-11/12 max-w-5xl">
@@ -79,7 +79,7 @@ foreach ($calendar as $day => $events) {
                 <p class="py-4">{{$event["title"]}}</p>
                 <p class="py-4">{{$event["description"]}}</p>
                 <?php //si l'event a dépassé le nombre de participants max
-                if($event["max_participants"] <= \App\Models\EventParticipates::where('events_id', $event['id'])->count()){?>
+                if($event["max_participants"] <= \App\Models\EventParticipates::where('event_id', $event['id'])->count()){?>
                 <button class="btn" >Cet évènement est complet</button>
                 <?php }else{?>
                 <form method="POST" action="/eventParticipate">

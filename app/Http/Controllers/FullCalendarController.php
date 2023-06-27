@@ -20,21 +20,20 @@ class FullCalendarController extends Controller
         if ($request != null) {
             $events = Event::where('title', $request['rech'])
                 ->whereBetween('start', [$startDate, $endDate])
-                ->where('rooms_id', $request['rooms'])
+                ->where('room_id', $request['rooms'])
                 ->where('is_validated', 1)
                 ->get()
                 ->toArray();
 
-            $events += Event::where('tags', $request['rech'])
-                ->whereBetween('start', [$startDate, $endDate])
-                ->where('rooms_id', $request['rooms'])
+            $events += Event::whereBetween('start', [$startDate, $endDate])
+                ->where('room_id', $request['rooms'])
                 ->where('is_validated', 1)
                 ->get()
                 ->toArray();
 
             $events += Event::where('description', 'LIKE', '%' . $request['rech'] . '%')
                 ->whereBetween('start', [$startDate, $endDate])
-                ->where('rooms_id', $request['rooms'])
+                ->where('room_id', $request['rooms'])
                 ->where('is_validated', 1)
                 ->get()
                 ->toArray();
