@@ -14,8 +14,7 @@ class APIController extends Controller
 {
     public function api_event_get()
     {
-        $events = Event::with(['rooms', 'users_count'])
-            ->get();
+        $events = Event::with(['rooms', 'users_count'])->get();
 
         foreach ($events as $event) {
             $event->rooms;
