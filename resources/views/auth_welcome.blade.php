@@ -1,4 +1,6 @@
 <x-header/>
+@php(\App\Http\Controllers\AdsController::ads())
+
 
 <div class="grid flex flex-content">
     @foreach($posts as $post)
@@ -12,4 +14,7 @@
     @endforeach
 
 </div>
+
+@php(\App\Http\Controllers\AdsController::ads())
+
 <x-footer/>

@@ -53,7 +53,7 @@ class EventController extends Controller
         $event->save();
         $i=0;
         if ($request->input('tag') !== null) {
-            foreach ($request->input('tag') as $tag) {
+            foreach ($request->input('tag ') as $tag) {
                 $event_tag = new EventTags;
                 $event_tag->tag_name = $tag;
                 $event_tag->event_id = $event->id;

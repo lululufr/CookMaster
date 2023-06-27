@@ -14,6 +14,26 @@ class PlanController extends Controller
     }
 
 
+    public function which_plan(User $user) : string
+    {
+        switch ($user->buying_plan){
+
+            case 'free':
+                return 'free';
+
+            case 'starter':
+                return 'starter';
+
+            case 'master':
+                return 'master';
+
+            default:
+                return 'free';
+        }
+
+    }
+
+
     public function purchase_plan(string $plan)
     {
         switch ($plan){
