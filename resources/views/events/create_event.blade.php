@@ -32,9 +32,9 @@
                     <label for="utensils" >Ustensiles :</label>
                     <select name="utensils[]" class="col-span-5 w-full">
                     @foreach(\App\Models\UtensilTypes::all() as $utensil)
-                <option value="{{$utensil->type}}">{{$utensil->type}}</option>
+                        <option value="{{$utensil->type}}">{{$utensil->type}}</option>
                     @endforeach
-                </select>
+                    </select>
                 <div class="col-span-1"></div>
 
                 <button class="supprimerFormulaire" type="button">X</button>

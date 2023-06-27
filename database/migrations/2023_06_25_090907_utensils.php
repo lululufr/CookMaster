@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->foreign('type')->references('type')->on('utensil_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

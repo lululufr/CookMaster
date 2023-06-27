@@ -72,6 +72,9 @@
             </div>
         </div>
     </div>
+    <a class="btn btn-primary" href='/admin/tags' type="submit">tags</a>
+    <a class="btn btn-primary" href='/admin/ingredients' type="submit">ingrédient</a>
+    <a class="btn btn-primary" href='/admin/utensils' type="submit">ustensiles</a>
 </div>
 
 

@@ -114,6 +114,20 @@ Route::post('/admin/article/create/apply', [AdminController::class,'create_artic
 Route::get('/admin/new/class', [AdminController::class,'new_class_page']);
 Route::post('/admin/create/class', [AdminController::class,'create_classes']);
 
+Route::get('/admin/tags', [AdminController::class,'get_tags']);
+Route::post('/admin/delete/tags/{name}', [AdminController::class,'delete_tag']);
+Route::post('/admin/create/tags', [AdminController::class,'create_tag']);
+
+Route::get('/admin/ingredients', [AdminController::class,'get_ingredients']);
+Route::post('/admin/delete/ingredients/{name}', [AdminController::class,'delete_ingredient']);
+Route::post('/admin/create/ingredients', [AdminController::class,'create_ingredient']);
+
+
+Route::get('/admin/utensils', [AdminController::class,'get_utensils']);
+Route::post('/admin/delete/utensil/{id}', [AdminController::class,'delete_utensil']);
+Route::post('/admin/create/utensil', [AdminController::class,'create_utensil']);
+Route::post('/admin/create/utensil_type', [AdminController::class,'create_utensil_type']);
+
 
 Route::get('/admin/chef/calendar', [FullCalendarController::class,'chefgetEvents']);
 Route::post('/admin/event/activation', [EventController::class,'changeValidationStatus']);

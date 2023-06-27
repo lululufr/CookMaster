@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Articles;
 use App\Models\Chapters;
 use App\Models\Classes;
+use App\Models\Ingredients;
 use App\Models\Questions;
 use App\Models\Rooms;
+use App\Models\Tags;
 use App\Models\User;
+use App\Models\Utensils;
+use App\Models\UtensilTypes;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
@@ -260,6 +264,86 @@ class AdminController extends Controller
 
     }
 
+    public function get_tags(){
+        $tags = Tags::all();
+        return view('admin.admin_tags',['tags'=>$tags]);
+    }
+
+    public function delete_tag($name){
+        $tag = Tags::where('name',$name);
+        $tag->delete();
+        return view('admin.admin_tags',['tags'=> Tags::all()]);
+    }
+
+    public function create_tag(Request $request){
+        if(Tags::where('name',$request['name'])->pluck('name')->isNotEmpty() ){
+            $tags = Tags::all();
+            return view('admin.admin_tags',['tags'=>$tags])->with('message','Ce tag existe déjà');
+        }else{
+            $tag = new Tags();
+            $tag->name = $request->input('name');
+            $tag->save();
+            $tags = Tags::all();
+            return view('admin.admin_tags',['tags'=>$tags])->with('message','Tag créé avec succès');
+        }
+    }
+
+    public function get_ingredients(){
+        $ingredients = Ingredients::all();
+        return view('admin.admin_ingredients',['ingredients'=>$ingredients]);
+    }
+
+    public function delete_ingredient($name){
+        $ingredient = Ingredients::where('name',$name);
+        $ingredient->delete();
+        $ingredients = Ingredients::all();
+        return view('admin.admin_ingredients',['ingredients'=>$ingredients]);
+    }
+
+    public function create_ingredient(Request $request){
+        if(Ingredients::where('name',$request['name'])->pluck('name')->isNotEmpty() ){
+            $ingredients = Ingredients::all();
+            return view('admin.admin_ingredients',['ingredients'=>$ingredients])->with('message','Cet ingrédient existe déjà');
+        }else{
+            $ingredient = new Ingredients();
+            $ingredient->name = $request->input('name');
+            $ingredient->save();
+            $ingredients = Ingredients::all();
+            return view('admin.admin_ingredients',['ingredients'=>$ingredients])->with('message','Ingrédient créé avec succès');
+        }
+    }
+
+    public function get_utensils(){
+        $utensiles = Utensils::all();
+        return view('admin.admin_utensils',['utensils'=>$utensiles]);
+    }
+
+    public function delete_utensil($id){
+        $utensile = Utensils::where('id',$id)->first();
+        $utensile->delete();
+        $utensiles = Utensils::all();
+        return view('admin.admin_utensils',['utensils'=>$utensiles]);
+    }
+    public function create_utensil(Request $request){
+        $utensil = new Utensils();
+        $utensil->type = $request->input('type');
+        $utensil->save();
+        $utensiles = Utensils::all();
+        return view('admin.admin_utensils',['utensils'=>$utensiles]);
+    }
+
+    public function create_utensil_type(Request $request){
+        if(Utensils::where('type',$request['type'])->pluck('type')->isNotEmpty() ){
+            $utensiles = Utensils::all();
+            return view('admin.admin_utensils',['utensils'=>$utensiles]);
+        }else{
+            $utensil = new UtensilTypes();
+            $utensil->type = $request->input('type');
+            $utensil->save();
+            $utensiles = Utensils::all();
+            return view('admin.admin_utensils',['utensils'=>$utensiles]);
+        }
+    }
 }
 
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('utensil_types', function (Blueprint $table) {
             $table->string('type')->primary();
+            $table->timestamps();
         });
     }
 
