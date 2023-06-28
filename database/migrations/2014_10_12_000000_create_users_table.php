@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('profil_picture')->default('/images/profil_pictures/default_profil_picture.png');
             $table->string('role')->default('user');
             $table->string('buying_plan')->default('free');
+            $table->integer('nb_classes')->default('0');
+            $table->dateTime('time_nb_classes')->default(today());
             $table->rememberToken();
             $table->timestamps();
         });

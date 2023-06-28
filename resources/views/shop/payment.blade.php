@@ -37,9 +37,12 @@ $carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
         </tbody>
     </table>
 </div>
-
-<b>TOTAL : {{$tt}} € </b>
-
+    @if(auth()->user()->buying_plan == 'master')
+        @php($tt =($tt * 0.9))
+        <b>TOTAL -10% avec master plan : {{$tt}} € </b>
+    @else
+        <b>TOTAL : {{$tt}} € </b>
+    @endif
 <div class="container mx-auto">
     <div class="flex justify-center">
         <div class="w-1/2">

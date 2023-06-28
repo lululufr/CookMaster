@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class PlanController extends Controller
 {
@@ -14,22 +15,8 @@ class PlanController extends Controller
     }
 
 
-    public function which_plan(User $user) : string
+    public static function plan_count_classes(View $v) : View
     {
-        switch ($user->buying_plan){
-
-            case 'free':
-                return 'free';
-
-            case 'starter':
-                return 'starter';
-
-            case 'master':
-                return 'master';
-
-            default:
-                return 'free';
-        }
 
     }
 

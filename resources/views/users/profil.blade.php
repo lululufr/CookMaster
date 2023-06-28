@@ -11,6 +11,7 @@
 
 
     <h2>PLAN actuelle : {{auth()->user()->buying_plan}}</h2>
+    <h2>Vous avez regardez {{auth()->user()->nb_classes}} chapitre de formation</h2>
 
 
     <form method="get">
@@ -21,7 +22,6 @@
             @error('pseudonyme')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-
         </div>
 
         <div class="form-control w-full max-w-xs m-5">

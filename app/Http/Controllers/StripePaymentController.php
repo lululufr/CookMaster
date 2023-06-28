@@ -80,6 +80,11 @@ class StripePaymentController extends Controller
             $cart->delete();
         }
 
+
+        if(auth()->user()->buying_plan == 'master'){
+            $AMOUNT = $AMOUNT * 0.9;
+        }
+
         $charge = $this->payment($request, $AMOUNT);
         //return $AMOUNT;
 

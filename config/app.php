@@ -188,6 +188,7 @@ return [
         // 'Example' => App\Facades\Example::class,
 
         "PDF" => Barryvdh\DomPDF\Facade::class,
+        'Mail' => Illuminate\Support\Facades\Mail::class,
 
     ])->toArray(),
 

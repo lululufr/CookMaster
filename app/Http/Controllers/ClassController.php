@@ -7,11 +7,15 @@ use App\Models\Classes;
 use App\Models\Questions;
 use App\Models\Validateds;
 
+use App\Http\Controllers\PlanController;
+
 use Illuminate\Http\Request;
 
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Support\Facades\DB;
+
 class ClassController extends Controller
 {
 
@@ -25,11 +29,51 @@ class ClassController extends Controller
 
     public function class_chapters_page(int $id)
     {
-
         $chapters = Chapters::where('classes_id', $id)->paginate(1);
 
 
-        return view('class.class-chapters')->with('chapters', $chapters);
+
+        $user = auth()->user();
+
+
+
+        if(auth()->user()->time_nb_classes != today()){
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['nb_classes' => 0, 'time_nb_classes' => today()]);
+
+            $user->nb_classes = 0;
+            $user->time_nb_classes = today();
+        }else{
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['nb_classes' => $user->nb_classes + 1]);
+
+            $user->nb_classes += 1;
+        }
+
+
+
+        $user_count = auth()->user()->nb_classes;
+        $plan = auth()->user()->buying_plan;
+
+        switch ($user_count) {
+
+            case $user_count > 12 && $plan == "free":
+                return view('error.plan_depasse');
+
+
+            case $user_count > 26 && $plan == "starter":
+                return view('error.plan_depasse');
+
+            default :
+                return view('class.class-chapters')->with('chapters', $chapters);
+
+
+        }
+
+
+
     }
 
 

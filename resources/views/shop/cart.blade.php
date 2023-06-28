@@ -15,7 +15,16 @@
         </div>
     @endforeach
 </div>
-    <p>TOTAL : {{$tt}} € </p>
+
+    @if(auth()->user()->buying_plan == 'master')
+        @php($tt =($tt * 0.9))
+        <p>TOTAL -10% avec master plan : {{$tt}} € </p>
+        @else
+        <p>TOTAL : {{$tt}} € </p>
+    @endif
+
+
+
 
     <a class="btn btn-primary" href="/pay">PAYER</a>
 
