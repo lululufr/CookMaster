@@ -1,12 +1,39 @@
 <x-header/>
 
+
+<div class='flex items-center justify-center bg-base-300 p-4'>
+    <div class='text-center'>
+        <h1 class='font-bold mb-2'>{{app\Models\User::where('id',$id)->first()->username}}</h1>
+        <p class='text-gray-700'>{{app\Models\User::where('id',$id)->first()->username}} est un {{app\Models\User::where('id',$id)->first()->role}}</p>
+        <a href='/profil/{{app\Models\User::where('id',$id)->first()->username}}' class='text-blue-500 underline mt-4'>Voir le profil</a>
+    </div>
+</div>
+
 <div class="overscroll-contain">
 
     @foreach($messages as $message)
-        <div class=" box-content place-content-stretch flex-auto p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2">
 
-            {{$message->content}}
+        @if($id == $message->user_from->id)
+
+            <div class="chat chat-end">
+                <div class="chat-image avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="{{$message->user_from->profil_picture}}" />
+                    </div>
+                </div>
+                <div class="chat-bubble"> {{$message->content}}</div>
+            </div>
+
+            @else
+        <div class="chat chat-start">
+            <div class="chat-image avatar">
+                <div class="w-10 rounded-full">
+                    <img src="{{$message->user_from->profil_picture}}" />
+                </div>
+            </div>
+            <div class="chat-bubble"> {{$message->content}}</div>
         </div>
+        @endif
     @endforeach
 
 </div>

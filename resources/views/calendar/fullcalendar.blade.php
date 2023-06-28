@@ -111,7 +111,7 @@ foreach ($calendar as $day => $events) {
 
 
 
-
+@php(\App\Http\Controllers\AdsController::ads())
 
 <x-footer/>
 
