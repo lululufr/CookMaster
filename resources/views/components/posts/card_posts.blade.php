@@ -1,6 +1,6 @@
 
-
-<!--<div class="card w-96 bg-base-100 shadow-xl">
+<!--
+<div class="card w-96 bg-base-100 shadow-xl">
     @if($img)
     <figure><img src="{{$img}}" alt="Shoes" /></figure>
     @endif
@@ -26,7 +26,7 @@
                     <!-- Article Image -->
                     <a href="#" class="hover:opacity-75">
                         @if($img)
-                            <figure><img src="{{asset("storage/".$img)}}" alt="Shoes" /></figure>
+                            <figure><img src="{{asset("storage/".$img)}}" /></figure>
                         @endif
                     </a>
                     <div class="bg-white flex flex-col justify-start p-6">
