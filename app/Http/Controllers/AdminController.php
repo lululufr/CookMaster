@@ -272,19 +272,17 @@ class AdminController extends Controller
     public function delete_tag($name){
         $tag = Tags::where('name',$name);
         $tag->delete();
-        return view('admin.admin_tags',['tags'=> Tags::all()]);
+        return redirect('/admin/tags');
     }
 
     public function create_tag(Request $request){
         if(Tags::where('name',$request['name'])->pluck('name')->isNotEmpty() ){
-            $tags = Tags::all();
-            return view('admin.admin_tags',['tags'=>$tags])->with('message','Ce tag existe déjà');
+            return redirect('/admin/tags');
         }else{
             $tag = new Tags();
             $tag->name = $request->input('name');
             $tag->save();
-            $tags = Tags::all();
-            return view('admin.admin_tags',['tags'=>$tags])->with('message','Tag créé avec succès');
+            return redirect('/admin/tags');
         }
     }
 
@@ -297,19 +295,17 @@ class AdminController extends Controller
         $ingredient = Ingredients::where('name',$name);
         $ingredient->delete();
         $ingredients = Ingredients::all();
-        return view('admin.admin_ingredients',['ingredients'=>$ingredients]);
+        return redirect('/admin/ingredients');
     }
 
     public function create_ingredient(Request $request){
         if(Ingredients::where('name',$request['name'])->pluck('name')->isNotEmpty() ){
-            $ingredients = Ingredients::all();
-            return view('admin.admin_ingredients',['ingredients'=>$ingredients])->with('message','Cet ingrédient existe déjà');
+            return redirect('/admin/ingredients');
         }else{
             $ingredient = new Ingredients();
             $ingredient->name = $request->input('name');
             $ingredient->save();
-            $ingredients = Ingredients::all();
-            return view('admin.admin_ingredients',['ingredients'=>$ingredients])->with('message','Ingrédient créé avec succès');
+            return redirect('/admin/ingredients');
         }
     }
 
@@ -321,27 +317,23 @@ class AdminController extends Controller
     public function delete_utensil($id){
         $utensile = Utensils::where('id',$id)->first();
         $utensile->delete();
-        $utensiles = Utensils::all();
-        return view('admin.admin_utensils',['utensils'=>$utensiles]);
+        return redirect('/admin/utensils');
     }
     public function create_utensil(Request $request){
         $utensil = new Utensils();
         $utensil->type = $request->input('type');
         $utensil->save();
-        $utensiles = Utensils::all();
-        return view('admin.admin_utensils',['utensils'=>$utensiles]);
+        return redirect('/admin/utensils');
     }
 
     public function create_utensil_type(Request $request){
         if(Utensils::where('type',$request['type'])->pluck('type')->isNotEmpty() ){
-            $utensiles = Utensils::all();
-            return view('admin.admin_utensils',['utensils'=>$utensiles]);
+            return redirect('/admin/utensils');
         }else{
             $utensil = new UtensilTypes();
             $utensil->type = $request->input('type');
             $utensil->save();
-            $utensiles = Utensils::all();
-            return view('admin.admin_utensils',['utensils'=>$utensiles]);
+            return redirect('/admin/utensils');
         }
     }
 }

@@ -40,7 +40,7 @@ foreach ($events as $event) {
         w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
         <p><?php echo $event['title'];?></p>
         <p><?php echo $event['start']; ?></p>
-        <p><?php echo $event['rooms_id']; ?></p>
+        <p><?php echo $event['room_id']; ?></p>
 
 
         <p><?php echo strtotime($event['start']) - time()?></p> <!-- si event passé-->

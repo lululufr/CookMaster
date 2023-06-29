@@ -22,8 +22,8 @@ class UserPrefController extends Controller
 
         $startDate = Carbon::now()->startOfWeek();
         $endDate = Carbon::now()->endOfWeek();
-        $eventids = EventParticipates::where('users_id', auth()->id())
-            ->get('events_id')
+        $eventids = EventParticipates::where('user_id', auth()->id())
+            ->get('event_id')
             ->toArray();
         $events = Event::whereIn('id', $eventids)->whereBetween('start', [$startDate, $endDate])->get()->toArray();
 

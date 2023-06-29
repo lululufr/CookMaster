@@ -39,6 +39,7 @@ class EventController extends Controller
             })
             ->first();
         if ($existingEvent) {
+            dd("hihi existing event");
             return view('events.create_event')->with('error', 'La salle est déjà réservée pendant cette période.');
         }
         $event = new Event;
@@ -64,7 +65,8 @@ class EventController extends Controller
         $i=0;
         if (isset($request['utensils'])) {
             foreach ($request['utensils'] as $utensil) {
-                if(!$this->utensilAvailable($utensil)){
+                if(!$this->utensilAvailable($utensil, Carbon::parse($start)->toDate())){
+                    dd("hihi ça marche pas");
                     UtensilEventUses::where('event_id', $event->id)->delete();
                     $event->delete();
                     return back()->with('error', 'Il n\'y a pas assez d\'ustensiles disponibles pour créer cet évènement.');
@@ -72,6 +74,7 @@ class EventController extends Controller
                 $utensilsEvent = new UtensilEventUses;
                 $utensilsEvent->utensil_id = Utensils::whereNotIn('id',UtensilEventUses::all()->pluck('utensil_id'))->where('type',$utensil)->firstOrFail()->id;
                 $utensilsEvent->event_id = $event->id;
+                $utensilsEvent->date = Carbon::parse($start)->toDate();
                 $utensilsEvent->save();
                 ++$i;
             }
@@ -108,6 +111,9 @@ class EventController extends Controller
 
         }
     }
+
+
+
     public function deleteEvent($id)
     {
         $event = Event::where('id', $id)->firstOrFail();
@@ -143,8 +149,8 @@ class EventController extends Controller
         return back();
     }
 
-    public function utensilAvailable($type){
-        return Utensils::countByType($type) - UtensilEventUses::countUses($type);
+    public function utensilAvailable($type, $when){
+        return Utensils::countByType($type) - UtensilEventUses::countUses($type, $when);
     }
 
 }

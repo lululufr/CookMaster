@@ -51,8 +51,8 @@ foreach ($events as $event) {
 
     <dialog id="my_modal{{$event["id"]}}" class="modal">
             <?php
-            $isParticipating = \App\Models\EventParticipates::where('events_id', $event['id'])
-                ->where('users_id', Auth::id())
+            $isParticipating = \App\Models\EventParticipates::where('event_id', $event['id'])
+                ->where('user_id', Auth::id())
                 ->exists();
             ?>
         <div class="modal-box w-11/12 max-w-5xl">
@@ -60,7 +60,7 @@ foreach ($events as $event) {
             <p class="py-4">{{$event["title"]}}</p>
             <p class="py-4">{{$event["description"]}}</p>
                 <?php //si l'event a dépassé le nombre de participants max
-            if($event["max_participants"] <= \App\Models\EventParticipates::where('events_id', $event['id'])->count()){?>
+            if($event["max_participants"] <= \App\Models\EventParticipates::where('event_id', $event['id'])->count()){?>
             <button class="btn" >Cet évènement est complet</button>
             <?php }else{?>
             <form method="POST" action="/eventParticipate">
