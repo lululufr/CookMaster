@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/event', [APIController::class,'api_event_get']);
 Route::get('/recipe', [APIController::class,'api_recipe_get']);
+Route::get('/message/{id}', [APIController::class,'api_recipe_get']);
+Route::get('/conversation', [APIController::class,'api_recipe_get']);
+Route::get('/conversation', [APIController::class,'api_send_messages_get']);
