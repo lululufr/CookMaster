@@ -10,7 +10,7 @@
                     <div class="col-span-1"></div>
                     <label for="tags" >tag :</label>
                     <select name="tags[]" class="col-span-5 w-full">
-                    @foreach(\App\Models\Tags::all() as $tag)
+                    @foreach(\App\Models\Tags::whereNot('name','private')->get() as $tag)
                         <option value="{{$tag->name}}">{{$tag->name}}</option>
                     @endforeach
                 </select>
@@ -22,7 +22,8 @@
 `;
                 $('#tagAdd').append(formulairetag);
             });
-        });
+        });1
+
         $(document).ready(function() {
             $('#addUtensil').click(function() {
                 var formulairetag = `

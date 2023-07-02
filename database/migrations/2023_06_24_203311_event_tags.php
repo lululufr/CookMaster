@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('event_tags', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('events_id');
-            $table->foreign('events_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
             $table->string('tag_name');
             $table->foreign('tag_name')->references('name')->on('tags')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

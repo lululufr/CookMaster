@@ -85,9 +85,11 @@ Route::post('/message/{id}/send', [MessageController::class,'send_messages'])->m
 
 //events
 Route::get('/event/create', [EventController::class,'createEvent'])->middleware('auth');
+Route::get('/user/event/create', [EventController::class,'createPrivateEvent'])->middleware('auth');
 Route::post('/event/create', [EventController::class,'createEventApply'])->middleware('auth');
 Route::get('/event/modify', [EventController::class,'modifyEvent'])->middleware('auth');
 Route::post('/event/modify', [EventController::class,'modifyEventApply'])->middleware('auth');
+Route::post('/event/delete', [EventController::class,'deleteEvent'])->middleware('auth');
 
 
 //participation event

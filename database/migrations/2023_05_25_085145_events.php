@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('description');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->bigInteger('room_id')->unsigned()->index()->nullable();
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->string('chef_username');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('is_validated')->default(0);
             $table->integer('max_participants')->default(10);
             $table->dateTime('start');
-            $table->integer('duration');
+            $table->integer('duration')->default(2);
             $table->timestamps();
         });
     }

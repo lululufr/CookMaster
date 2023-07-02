@@ -1,5 +1,6 @@
 <x-header/>
 
+<a href="/user/event/create" class="btn btn-secondary">Faire une leçon privée</a>
 
 <?php
 use App\Models\Event;
@@ -40,7 +41,7 @@ foreach ($events as $event) {
         w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
         <p><?php echo $event['title'];?></p>
         <p><?php echo $event['start']; ?></p>
-        <p><?php echo $event['rooms_id']; ?></p>
+        <p><?php echo $event['room_id']; ?></p>
 
 
         <p><?php echo strtotime($event['start']) - time()?></p> <!-- si event passé-->
@@ -59,8 +60,19 @@ foreach ($events as $event) {
             <h3 class="font-bold text-lg">Hello!</h3>
             <p class="py-4">{{$event["title"]}}</p>
             <p class="py-4">{{$event["description"]}}</p>
-                <?php //si l'event a dépassé le nombre de participants max
-            if($event["max_participants"] <= \App\Models\EventParticipates::where('event_id', $event['id'])->count()){?>
+            <?php
+                $tags = \App\Models\EventTags::where('event_id', $event['id'])->pluck('tag_name');
+                if($tags->contains('private')){ ?>
+                <form method="POST" action="/event/delete">
+                    @csrf
+                    <input type="hidden" name="event_id" value="{{ $event['id'] }}">
+                    <div>
+                        <button class="btn" type="submit">Annuler la leçon privée</button>
+                    </div>
+                </form>
+                <?php
+                //si l'event a dépassé le nombre de participants max
+                }elseif($event["max_participants"] <= \App\Models\EventParticipates::where('event_id', $event['id'])->count()){?>
             <button class="btn" >Cet évènement est complet</button>
             <?php }else{?>
             <form method="POST" action="/eventParticipate">

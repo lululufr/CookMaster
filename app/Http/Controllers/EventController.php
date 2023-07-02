@@ -18,6 +18,10 @@ class EventController extends Controller
 
         return view('events.create_event');
     }
+    public function createPrivateEvent(){
+
+        return view('events.private_event');
+    }
     public function createEventApply(Request $request)
     {
         $roomId = intval($request['room']);
@@ -39,37 +43,49 @@ class EventController extends Controller
             })
             ->first();
         if ($existingEvent) {
-            dd("hihi existing event");
-            return view('events.create_event')->with('error', 'La salle est déjà réservée pendant cette période.');
+            return back()->with('error', 'La salle est déjà réservée pendant cette période.');
         }
         $event = new Event;
         $event->title = htmlspecialchars($request['title']);
         $event->start = $start;
         $event->description = htmlspecialchars($request['description']);
-        $event->room_id = $roomId;
-        $event->duration = $duration;
+
+        $event->room_id = $roomId != 0  ? $roomId : null;
+        $event->duration = $duration == 0 ?? 2;
         $event->max_participants = intval($request['max_participants']);
         $event->chef_username = htmlspecialchars($request['chef_username']);
         $event->recipe_id = intval($request['lesson']);
         $event->save();
         $i=0;
-        if ($request->input('tag') !== null) {
-            foreach ($request->input('tag ') as $tag) {
+        $tags = $request->input('tags');
+        if ($tags !== null) {
+            if($tags == 'private'){
                 $event_tag = new EventTags;
-                $event_tag->tag_name = $tag;
+                $event_tag->tag_name = 'private';
                 $event_tag->event_id = $event->id;
                 $event_tag->save();
-                ++$i;
+
+                $user_participate = new EventParticipates;
+                $user_participate->event_id = $event->id;
+                $user_participate->user_id = auth()->id();
+                $user_participate->save();
+            }else {
+                foreach ($request->input('tags') as $tag) {
+                    $event_tag = new EventTags;
+                    $event_tag->tag_name = $tag;
+                    $event_tag->event_id = $event->id;
+                    $event_tag->save();
+                    ++$i;
+                }
             }
         }
         $i=0;
         if (isset($request['utensils'])) {
             foreach ($request['utensils'] as $utensil) {
-                if(!$this->utensilAvailable($utensil, Carbon::parse($start)->toDate())){
-                    dd("hihi ça marche pas");
+                if($this->utensilAvailable($utensil, Carbon::parse($start)->toDate()) <= 0){
                     UtensilEventUses::where('event_id', $event->id)->delete();
                     $event->delete();
-                    return back()->with('error', 'Il n\'y a pas assez d\'ustensiles disponibles pour créer cet évènement.');
+                    return back()->with('error', 'Il n\'y a pas assez d\'ustensiles disponibles pour cette date.');
                 }
                 $utensilsEvent = new UtensilEventUses;
                 $utensilsEvent->utensil_id = Utensils::whereNotIn('id',UtensilEventUses::all()->pluck('utensil_id'))->where('type',$utensil)->firstOrFail()->id;
@@ -79,7 +95,8 @@ class EventController extends Controller
                 ++$i;
             }
         }
-        return view('events.create_event')->with('success', 'L\'évènement a bien été créé.');
+
+        return back();
     }
 
     public function modifyEvent(){
@@ -87,36 +104,14 @@ class EventController extends Controller
         return view('event.modify_event');
     }
     public function modifyEventApply($id, Request $request){
-        $event = Event::where('id', $id)->firstOrFail();
-        switch ($request->input('table')) {
-            case 'username':
-                $event->username = $request->input('new_content');
-                break;
-            case 'firstname':
-                $event->firstname = $request->input('new_content');
-                break;
-            case 'lastname':
-                $event->lastname = $request->input('new_content');
-                break;
-            case 'email':
-                $event->email = $request->input('new_content');
-                break;
-            case 'role':
-                $event->role = $request->input('new_content');
-                break;
-            case 'buying_plan':
-                $event->buying_plan = $request->input('new_content');
-                break;
 
-
-        }
     }
 
 
 
-    public function deleteEvent($id)
+    public function deleteEvent(Request $request)
     {
-        $event = Event::where('id', $id)->firstOrFail();
+        $event = Event::where('id', $request['event_id'])->firstOrFail();
         $event->delete();
         return back();
     }
@@ -129,7 +124,7 @@ class EventController extends Controller
             ->where('user_id', $userId)
             ->first();
         $participantCount = EventParticipates::where('event_id', $eventId)->count();
-        if($participantCount >= Event::where('id', $eventId)->first()->max_participants){
+        if($participantCount > Event::where('id', $eventId)->first()->max_participants){
             return back()->with('error', 'The event is full.');
         }
         if ($existingParticipation ) {

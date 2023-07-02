@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tags extends Model
 {
+    protected $primaryKey = 'name';
     use HasFactory;
+
 }

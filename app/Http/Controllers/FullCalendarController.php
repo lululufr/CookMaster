@@ -22,12 +22,18 @@ class FullCalendarController extends Controller
                 ->whereBetween('start', [$startDate, $endDate])
                 ->where('room_id', $request['rooms'])
                 ->where('is_validated', 1)
+                ->whereDoesntHave('tags', function ($query) {
+                    $query->where('name', 'private');
+                })
                 ->get()
                 ->toArray();
 
             $events += Event::whereBetween('start', [$startDate, $endDate])
                 ->where('room_id', $request['rooms'])
                 ->where('is_validated', 1)
+                ->whereDoesntHave('tags', function ($query) {
+                    $query->where('name', 'private');
+                })
                 ->get()
                 ->toArray();
 
@@ -35,6 +41,9 @@ class FullCalendarController extends Controller
                 ->whereBetween('start', [$startDate, $endDate])
                 ->where('room_id', $request['rooms'])
                 ->where('is_validated', 1)
+                ->whereDoesntHave('tags', function ($query) {
+                    $query->where('name', 'private');
+                })
                 ->get()
                 ->toArray();
 

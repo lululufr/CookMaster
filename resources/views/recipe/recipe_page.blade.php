@@ -7,8 +7,11 @@
             <div class="card bg-base-300">
                 <div class="elementFormulaire">
                     <label for="ingredients" >ingredients :</label>
-                    <input type="text" name="ingredients[]" required><br><br>
-
+                    <select name="ingredients[]" class="col-span-5 w-full">
+                    @foreach(\App\Models\Ingredients::all() as $ingredient)
+                        <option value="{{$ingredient->name}}">{{$ingredient->name}}</option>
+                    @endforeach
+                    </select><br><br>
                     <label for="amount">quantité :</label>
                     <input type="text" name="amount[]" required><br><br>
 
@@ -35,8 +38,8 @@
                     <div class="col-span-1"></div>
                     <label for="tags" >tag :</label>
                     <select name="tags[]" class="col-span-5 w-full">
-                    @foreach(\App\Models\Tags::all() as $tag)
-            <option value="{{$tag->name}}">{{$tag->name}}</option>
+                    @foreach(\App\Models\Tags::whereNot('name','private')->get() as $tag)
+                        <option value="{{$tag->name}}">{{$tag->name}}</option>
                     @endforeach
             </select>
             <div class="col-span-1"></div>
