@@ -92,5 +92,19 @@ class APIController extends Controller
     }
 
 
+    public function api_connexion(Request $request, int $id)
+    {
+        $message =  $request['message'];
+
+        $entry = new Messages();
+        $entry->to_id = $id;
+        $entry->from_id = auth()->user()->id;
+        $entry->content = $message;
+        $entry->save();
+
+    }
+
+
+
 
 }
