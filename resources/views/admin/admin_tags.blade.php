@@ -22,7 +22,7 @@
         </thead>
         <tbody>
 
-
+<?php print_r($tags); ?>
 
         @foreach($tags as $tag)
             <tr>

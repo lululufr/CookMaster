@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tags extends Model
 {
-    protected $primaryKey = 'name';
+    public $primaryKey = 'name';
+    public $incrementing = false;
+    public $keyType = 'string';
     use HasFactory;
 
 }

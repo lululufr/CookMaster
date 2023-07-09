@@ -51,7 +51,7 @@
     <label class="label">
         <span class="label-text">Quel est votre email ?</span>
     </label>
-    <input value="{{old('email')}}" name="email" type="text" placeholder="John.conquerant@braveheart.fr" class="input input-bordered w-full max-w-xs" />
+    <input value="{{old('email')}}" name="email" type="email" placeholder="John.conquerant@braveheart.fr" class="input input-bordered w-full max-w-xs" />
 
     @error('email')
             <label class="label">
@@ -84,7 +84,14 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+    <div class="form-control w-full max-w-xs m-5">
+        <label class="label">
+            <span class="label-text">Avez vous été invité ? Entrez son pseudo !</span>
+        </label>
+        <input name="cooptation" type="text" placeholder="John C Le conquis" class="input input-bordered w-full max-w-xs" />
+    </div>
+
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
 
 

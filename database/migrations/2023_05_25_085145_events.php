@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->bigInteger('room_id')->unsigned()->index()->nullable();
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('chef_username');
+            $table->string('chef_username')->nullable();
             $table->foreign('chef_username')->references('username')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('recipe_id');
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade')->onUpdate('cascade');

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('buying_plan')->default('free');
             $table->integer('nb_classes')->default('0');
             $table->dateTime('time_nb_classes')->default(today());
+            $table->integer('cooptation_count')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

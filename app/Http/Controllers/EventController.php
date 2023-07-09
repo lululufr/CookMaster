@@ -51,7 +51,7 @@ class EventController extends Controller
         $event->description = htmlspecialchars($request['description']);
 
         $event->room_id = $roomId != 0  ? $roomId : null;
-        $event->duration = $duration == 0 ?? 2;
+        $event->duration = $duration == 0 ? 2 : $duration;
         $event->max_participants = intval($request['max_participants']);
         $event->chef_username = htmlspecialchars($request['chef_username']);
         $event->recipe_id = intval($request['lesson']);
@@ -79,6 +79,7 @@ class EventController extends Controller
                 }
             }
         }
+
         $i=0;
         if (isset($request['utensils'])) {
             foreach ($request['utensils'] as $utensil) {
