@@ -88,11 +88,12 @@ class PlanController extends Controller
 
         $user->buying_plan = $plan;
 
-        if($user->buying_plan != "free" && $cooptation = Cooptation::where('coopted_id', $user->id)->first()){
+        if($user->buying_plan != "free" && $cooptation = Cooptation::where('coopter_id', $user->id)->first()){
             $cooptation->hasPaid = 1;
             $cooptation->save();
-            $user->cooptation_count += 1;
-            if($user->cooptation_count % 3 && $user->buying_plan == "starter"){
+            $coopter = User::where('id', $cooptation->coopter_id)->first();
+            $coopter->cooptation_count++;
+            if($coopter->cooptation_count % 3 && $coopter->buying_plan == "starter"){
                 $cooptation->createCoupon();
             }
         }

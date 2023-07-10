@@ -98,19 +98,22 @@ class APIController extends Controller
 
     public function api_connexion(Request $request)
     {
-
-            $user = User::where('username', $request->username)->first();
-
-
-            $token = $user->createToken('MobileAppToken')->plainTextToken;
-
-            return response()->json(['success' => true, 'token' => $token]);
-
-
+        $user = User::where('username', $request->username)->first();
+        if (!$user || !password_verify($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Bad credentials'
+            ], 401);
+        }
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $token = substr(str_shuffle($characters), 0, 16) ;
+        $user->mobile_token = $token;
+        $user->save();
+        return response()->json([
+            'token' => $token,
+            'role' => $user->role,
+            'id' => $user->id
+        ], 200);
     }
-
-
-
 
 //récupérer id utilisateur + son type
 

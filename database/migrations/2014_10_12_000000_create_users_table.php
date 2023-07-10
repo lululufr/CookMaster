@@ -30,6 +30,7 @@ return new class extends Migration
             $table->integer('verify')->default(0);
             $table->integer('verify_token')->default(0);
             $table->rememberToken();
+            $table->string('mobile_token')->nullable();
             $table->timestamps();
         });
     }
