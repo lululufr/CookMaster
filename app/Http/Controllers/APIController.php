@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
 class APIController extends Controller
 {
     public function api_event_get()
@@ -93,24 +94,19 @@ class APIController extends Controller
     }
 
 
-    use Illuminate\Support\Facades\Auth;
-    use Illuminate\Http\Request;
+
 
     public function api_connexion(Request $request)
     {
-        $formFields = $request->validate([
-            'username'=> ['required'],
-            'password'=> 'required'
-        ]);
 
-        if (Auth::attempt($formFields)) {
-            $user = Auth::user();
+            $user = User::where('username', $request->username)->first();
+
+
             $token = $user->createToken('MobileAppToken')->plainTextToken;
 
-            return json_encode(['success' => true, 'token' => $token]);
-        }
+            return response()->json(['success' => true, 'token' => $token]);
 
-        return json_encode(['success' => false, 'message' => 'Invalid credentials']);
+
     }
 
 

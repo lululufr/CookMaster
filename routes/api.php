@@ -23,4 +23,4 @@ Route::get('/message/send/{id}', [APIController::class,'api_send_messages']);
 
 
 
-Route::get('/connexion', [APIController::class,'api_connexion']);
+Route::post('/connexion', [APIController::class,'api_connexion']);
