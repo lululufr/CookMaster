@@ -21,9 +21,6 @@
         </tr>
         </thead>
         <tbody>
-
-<?php print_r($tags); ?>
-
         @foreach($tags as $tag)
             <tr>
                 <td>{{$tag->name}}</td>

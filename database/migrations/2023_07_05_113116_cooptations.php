@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cooptation', function (Blueprint $table) {
+        Schema::create('cooptations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('coopted_id');
             $table->foreign('coopted_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

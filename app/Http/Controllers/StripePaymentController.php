@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\MailNotify;
 use App\Models\Carts;
+use App\Models\Coupon;
 use App\Models\Hasclasses;
 use Exception;
 use Illuminate\Http\Request;
@@ -82,11 +83,27 @@ class StripePaymentController extends Controller
             $cart->delete();
         }
 
-
         if(auth()->user()->buying_plan == 'master'){
             $AMOUNT = $AMOUNT * 0.9;
         }
 
+        $coupons = Coupon::where('user_id', auth()->id())->get();
+        foreach($coupons as $coupon){
+            if($coupon->amount < $AMOUNT) {
+                $AMOUNT = $AMOUNT - $coupon->amount;
+                $coupon->delete();
+            } else {
+                $coupon->amount = $coupon->amount - $AMOUNT;
+                $coupon->save();
+                $AMOUNT = 0;
+            }
+        }
+
+        if($AMOUNT == 0){
+            return view('shop.success')->with('charge', 'Coupon');
+
+            //envoyer un mail hihi
+        }
         $charge = $this->payment($request, $AMOUNT);
         //return $AMOUNT;
 

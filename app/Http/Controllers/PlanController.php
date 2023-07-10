@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MailNotify;
+use App\Models\Cooptation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -87,6 +87,14 @@ class PlanController extends Controller
 
         $user->buying_plan = $plan;
 
+        if($user->buying_plan != "free" && $cooptation = Cooptation::where('coopted_id', $user->id)->first()){
+            $cooptation->hasPaid = 1;
+            $cooptation->save();
+            $user->cooptation_count += 1;
+            if($user->cooptation_count % 3 && $user->buying_plan == "starter"){
+                $cooptation->createCoupon();
+            }
+        }
         //email
         $data = [
             'name' => auth()->user()->firstname . ' ' . auth()->user()->lastname,
@@ -99,6 +107,7 @@ class PlanController extends Controller
 
 
 
+        $user->save();
         return view('shop.success')->with('charge',  $charge);
     }
 

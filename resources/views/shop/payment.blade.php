@@ -2,13 +2,10 @@
 
 @php
 
-$carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
-
+$carts = App\Models\Carts::where('user_id', auth()->id())->get();
+$coupons = App\Models\Coupon::where('user_id', auth()->id())->get();
+$tt = 0
 @endphp
-
-
-
-@php($tt = 0)
 
 <div class="overflow-x-auto">
     <table class="table">
@@ -33,7 +30,27 @@ $carts = App\Models\Carts::where('user_id', auth()->user()->id)->get();
         </tr>
 
         @endforeach
+        {{$i = 0}}
+        @foreach($coupons as $coupon)
+            <?php
+                if($tt > $coupon->amount){
+                    $tt -= $coupon->amount;
+                    $nextValue= 0;
+                }else{
 
+                    $nextValue = $coupon->amount - $tt;
+                    $tt = 0;
+                }
+                $i++;
+
+            ?>
+                <tr>
+                    <th>coupon n°{{$i}}</th>
+                    <td>{{$coupon->amount}} €</td>
+                    <td>----></td>
+                    <td>{{$nextValue}} €</td>
+                </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
