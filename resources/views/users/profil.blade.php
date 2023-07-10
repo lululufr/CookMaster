@@ -85,21 +85,6 @@
 
         <div class="form-control w-full max-w-xs">
             <label class="label">
-                <span class="label-text">Choisissez votre theme</span>
-            </label>
-            <select class="select select-bordered" name="theme">
-                <option disabled selected>{{auth()->user()->theme}}</option>
-                <option>cyberpunk</option>
-                <option>bumblebee</option>
-                <option>coffee</option>
-                <option>night</option>
-                <option>acid</option>
-                <option>dracula</option>
-            </select>
-        </div>
-
-        <div class="form-control w-full max-w-xs">
-            <label class="label">
                 <span class="label-text">Choisissez votre Langue</span>
             </label>
             <select class="select select-bordered" name="langue">

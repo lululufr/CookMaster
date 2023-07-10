@@ -19,7 +19,7 @@
                 var query = $(this).val();
 
                 $.ajax({
-                    url: "{{ route('recherche.utilisateur') }}",
+                    url: "https://cookmaster.lululu.fr/search_user",
                     type: "GET",
                     data: { q: query },
                     dataType: "json",
