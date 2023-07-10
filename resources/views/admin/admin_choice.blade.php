@@ -2,7 +2,7 @@
 
 
 
-<div class="m-5 grid grid-cols-1 lg:grid-cols-2 gap-4 justify-items-center">
+<div class="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
 
 
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
@@ -63,18 +63,49 @@
     </div>
 
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
-        <figure><img src="images/deco/undraw_drink_coffee_jdqb.svg" alt="Coffe" /></figure>
+        <figure><img src="images/deco/mobilesearch.png" alt="Coffe" /></figure>
         <div class="card-body">
             <h2 class="card-title">Mon calendrier</h2>
             <p>Voir son calendrier de chef</p>
             <div class="card-actions justify-end">
-                <a href="/admin/chef/calendar" type="submit" class="btn btn-primary">Mon calendrier</a>
+                <a href="/admin/chef/calendar" class="btn btn-primary">Mon calendrier</a>
             </div>
         </div>
     </div>
-    <a class="btn btn-primary" href='/admin/tags' type="submit">tags</a>
-    <a class="btn btn-primary" href='/admin/ingredients' type="submit">ingrédient</a>
-    <a class="btn btn-primary" href='/admin/utensils' type="submit">ustensiles</a>
+
+    <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
+        <figure><img src="images/deco/circuittag.png" alt="Coffe" /></figure>
+        <div class="card-body">
+            <h2 class="card-title">Les TAGS</h2>
+            <p>Gérez les tags utilisables par les utilisateurs.</p>
+            <div class="card-actions justify-end">
+                <a class="btn btn-primary" href='/admin/tags' >tags</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
+        <figure><img src="images/deco/phonecall.png" alt="Coffe" /></figure>
+        <div class="card-body">
+            <h2 class="card-title">Les Ingrédients</h2>
+            <p>Gérez les ingrédients</p>
+            <div class="card-actions justify-end">
+                <a class="btn btn-primary" href='/admin/ingredients' >ingrédient</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
+        <figure><img src="images/deco/yoga.png" alt="Coffe" /></figure>
+        <div class="card-body">
+            <h2 class="card-title">Les ustensiles</h2>
+            <p>Gérez les outils et ustensiles</p>
+            <div class="card-actions justify-end">
+                <a class="btn btn-primary" href='/admin/utensils'>ustensiles</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

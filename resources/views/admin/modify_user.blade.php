@@ -1,9 +1,9 @@
 <x-header/>
-<div class="grid grid-cols-1 align-items-center flex-wrap m-4">
+<div class="grid place-items-center place-content-center flex-wrap m-4 ">
     <!-- Elem doit etre le nom de la table a modifier-->
 
 
-    <form action="/admin/modify/apply/{{$user->id}}" method="POST">
+    <form action="/admin/modify/apply/{{$user->id}}" method="POST" class="form-control">
         @csrf
     <div class="m-2">
         <x-admin.card_modify
@@ -33,7 +33,7 @@
             table="email"/>
     </div>
 
-    <div class="card h-63 w-96">
+    <div class="card bg-base-300 m-2">
         <div class="card-body items-center text-center">
             <h2 class="card-title">Role :</h2>
             <p>Modifier le rôle :</p>
@@ -46,17 +46,15 @@
                             <option value="chef">Chef</option>
                             <option value="user">User</option>
                         </select>
-
-                        <button type="submit" class="btn">Modifier</button>
                     </div>
             </div>
         </div>
     </div>
 
 
-    <div class="card h-63 w-96">
+    <div class="card bg-base-300 m-2">
         <div class="card-body items-center text-center">
-            <h2 class="card-title">Role :</h2>
+            <h2 class="card-title">Plan :</h2>
             <p>Modifier le buying plan :</p>
             <div class="card-actions justify-end">
 
@@ -72,7 +70,7 @@
             </div>
         </div>
     </div>
-        <button type="submit" class="btn">Modifier</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
 
 </div>

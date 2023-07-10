@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailNotify;
 use App\Models\Cooptation;
 use App\Models\User;
 use Illuminate\Http\Request;

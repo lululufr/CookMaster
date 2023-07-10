@@ -1,9 +1,14 @@
 <x-header/>
 
+<div class="grid place-content-center place-items-center">
+    <div>
+    <img src="{{asset("storage/".$chapters[0]->classes->img)}}" alt="image" class="img-fluid w-96 "/>
+    </div>
+        <div>
+    <h1 class="uppercase text-5xl font-bold m-5">{{$chapters[0]->classes->title}}</h1>
+        </div>
+</div>
 
-<img src="{{asset("storage/".$chapters[0]->classes->img)}}" alt="image" class="img-fluid w-96"/>
-
-<h1 class="uppercase text-5xl font-bold m-5">{{$chapters[0]->classes->title}}</h1>
 
 {{ $chapters->links() }}
 

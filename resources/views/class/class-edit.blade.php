@@ -9,13 +9,13 @@
 
     <form class ="flex grid grid-cols-1 place-content-center place-items-center" action="/class/chapter/{{$chapter->id}}/edit/submit" method="POST">
         @csrf
-        <div class = "card m-5 p-5 w-full bg-base-300 shadow-xl">
+        <div class = "card m-5 p-5 w-full bg-base-300 shadow-xl place-content-center place-items-center">
             <h2 class="card-title"> >Chapitre <?php echo $cmp ?></h2>
 
-            <div class="card-body">
+            <div class="card-body place-content-center place-items-center">
                 <input class="textarea w-full input" type="text" name="title" placeholder="{{ $chapter->title }}" value="{{ $chapter->title }} " required>
                 @if(isset($chapter->media))
-                    <img src="{{asset("storage/".$chapter->media)}}" alt="Cuisine" class="img-fluid">
+                    <img src="{{asset("storage/".$chapter->media)}}" alt="Cuisine" class="img-fluid w-3/5">
 
                 @endif
                 <textarea class="textarea w-full place-content-center place-items-center" name="content" placeholder="Description de la formation" required>
@@ -31,7 +31,7 @@
 
 
 
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3" >
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center place-items-center" >
 
             @foreach(\App\Models\Questions::where('chapters_id',$chapter->id)->get() as $question)
                     <div class="card bg-base-300 p-0 ">
@@ -51,7 +51,7 @@
 
 
 
-<button class="btn place-items-center" onclick="modal_form.showModal()">AJOUTER QUESTIONNAIRE</button>
+<button class="btn place-content-center place-items-center" onclick="modal_form.showModal()">AJOUTER QUESTIONNAIRE</button>
 
 
 <dialog id="modal_form" class="modal">
