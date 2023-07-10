@@ -17,9 +17,9 @@ class EmailController extends Controller
 
         $mail = new MailNotify($data);
 
-        Mail::to('recipient@example.com')->send($mail);
+        Mail::to('lucas.lm.miller@gmail.com')->send($mail);
 
-        echo "good";
+        return back()->with('message', 'Email successfully sent!');
 
     }
 }

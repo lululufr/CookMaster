@@ -31,12 +31,12 @@
     <th>
         <form action="/admin/modify/{{$id}}" method="POST">
             @csrf
-            <button class="btn btn-accent">Modifier</button>
+            <button class="btn btn-accent p-1">Modifier</button>
         </form>
 
         <form action="/admin/delete/{{$id}}" method="POST">
             @csrf
-            <button class="btn btn-error">Supprimer</button>
+            <button class="btn btn-error p-1">Supprimer</button>
         </form>
     </th>
 </tr>

@@ -202,8 +202,12 @@ Route::get('/you/are/free', [ErrController::class,'error_free_redirect']);
 
 
 
-
+//pour tester email
 Route::get('/test/email', [EmailController::class,'test_email']);
+
+
+
+Route::get('/verify-account/{username}', [UserController::class,'verify_account']);
 
 
 

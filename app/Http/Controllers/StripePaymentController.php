@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailNotify;
 use App\Models\Carts;
 use App\Models\Hasclasses;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Exception\CardException;
 use Stripe\StripeClient;
@@ -92,6 +94,17 @@ class StripePaymentController extends Controller
         $hasclass->user_id = auth()->user()->id;
         $hasclass->classes_id = $cart->articles->id;
         $hasclass->save();
+
+
+        //email
+        $data = [
+            'name' => auth()->user()->firstname . ' ' . auth()->user()->lastname,
+            'message' => 'Merci de votre achat. Vous avez payé'.$cart->articles->prix . '€.',
+        ];
+
+        $mail = new MailNotify($data);
+
+        Mail::to(auth()->user()->email)->send($mail);
 
         return view('shop.success')->with('charge', $charge);
 

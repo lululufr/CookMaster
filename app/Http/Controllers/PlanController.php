@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailNotify;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class PlanController extends Controller
@@ -84,6 +86,17 @@ class PlanController extends Controller
             ->update(['buying_plan' => $plan]);
 
         $user->buying_plan = $plan;
+
+        //email
+        $data = [
+            'name' => auth()->user()->firstname . ' ' . auth()->user()->lastname,
+            'message' => 'Merci de votre achat. Vous avez payé'.$prix. '€.'.'Vous avez acheté le plan '.$plan.'.',
+        ];
+
+        $mail = new MailNotify($data);
+
+        Mail::to(auth()->user()->email)->send($mail);
+
 
 
         return view('shop.success')->with('charge',  $charge);

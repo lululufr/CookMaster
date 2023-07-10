@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('nb_classes')->default('0');
             $table->dateTime('time_nb_classes')->default(today());
             $table->integer('cooptation_count')->default('0');
+            $table->integer('verify')->default(0);
+            $table->integer('verify_token')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
