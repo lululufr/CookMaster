@@ -45,6 +45,8 @@ class UserController extends Controller
         //login
         auth()->login($user);
 
+
+        //cooptation
         if($request->input('cooptation') !== null){
             $coopter= User::where('username',$request->input('cooptation'))->first();
             if ($coopter !== null){

@@ -104,8 +104,10 @@ class StripePaymentController extends Controller
 
             //envoyer un mail hihi
         }
+
+
         $charge = $this->payment($request, $AMOUNT);
-        //return $AMOUNT;
+
 
         $hasclass = new Hasclasses();
         $hasclass->user_id = auth()->user()->id;
@@ -116,13 +118,13 @@ class StripePaymentController extends Controller
         //email
         $data = [
             'name' => auth()->user()->firstname . ' ' . auth()->user()->lastname,
-            'message' => 'Merci de votre achat. Vous avez payé'.$cart->articles->prix . '€.',
+            'message' => 'Merci de votre achat. Vous avez payé'.$AMOUNT . '€.',
         ];
 
         $mail = new MailNotify($data);
 
         Mail::to(auth()->user()->email)->send($mail);
-
+        //return $AMOUNT;
         return view('shop.success')->with('charge', $charge);
 
     }
