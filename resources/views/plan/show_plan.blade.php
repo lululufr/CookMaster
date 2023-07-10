@@ -64,9 +64,15 @@
 
             </ul>
         </div>
-        <a class="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6" href="/plan/purchase/starter">
-            S'inscrire et Payer
-        </a>
+        <div class="grid grid-cols-2">
+            <a class="col-1 m-1 inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6" href="/plan/purchase/starter/month">
+                S'abonner pour un mois
+            </a>
+            <a class="col-1 m-1 inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6" href="/plan/purchase/starter/year">
+                S'abonner pour un an
+            </a>
+        </div>
+
     </section>
 
 
@@ -97,11 +103,15 @@
 
             </ul>
         </div>
-        <a class="inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6" href="/plan/purchase/master">Get started for free</a>
+        <div class="grid grid-cols-2">
+            <a class="col-1 m-1 inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6" href="/plan/purchase/master/month">
+                S'abonner pour un mois
+            </a>
+            <a class="col-1 m-1 inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 mt-6" href="/plan/purchase/master/year">
+                S'abonner pour un an
+            </a>
+        </div>
     </section>
-
-
-
 </div>
 
 

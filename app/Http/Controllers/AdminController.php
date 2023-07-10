@@ -14,6 +14,7 @@ use App\Models\Utensils;
 use App\Models\UtensilTypes;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Mockery\Matcher\Contains;
 
 class AdminController extends Controller
 {
@@ -282,9 +283,13 @@ class AdminController extends Controller
     }
 
     public function delete_ingredient($name){
+        $contains = Contains::where('ingredients_name',$name);
+        if($contains){
+            return back()->with('error','Cet ingrédient est utilisé dans une recette');
+        }
         $ingredient = Ingredients::where('name',$name);
         $ingredient->delete();
-        $ingredients = Ingredients::all();
+
         return redirect('/admin/ingredients');
     }
 

@@ -24,7 +24,7 @@ class PlanController extends Controller
     }
 
 
-    public function purchase_plan(string $plan)
+    public function purchase_plan(string $plan, string $time)
     {
         switch ($plan){
 
@@ -33,11 +33,17 @@ class PlanController extends Controller
                 break;
 
                 case 'starter':
-                    $prix = 9;
+                    $prix = 9.90;
+                    if($time == 'year')
+                        $prix = 113;
                     break;
 
             case 'master':
                 $prix = 19;
+                if($time == 'year')
+                    $prix = 220;
+                    if(auth()->user()->buying_plan == "master" )
+                        $prix *=.9;
                 break;
 
                 default:
@@ -47,15 +53,13 @@ class PlanController extends Controller
 
 
         //StripePaymentController::class->pay($prix);
-
-        return view('plan.payment-plan-page')->with('plan', $plan)->with('prix', $prix);
+        return view('plan.payment-plan-page')->with('plan', $plan)->with('prix', $prix)->with('time', $time);
     }
 
 
 
-    public function pay_plan(Request $request ,string $plan)
+    public function pay_plan(Request $request ,string $plan, string $time)
     {
-
         $payment = new StripePaymentController();
 
         switch ($plan){
@@ -65,11 +69,17 @@ class PlanController extends Controller
                 break;
 
             case 'starter':
-                $prix = 9;
+                $prix = 9.90;
+                if($time == 'year')
+                    $prix = 113;
                 break;
 
             case 'master':
                 $prix = 19;
+                if($time == 'year')
+                    $prix = 220;
+                    if(auth()->user()->buying_plan == "master" )
+                        $prix *=.9;
                 break;
 
             default:
@@ -87,6 +97,12 @@ class PlanController extends Controller
             ->update(['buying_plan' => $plan]);
 
         $user->buying_plan = $plan;
+
+        if($request->input('duration') == 'year'){
+            $user->buying_plan_end_date = date('Y-m-d H:i:s', strtotime('+1 year'));
+        }else{
+            $user->buying_plan_end_date = date('Y-m-d H:i:s', strtotime('+1 month'));
+        }
 
         if($user->buying_plan != "free" && $cooptation = Cooptation::where('coopter_id', $user->id)->first()){
             $cooptation->hasPaid = 1;

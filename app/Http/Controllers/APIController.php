@@ -104,6 +104,9 @@ class APIController extends Controller
                 'message' => 'Bad credentials'
             ], 401);
         }
+        if($user->buying_plan_expiration_date < today()){
+            $user->buying_plan = 'free';
+        }
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $token = substr(str_shuffle($characters), 0, 16) ;
         $user->mobile_token = $token;

@@ -21,7 +21,7 @@
                                 <p class="alert alert-{{$status}}">{{ Session::get($status) }}</p>
                             @endif
                         @endforeach
-                        <form role="form" method="POST" id="paymentForm" action="/plan/purchase/{{$plan}}">
+                        <form role="form" method="POST" id="paymentForm" action="/plan/purchase/{{$plan}}/{{$time}}">
                             @csrf
                             <div class="mb-4">
                                 <label for="username">Nom complet sur la carte</label>

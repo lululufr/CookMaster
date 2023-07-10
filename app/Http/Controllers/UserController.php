@@ -97,8 +97,13 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
+            if(auth()->user()->buying_plan_end_date<today()){
+                auth()->user()->buying_plan = 'free';
+                auth()->user()->save();
+            }
             return redirect('/')->with('message','Vous etes connecté');
         }
+
 
        return back()->withErrors(['username' => 'Identifiants incorrect'])->onlyInput('username');
 

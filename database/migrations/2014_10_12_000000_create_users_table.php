@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('profil_picture')->default('/images/profil_pictures/default_profil_picture.png');
             $table->string('role')->default('admin');
             $table->string('buying_plan')->default('free');
+            $table->string('buying_plan_end_date')->nullable();
             $table->integer('nb_classes')->default('0');
             $table->dateTime('time_nb_classes')->default(today());
             $table->integer('cooptation_count')->default('0');
