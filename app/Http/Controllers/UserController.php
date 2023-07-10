@@ -46,6 +46,8 @@ class UserController extends Controller
                 $cooptation->coopter_id = $coopter->id;
                 $cooptation->coopted_id = $user->id;
                 $cooptation->save();
+            }else{
+                return back()->withErrors(['cooptation' => 'Identifiant de cooptation incorrect'])->onlyInput('cooptation');
             }
         }
         return redirect('/')->with('message','Inscription validé, vous etes connecté');
@@ -65,9 +67,7 @@ class UserController extends Controller
 
     public function login(Request $request){
 
-
         $formFields = $request->validate([
-
             'username'=> ['required'],
             'password'=> 'required'
         ]);

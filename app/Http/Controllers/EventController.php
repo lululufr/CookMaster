@@ -53,7 +53,9 @@ class EventController extends Controller
         $event->room_id = $roomId != 0  ? $roomId : null;
         $event->duration = $duration == 0 ? 2 : $duration;
         $event->max_participants = intval($request['max_participants']);
-        $event->chef_username = htmlspecialchars($request['chef_username']);
+        if($request['chef_username'] != null && $request['chef_username'] != 'null'){
+            $event->chef_username = htmlspecialchars($request['chef_username']);
+        }
         $event->recipe_id = intval($request['lesson']);
         $event->save();
         $i=0;
