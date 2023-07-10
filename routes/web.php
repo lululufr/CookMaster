@@ -7,6 +7,7 @@ use App\Http\Controllers\ErrController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventParticipateController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopController;
@@ -210,6 +211,10 @@ Route::get('/test/email', [EmailController::class,'test_email']);
 Route::get('/verify-account/{username}', [UserController::class,'verify_account']);
 
 
+// Route qui permet de connaître la langue active
+Route::get('/locale', [LocalizationController::class, 'getLang'])->name('getlang');
 
+// Route qui permet de modifier la langue
+Route::get('/locale/{lang}', [LocalizationController::class, 'setLang'])->name('setlang');
 
 

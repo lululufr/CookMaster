@@ -4,12 +4,13 @@
 <h2 class="title">Mes conversations</h2>
 
 <input type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
-<div id="searchResults"></div>
+<div>
+<div id="searchResults" ></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 m-4 mx-auto">
+
     <script>
         $(document).ready(function() {
             var searchInput = $('#searchInput');
@@ -19,7 +20,7 @@
                 var query = $(this).val();
 
                 $.ajax({
-                    url: "https://cookmaster.lululu.fr/search_user",
+                    url: "https://cookmaster.lululu.fr/search_user",//"http://cookmaster.local/search_user",// "https://cookmaster.lululu.fr/search_user" -> pour prod
                     type: "GET",
                     data: { q: query },
                     dataType: "json",
@@ -32,9 +33,7 @@
                             $.each(response, function(index, user) {
                                 var listItem = $(
 
-
-
-                                    '<label for="idmodal'+user.username+'" class="btn btn-primary">'+user.username+'</label>'+
+                                    '<label for="idmodal'+user.username+'" class="btn btn-primary m-2 p-2">'+user.username+'</label>'+
 
                                     '<input type="checkbox" id="idmodal'+user.username+'" class="modal-toggle" /> '+
                                         '<div class="modal"> '+

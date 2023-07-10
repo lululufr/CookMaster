@@ -56,7 +56,7 @@
                     <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/profil/{{auth()->user()->username}}">{{auth()->user()->username}}</a></li>
 
                     @if(auth()->user()->buying_plan != 'free')
-                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/conversation">Messages</a></li>
+                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/conversation">{{ __("Messages") }}</a></li>
                     @endif
 
                     @if(auth()->user()->admin != 'user')
@@ -65,8 +65,8 @@
 
                     @else
 
-                    <li><a href="/register" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">register</a></li>
-                    <li><a href="/login_page" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Se connecter</a></li>
+                    <li><a href="/register" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("S'inscrire")}}</a></li>
+                    <li><a href="/login_page" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Se connecter")}}</a></li>
 
                 @endauth
 
@@ -75,7 +75,7 @@
 
                 @auth
                     <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
-                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/shop/cart/show">PANIER</a></li>
+                        <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/shop/cart/show">{{__("Panier")}}</a></li>
                     </ul>
 
                     <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
@@ -84,11 +84,10 @@
 
                     <form class="" method="POST" action="/logout">
                         @csrf <!-- {{ csrf_field() }} -->
-                        <button type="submit" class="hover:bg-red-600 rounded py-2 px-4 mx-2">Deconnexion</button>
+                        <button type="submit" class="hover:bg-red-600 rounded py-2 px-4 mx-2">{{__("Déconnexion")}}</button>
                     </form>
                 @endauth
         </div>
-
 
 </nav>
 
@@ -119,14 +118,13 @@
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
         <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-            <a href="/getevent" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Planning</a>
-            <a href="/recipe/create" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Nouvelle recette</a>
+            <a href="/getevent" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Planning")}}</a>
+            <a href="/recipe/create" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Nouvelle recette")}}</a>
 
-            <a href="/class" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Formations</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+            <a href="/class" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Formation")}}</a>
             <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
 
-            <a href="/shop" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Boutique</a>
+            <a href="/shop" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Boutique")}}</a>
         </div>
     </div>
 </nav>

@@ -80,27 +80,21 @@
         <input type="submit">
     </form>
 
-    <form action="/users/preferences/change" method="POST">
-        @csrf
+<div>
+    <p>Language</p>
 
-        <div class="form-control w-full max-w-xs">
-            <label class="label">
-                <span class="label-text">Choisissez votre Langue</span>
-            </label>
-            <select class="select select-bordered" name="langue">
-                <option disabled selected>{{auth()->user()->langue}}</option>
-                <option>Francais</option>
-                <option>Anglais</option>
-                <option>Zoulou</option>
+    <a href="/locale/en">English</a>
+    <a href="/locale/fr">Francais</a>
+    <a href="/locale/de">Allemand</a>
+    <a href="/locale/ch">中国人</a>
 
-            </select>
-        </div>
+</div>
 
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
 
-    </form>
 </div>
 <div></div>
 dernière modification{{$infos['updated_at']}}
 compte créé le : {{$infos['created_at']}}
 <x-footer/>
+
+<p>{{ __("Accueil") }}</p>
