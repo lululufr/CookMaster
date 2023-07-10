@@ -11,6 +11,7 @@ use App\Models\RecipeTags;
 use App\Models\Rooms;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class APIController extends Controller
@@ -92,17 +93,28 @@ class APIController extends Controller
     }
 
 
-    public function api_connexion(Request $request, int $id)
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Http\Request;
+
+    public function api_connexion(Request $request)
     {
-        $message =  $request['message'];
+        $formFields = $request->validate([
+            'username'=> ['required'],
+            'password'=> 'required'
+        ]);
 
-        $entry = new Messages();
-        $entry->to_id = $id;
-        $entry->from_id = auth()->user()->id;
-        $entry->content = $message;
-        $entry->save();
+        if (Auth::attempt($formFields)) {
+            $user = Auth::user();
+            $token = $user->createToken('MobileAppToken')->plainTextToken;
 
+            return json_encode(['success' => true, 'token' => $token]);
+        }
+
+        return json_encode(['success' => false, 'message' => 'Invalid credentials']);
     }
+
+
+
 
 //récupérer id utilisateur + son type
 

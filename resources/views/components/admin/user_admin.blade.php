@@ -33,7 +33,8 @@
             @csrf
             <button class="btn btn-accent p-1">Modifier</button>
         </form>
-
+    </th>
+    <th>
         <form action="/admin/delete/{{$id}}" method="POST">
             @csrf
             <button class="btn btn-error p-1">Supprimer</button>

@@ -20,3 +20,7 @@ Route::get('/recipe', [APIController::class,'api_recipe_get']);
 Route::get('/message/{id}', [APIController::class,'api_message_get']);
 Route::get('/conversation', [APIController::class,'api_conversation_get']);
 Route::get('/message/send/{id}', [APIController::class,'api_send_messages']);
+
+
+
+Route::get('/connexion', [APIController::class,'api_connexion']);

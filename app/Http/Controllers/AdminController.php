@@ -43,32 +43,22 @@ class AdminController extends Controller
         $user = User::where('id', $id)->firstOrFail();
         $table = $request->input('table');
 
+                $user->username = $request->input('username');
 
-        switch ($table) {
-            case 'username':
-                $user->username = $request->input('new_content');
-                break;
-            case 'firstname':
-                $user->firstname = $request->input('new_content');
-                break;
-            case 'lastname':
-                $user->lastname = $request->input('new_content');
-                break;
-            case 'email':
-                $user->email = $request->input('new_content');
-                break;
-            case 'role':
-                $user->role = $request->input('new_content');
-                break;
-            case 'buying_plan':
-                $user->buying_plan = $request->input('new_content');
-                break;
+                $user->firstname = $request->input('firstname');
+
+                $user->lastname = $request->input('lastname');
+
+
+                $user->email = $request->input('email');
+
+                $user->role = $request->input('role');
+
+                $user->buying_plan = $request->input('buying_plan');
 
             //case 'password':
             //$user->username = $request->input('new_content');
             //break;
-
-        }
 
         $user->save();
 
