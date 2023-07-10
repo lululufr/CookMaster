@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailNotify;
 use App\Models\Cooptation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 
@@ -35,6 +37,10 @@ class UserController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = bcrypt($formFields['password']);
+
+        $user->verify_token = rand(100000,999999);
+
+
         $user->save();
         //login
         auth()->login($user);
@@ -50,7 +56,20 @@ class UserController extends Controller
                 return back()->withErrors(['cooptation' => 'Identifiant de cooptation incorrect'])->onlyInput('cooptation');
             }
         }
-        return redirect('/')->with('message','Inscription validé, vous etes connecté');
+
+
+        //email
+        $data = [
+            'name' => $user->firstname . ' ' . $user->lastname,
+            'message' => 'Bonjour, bienvenue sur Cook With Me. Afin de vérifier votre compte veuillez cliquer sur ce lien : ' . url('/verify-account/'.$user->username.'?verify_token='. auth()->user()->verify_token),
+        ];
+
+        $mail = new MailNotify($data);
+
+        Mail::to($user->email)->send($mail);
+
+
+        return redirect('/')->with('message','Inscription validé, vous etes connecté, un email vous a été envoyé pour vérifier votre compte');
 
 
     }
@@ -88,5 +107,24 @@ class UserController extends Controller
         return view('users.login');
 
     }
+
+
+    public function verify_account(Request $request, $username)
+    {
+        $user = User::where('username', $username)->first();
+
+        //echo "user : " . $user->username . "<br>";
+        //echo "token : " . $user->verify_token . "<br>";
+        //echo "token : " . $request->input('verify_token') . "<br>";
+
+        if ($user->verify_token == $request->input('verify_token')) {
+            $user->verify_token = 0;
+            $user->save();
+            return redirect('/')->with('message', 'Votre compte a été vérifié');
+        }
+
+        return redirect('/')->with('message', 'Impossible de vérifier votre compte');
+    }
+
 
 }

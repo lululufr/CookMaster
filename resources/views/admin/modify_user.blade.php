@@ -33,21 +33,58 @@
             id="{{$user->id}}"/>
     </div>
 
-    <div class="m-2">
-        <x-admin.card_modify
-            title="Role"
-            content="L'utilisateur est : {{$user->role}}."
-            table="role"
-            id="{{$user->id}}"/>
+    <div class="card h-63 w-96">
+        <div class="card-body items-center text-center">
+            <h2 class="card-title">Role :</h2>
+            <p>Modifier le rôle :</p>
+            <div class="card-actions justify-end">
+                <form action="/admin/modify/apply/{{$user->id}}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="table" value="role">
+
+                    <div class="collapse">
+                        <p>Cet utilisateur est {{$user->role}}:</p>
+                        <select name="new_content" class="input input-bordered input-primary w-full max-w-xs">
+                            <option value="admin">Admin</option>
+                            <option value="chef">Chef</option>
+                            <option value="user">User</option>
+                        </select>
+
+                        <button type="submit" class="btn">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div class="m-2">
-        <x-admin.card_modify
-            title="Buying Plan"
-            content="L'utilisateur est : {{$user->buying_plan}}."
-            table="buying_plan"
-            id="{{$user->id}}"/>
+
+    <div class="card h-63 w-96">
+        <div class="card-body items-center text-center">
+            <h2 class="card-title">Role :</h2>
+            <p>Modifier le buying plan :</p>
+            <div class="card-actions justify-end">
+                <form action="/admin/modify/apply/{{$user->id}}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="table" value="buying_plan">
+
+                    <div class="collapse">
+                        <p>Cet utilisateur est {{$user->buying_plan}}:</p>
+                        <select name="new_content" class="input input-bordered input-primary w-full max-w-xs">
+                            <option value="free">Free</option>
+                            <option value="starter">Starter</option>
+                            <option value="master">Master</option>
+                        </select>
+
+                        <button type="submit" class="btn">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
+
 
 </div>
 <x-footer/>
