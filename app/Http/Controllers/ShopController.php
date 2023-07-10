@@ -17,12 +17,18 @@ class ShopController extends Controller
 
         return view('shop.shop_page')->with('articles', $articles);
     }
-    
+
     public function show_item($id){
 
         $article = Articles::where('id', $id)->firstOrFail();
 
         return view('shop.item', ['article' => $article]);
+    }
+    public function delete_item_cart($id){
+
+        $cart = Carts::where('articles_id', $id)->where('user_id',auth()->id())->firstOrFail();
+        $cart->delete();
+        return redirect('/cart')->with('message', 'Article supprimé du panier');
     }
 
     public function add_item_cart($id){
