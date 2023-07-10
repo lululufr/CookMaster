@@ -83,10 +83,10 @@
 <div>
     <p>Language</p>
 
-    <a href="/locale/en">English</a>
-    <a href="/locale/fr">Francais</a>
-    <a href="/locale/de">Allemand</a>
-    <a href="/locale/ch">中国人</a>
+    <a class="btn" href="/locale/en">English</a>
+    <a class="btn" href="/locale/fr">Francais</a>
+    <a class="btn" href="/locale/de">Allemand</a>
+    <a class="btn" href="/locale/ch">中国人</a>
 
 </div>
 
