@@ -7,6 +7,8 @@
     <meta name="author" content="Lucas MILLER">
     <meta name="description" content="Site de cuisine pour un projet etudiant">
 
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeE-hEnAAAAAFMnwnaFL3fFx2VZFvEuM0RqB2qi"></script>
+
     <!-- Tailwind -->
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -30,10 +32,10 @@
 </head>
 
 @if(session('message'))
-    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 3000)" x-show="show"
-         class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-laravel text-white px-48 py-3">
-        <p>
-            {{session('message')}}
+    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+         class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-blue-400 text-white px-8 py-4 rounded-lg shadow-lg">
+        <p class="text-center">
+            {{ session('message') }}
         </p>
     </div>
 @endif
@@ -50,7 +52,7 @@
 
                     <li class="avatar">
                         <div class="w-9 rounded-full">
-                            <img src="{{auth()->user()->profil_picture}}"/>
+                            <img src="{{asset("storage/".auth()->user()->profil_picture)}}"/>
                         </div>
                     </li>
                     <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/profil/{{auth()->user()->username}}">{{auth()->user()->username}}</a></li>
