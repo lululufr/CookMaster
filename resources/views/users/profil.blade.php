@@ -92,9 +92,9 @@
 
 
 </div>
-<div></div>
-dernière modification{{$infos['updated_at']}}
-compte créé le : {{$infos['created_at']}}
-<x-footer/>
 
-<p>{{ __("Accueil") }}</p>
+<div>Dernière modification : {{$infos['updated_at']}}</div>
+<div>Compte créé le : {{$infos['created_at']}}</div>
+
+
+<x-footer/>
