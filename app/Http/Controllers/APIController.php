@@ -71,12 +71,8 @@ class APIController extends Controller
     }
 
     public function api_conversation_get(Request $request){
-
-
-        if($this->is_connected($request->bearerToken())) {
-            $user = User::where('mobile_token', $request->bearerToken())->first();
+        if($user = User::where('mobile_token', $request->bearerToken())->first()){
             $messages = Messages::where('to_id', $user->id)->orWhere('from_id', $user->id)->get();
-
             $conversation = array();
 
             foreach ($messages as $message) {
@@ -86,11 +82,8 @@ class APIController extends Controller
                 if (!in_array($message->to_id, $conversation) && $message->to_id != $user->id) {
                     array_push($conversation, $message->to_id);
                 }
-
             }
-
             $convs = User::whereIn('id', $conversation)->get();
-
 
             return response()->json([
                 '$convs' => $convs
