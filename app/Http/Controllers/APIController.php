@@ -50,7 +50,7 @@ class APIController extends Controller
 
     public function api_message_get(Request $request, int $id){
 
-        if($user = User::where('mobile_token', $request->bearerToken())->select('id','username','profile_picture')->first()){
+        if($user = User::where('mobile_token', $request->bearerToken())->select('id','username','profil_picture')->first()){
             $loggedInUserId = $user->id;
             $messages = Messages::where(function ($query) use ($loggedInUserId, $id) {
                 $query->where('from_id', $loggedInUserId)
@@ -60,7 +60,7 @@ class APIController extends Controller
                     ->where('to_id', $loggedInUserId);
             })->get();
 
-            $otheruser = User::where('id', $id)->select('id','username','profile_picture')->firstOrFail();
+            $otheruser = User::where('id', $id)->select('id','username','profil_picture')->firstOrFail();
             return response()->json([
                 'messages' => $messages,
                 'user' => $user,
