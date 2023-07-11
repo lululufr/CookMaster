@@ -90,6 +90,34 @@ char * indentJsonString(const char* jsonString) {
     return indentedJsonString;
 }
 
+static void download_output(GtkWidget *widget,
+                            gpointer   data)
+{
+    Data *viewData = (Data *)data;
+
+    GtkTextBuffer *buffer = viewData->buffer;
+    GtkWidget *textOutput = viewData->textOutput;
+    GtkTextIter start, end;
+    gchar *text;
+
+    gtk_text_buffer_get_bounds(buffer, &start, &end);
+    text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
+
+
+    printf("hello world\n");
+    fflush(stdout);
+    FILE *outputfile = fopen("Output.txt", "w");
+
+    if (outputfile) {
+        fprintf(outputfile, "%s", text);
+
+        // Ferme le fichier
+        fclose(outputfile);
+    } else {
+        printf("Impossible d'ouvrir le fichier.\n");
+    }
+}
+
 static void print_output (GtkWidget *widget,
              gpointer   data)
 {
@@ -172,6 +200,7 @@ int main (int   argc,
     GtkBuilder *builder;
     GObject *window;
     GObject *button;
+    GObject *download;
     GtkWidget *APIEntry;
     GtkWidget *KeyEntry;
     GtkWidget *ElementEntry;
@@ -214,6 +243,10 @@ int main (int   argc,
 
     button = gtk_builder_get_object (builder, "button");
     g_signal_connect(button, "clicked", G_CALLBACK(print_output), &data);
+
+
+    download = gtk_builder_get_object (builder, "Download");
+    g_signal_connect(download, "clicked", G_CALLBACK(download_output), &data);
 
     gtk_main ();
 
