@@ -124,7 +124,7 @@
             <a href="/recipe/create" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Nouvelle recette")}}</a>
 
             <a href="/class" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Formation")}}</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">A venir</a>
+            <a href="/" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Recette")}}</a>
 
             <a href="/shop" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Boutique")}}</a>
         </div>
