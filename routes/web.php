@@ -144,7 +144,7 @@ Route::post('/admin/event/activation', [EventController::class,'changeValidation
 Route::get('/recipe/create', [RecipesController::class,'show_recipe_page'])->middleware('auth');
 Route::post('/recipe/create', [RecipesController::class,'create'])->middleware('auth');
 Route::get('/recipe/{id}', [RecipesController::class,'detailed_recipe_view'])->middleware('auth');
-Route::get('/r', [RecipesController::class,'r'])->middleware('auth');
+Route::post('/recipe/comment/{id}', [RecipesController::class,'comment_send'])->middleware('notforfree');
 //page des salles ( EDT )
 
 

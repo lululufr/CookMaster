@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Articles;
 use App\Models\ContainsIngredients;
+use App\Models\RecipeComment;
 use App\Models\RecipeTags;
 use App\Models\Recipes;
 use Illuminate\Http\Request;
@@ -22,6 +23,19 @@ class RecipesController extends Controller
     public function detailed_recipe_view($id){
         $recipe = Recipes::where('id', $id)->firstOrFail();
         return view('recipe/detailed_view', ['recipe' => $recipe]);
+    }
+
+    public function comment_send(Request $request, $id){
+
+
+        $recipe_comment = new RecipeComment;
+        $recipe_comment->content = $request['content'];
+        $recipe_comment->recipe_id = $id;
+        $recipe_comment->user_id = auth()->user()->id;
+        $recipe_comment->save();
+
+
+        return redirect("/recipe/".$id);
     }
 
 
