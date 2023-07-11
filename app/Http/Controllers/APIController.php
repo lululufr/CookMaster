@@ -83,8 +83,8 @@ class APIController extends Controller
                     array_push($conversation, $message->to_id);
                 }
             }
-            $convs = User::whereIn('id', $conversation)->get();
-
+            $convs = User::whereIn('id', $conversation)->select('id','username','profil_picture')->get();
+//username id pdp
             return response()->json([
                 'convs' => $convs
             ], 200);
