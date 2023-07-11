@@ -121,4 +121,30 @@ class APIController extends Controller
 //récupérer id utilisateur + son type
 
 
+
+    public function api_show_conversation()
+    {
+
+        $messages = Messages::where('to_id', auth()->user()->id)->orWhere('from_id', auth()->user()->id)->get();
+
+        $conversation = array();
+
+        foreach ($messages as $message) {
+            if (!in_array($message->from_id,$conversation) && $message->from_id != auth()->user()->id) {
+                array_push($conversation, $message->from_id);
+            }
+            if (!in_array($message->to_id,$conversation) && $message->to_id != auth()->user()->id) {
+                array_push($conversation, $message->to_id);
+            }
+
+        }
+
+        $convs = User::whereIn('id', $conversation)->get();
+
+        return response()->json([
+            'convs' => $convs
+        ], 200);
+    }
+
+
 }

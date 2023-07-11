@@ -2,31 +2,63 @@
 
 @php($tt = 0)
 
-<div class="grid grid-cols-6">
+<div class="grid place-content-center place-item-center">
+    <h1 class="text-5xl font-bold">{{__("Panier")}}</h1>
 
-    @foreach($carts as $cart)
-        @php($tt += $cart->articles->prix)
-        <div class="card bg-base-300">
-            <div class="card-body">
-                <p>Article n° : {{$cart->articles->id}}</p>
-                <p>Nom : ° {{$cart->articles->titre}}</p>
-                <p>Prix : {{$cart->articles->prix}} €</p>
-            </div>
+
+
+
+
+
+    <div class="overflow-x-auto">
+        <table class="table">
+            <!-- head -->
+            <thead>
+            <tr>
+                <th>Prix :</th>
+                <th>Article n°</th>
+                <th>Nom : °</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($carts as $cart)
+                @php($tt += $cart->articles->prix)
+
+                <tr>
+                    <th>{{$cart->articles->prix}} €</th>
+                    <td>{{$cart->articles->id}}</td>
+                    <td>{{$cart->articles->titre}}</td>
+
+                </tr>
+
+            @endforeach
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <div class="stat">
+        <div class="stat-title">A PAYER :</div>
+
+        @if(auth()->user()->buying_plan == 'master')
+            @php($tt =($tt * 0.9))
+            <p>TOTAL -10% avec master plan : {{$tt}} € </p>
+        @else
+
+            <div class="stat-value">{{$tt}} €</div>
+        @endif
+
+
+        <div class="stat-actions">
+            <a class="btn btn-primary" href="/pay">PAYER</a>
         </div>
-    @endforeach
+    </div>
+
 </div>
 
-    @if(auth()->user()->buying_plan == 'master')
-        @php($tt =($tt * 0.9))
-        <p>TOTAL -10% avec master plan : {{$tt}} € </p>
-        @else
-        <p>TOTAL : {{$tt}} € </p>
-    @endif
-
-
-
-
-    <a class="btn btn-primary" href="/pay">PAYER</a>
-
-
+</div>
 <x-footer/>

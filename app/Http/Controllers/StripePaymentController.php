@@ -79,9 +79,7 @@ class StripePaymentController extends Controller
             $AMOUNT += $cart->articles->prix;
         }
 
-        foreach($carts as $cart) {
-            $cart->delete();
-        }
+
 
         if(auth()->user()->buying_plan == 'master'){
             $AMOUNT = $AMOUNT * 0.9;
@@ -114,17 +112,33 @@ class StripePaymentController extends Controller
         $hasclass->classes_id = $cart->articles->id;
         $hasclass->save();
 
+        $facture =" ";
+        foreach ($carts as $cart) {
+            $facture = $cart->articles->titre."/".$cart->articles->prix." €. ";
+            $temp = $facture;
+            $res = $temp."\n".$facture;
+        }
+
+        $message = "Vous avez payé".$AMOUNT.'€';
+
+
 
         //email
         $data = [
             'name' => auth()->user()->firstname . ' ' . auth()->user()->lastname,
-            'message' => 'Merci de votre achat. Vous avez payé'.$AMOUNT . '€.',
+            'message' => 'Merci de votre achat. '.$res."\n".$message
         ];
 
         $mail = new MailNotify($data);
 
         Mail::to(auth()->user()->email)->send($mail);
         //return $AMOUNT;
+
+        foreach($carts as $cart) {
+            $cart->delete();
+        }
+
+
         return view('shop.success')->with('charge', $charge);
 
     }

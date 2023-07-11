@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('theme')->default('dracula');
             $table->string('langue')->default('Francais');
-            $table->string('profil_picture')->default('/images/profil_pictures/default_profil_picture.png');
+            $table->string('profil_picture')->default("profile/".fake()->image('public/storage/profile',640,480, null, false));
             $table->string('role')->default('admin');
             $table->string('buying_plan')->default('free');
             $table->string('buying_plan_end_date')->nullable();

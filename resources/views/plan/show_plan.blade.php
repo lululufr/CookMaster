@@ -11,7 +11,7 @@
             </svg><span class="ml-4">FREE</span>
         </h3>
         <p class="relative mt-5 flex text-3xl tracking-tight text-gray-900">0 €</p>
-        <p class="mt-3 text-sm text-gray-700">You’re new to investing but want to do it right. Get started for free.</p>
+        <p class="mt-3 text-sm text-gray-700">La plan free, gratuit mais avec des avantages limités.</p>
         <div class="order-last mt-6">
             <ul role="list" class="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
 
@@ -22,7 +22,23 @@
                         <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                         <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
                     </svg>
-                    <span class="ml-4">entrez ici les avantages</span>
+                    <span class="ml-4">Présence de publicités dans le contenu</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Commenter, publier des avis</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">10 Chapitres par jour.</span>
                 </li>
 
 
@@ -46,7 +62,7 @@
             </svg><span class="ml-4">Starter</span>
         </h3>
         <p class="relative mt-5 flex text-3xl tracking-tight text-gray-900">$9,90 €</p>
-        <p class="mt-3 text-sm text-gray-700">You’re new to investing but want to do it right. Get started for free.</p>
+        <p class="mt-3 text-sm text-gray-700">Tres bien si vous souhaitez découvir plus en profondeur nos offres. Sans pour autant vous y investir.</p>
         <div class="order-last mt-6">
             <ul role="list" class="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
 
@@ -57,8 +73,50 @@
                         <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                         <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
                     </svg>
-                    <span class="ml-4">entrez ici les avantages</span>
+                    <span class="ml-4">Commenter, publier des avis</span>
                 </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">25 Chapitres par jour.</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Accès au service de tchat avec un chef</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Livraison offerte sur la boutique (en point relais)</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Participation a des événements exclusifs</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Récompense cooptation nouvel inscrit</span>
+                </li>
+
+
 
 
 
@@ -85,7 +143,7 @@
             </svg><span class="ml-4">MASTER</span>
         </h3>
         <p class="relative mt-5 flex text-3xl tracking-tight text-gray-900">19,90 €</p>
-        <p class="mt-3 text-sm text-gray-700">You’re new to investing but want to do it right. Get started for free.</p>
+        <p class="mt-3 text-sm text-gray-700">Le plan ultime, qui comprend tout, et bien plus encore.</p>
         <div class="order-last mt-6">
             <ul role="list" class="-my-2 divide-y text-sm divide-gray-200 text-gray-700">
 
@@ -96,8 +154,65 @@
                         <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
                         <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
                     </svg>
-                    <span class="ml-4">entrez ici les avantages</span>
+                    <span class="ml-4">Commenter, publier des avis</span>
                 </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Accès au service de tchat avec un chef</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Réduction permanente de 5% sur la boutique</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Livraison offerte sur la boutique</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Accès au service de location d’espace de cuisine</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Participation et Création aux événements.</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Récompense cooptation nouvel inscrit</span>
+                </li>
+
+                <li class="flex py-2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-cyan-500">
+                        <path d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z" fill="currentColor"></path>
+                        <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                    </svg>
+                    <span class="ml-4">Bonus renouvellement de l’abonnement</span>
+                </li>
+
 
 
 

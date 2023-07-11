@@ -4,18 +4,18 @@
     $(document).ready(function() {
         $('#genererFormulaire').click(function() {
             var formulaire = `
-            <div class="card bg-base-300">
+            <div class="card bg-base-200 m-2">
                 <div class="elementFormulaire">
-                    <label for="ingredients" >ingredients :</label>
-                    <select name="ingredients[]" class="col-span-5 w-full">
+                    <label for="ingredients" ><b>Ingredients :</b></label>
+                    <select name="ingredients[]" class="select w-full max-w-xs mx-4">
                     @foreach(\App\Models\Ingredients::all() as $ingredient)
                         <option value="{{$ingredient->name}}">{{$ingredient->name}}</option>
                     @endforeach
                     </select><br><br>
-                    <label for="amount">quantité :</label>
+                    <label for="amount">Quantité :</label>
                     <input type="text" name="amount[]" required><br><br>
 
-                    <label for="units">unitées :</label>
+                    <label for="units">Unitées :</label>
                     <input type="text" name="units[]"><br><br>
 
                     <button class="supprimerFormulaire" type="button">X</button>
@@ -33,19 +33,18 @@
     $(document).ready(function() {
         $('#addTag').click(function() {
             var formulairetag = `
-            <div class="card bg-base-300 class="grid grid-col-7">
+            <div class="card bg-base-200 class="m-2">
                 <div class="elementFormulaire">
-                    <div class="col-span-1"></div>
-                    <label for="tags" >tag :</label>
-                    <select name="tags[]" class="col-span-5 w-full">
+
+                    <label for="tags" ><b>Tags :</b></label>
+                    <select name="tags[]" class="select w-full max-w-xs mx-4">
                     @foreach(\App\Models\Tags::whereNot('name','private')->get() as $tag)
                         <option value="{{$tag->name}}">{{$tag->name}}</option>
                     @endforeach
             </select>
-            <div class="col-span-1"></div>
 
             <button class="supprimerFormulaire" type="button">X</button>
-            </div>
+
         </div>
 `;
 
@@ -54,19 +53,45 @@
 
     });
 </script>
-    <form action="/recipe/create" method="POST" enctype="multipart/form-data" class="grid justify-items-center m-4">
-        @csrf
-        <input type="text" name="title" class="border border-gray-400 p-2 w-80" placeholder="Nom de la recette" required>
-        <textarea name="content" class="border border-gray-400 p-2 w-80" placeholder="contenu" required></textarea>
-        <input type="file" name="image">
 
-        <div id="tagAdd" class="form-control w-full max-w-xs m-5"></div>
-        <button class="btn" type="button" id="addTag">Ajouter un tag</button>
 
-        <div id="formulairesGeneres" ></div>
-        <button class="btn" type="button" id="genererFormulaire">Ajouter un ingrédient</button>
+<div class="hero min-h-screen bg-base-200" style="background-image: url('/images/deco/undraw_barbecue_3x93.svg'); opacity: 0.9;">    <div class="hero-content flex-col ">
+        <div class="hero-content flex-col lg:flex-row-reverse">
 
-        <input type="submit" placeholder="créer">
-    </form>
+        <div class="text-center lg:text-left">
+            <h1 class="text-5xl font-bold">{{__("Créer une recette")}}</h1>
+            <p class="py-6">{{__("Créer une recette pour que tout le monde puisse se ravir de la merveilleuse jouissance de la vie. Essayez d'etre le plus complet possible.")}}</p>
+        </div>
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div class="card-body">
+                <form action="/recipe/create" method="POST" enctype="multipart/form-data" class="place-content-center place-items-center">
+                    @csrf
+                    <input type="text" name="title" class="border border-gray-400 p-2 w-80 mb-5" placeholder="Nom de la recette" required>
+                    <textarea name="content" class="border border-gray-400 p-2 w-80 mb-5" placeholder="Contenu" required></textarea>
+                    <input type="file" name="image" class="file-input w-full max-w-xs" />
+
+                    <div id="tagAdd" class="form-control w-full max-w-xs mb-5"></div>
+                    <button class="btn p-2" type="button" id="addTag">+ TAG</button>
+
+                    <div id="formulairesGeneres" ></div>
+                    <div>
+                    <button class="btn" type="button" id="genererFormulaire">+ INGREDIENTS</button>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Créer</button>
+                </form>
+            </div>
+        </div>
+
+
+</div>
+    </div>
+</div>
+
+
+
+
+
+
 
 <x-footer/>

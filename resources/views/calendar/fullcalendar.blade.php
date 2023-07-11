@@ -1,24 +1,24 @@
 <x-header/>
 <?php use Illuminate\Support\Facades\Auth;?>
-<div>
-    <form action="/getevent" method="get" class="form" id="rech">
-        @csrf
 
-        <input type="text" name="rech" id="rech" class="input" placeholder="Rechercher">
-        <button type="submit" value="submit">Submit</button>
-    </form>
+
+<div class="form form-control place-items-center place-content-center">
+    <label for="rooms">Choisissez une salle :</label>
+        <select class="select select-bordered w-full max-w-xs m-5 place-items-center place-content-center" name="rooms" id="rooms" form="rech">
+
+            @foreach(\App\Models\Rooms::all() as $room)
+                <option value="{{$room->id}}">{{$room->street}}</option>
+            @endforeach
+        </select>
+    <div>
+        <form action="/getevent" method="get" class="" id="rech">
+            @csrf
+
+            <input type="text" name="rech" id="rech" class="input" placeholder="Rechercher">
+            <button class="btn btn-primary m-3" type="submit" value="submit">Rechercher</button>
+        </form>
+    </div>
 </div>
-
-
-<label for="rooms">Choose a car:</label>
-    <select name="rooms" id="rooms" form="rech">
-
-        @foreach(\App\Models\Rooms::all() as $room)
-            <option value="{{$room->id}}">{{$room->street}}</option>
-        @endforeach
-    </select>
-
-
 
 <?php
 use App\Models\Event;
@@ -48,7 +48,7 @@ foreach ($events as $event) {
 $cpt = 0;
 foreach ($calendar as $day => $events) {
     echo '<div class="grid grid-cols w-42 justify-items-center" >';
-    echo '<h1 class="">' . $day . '</h1>';
+    echo '<b class="title">' . __($day) . '</b>';
     foreach ($events as $event) {
         ?>
 
@@ -56,15 +56,26 @@ foreach ($calendar as $day => $events) {
 
         <?php echo 'h-'.$event['duration'] * 16?>
 
-        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
-            <p><?php echo $event['title'];?></p>
-            <p><?php echo $event['start']; ?></p>
-            <p><?php echo $event['room_id']; ?></p>
+        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-500 to-blue-700 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
+            <b><?php echo $event['title'];?></b>
+            <p><?php echo "Oragnisé par : <b>".$event['chef_username']."</b>"; ?></p>
+            <p><?php //echo $event['room_id']; ?></p>
 
 
-            <p><?php echo strtotime($event['start']) - time()?></p> <!-- si event passé-->
+            <p><?php
 
-            <p><?php echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
+                   if ((strtotime($event['start']) - time()) < 0){
+                    echo " Evénement passé";
+                    }else{
+                        echo " Evénement à venir";
+                    };
+
+                   ?></p> <!-- si event passé-->
+
+
+            <p>Salle : <?php $event["room_id"]?></p>
+
+            <p><?php // echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
         </div>
 
 
@@ -87,7 +98,7 @@ foreach ($calendar as $day => $events) {
                     <input type="hidden" name="event_id" value="{{ $event['id'] }}">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     <div>
-                        <button class="btn" type="submit"><?php echo $isParticipating? 'Se désinscrire':'Participer' ?></button>
+                        <button class="btn btn-primary m-5" type="submit"><?php echo $isParticipating? 'Se désinscrire':'Participer' ?></button>
                     </div>
                 </form>
                 <?php } ?>

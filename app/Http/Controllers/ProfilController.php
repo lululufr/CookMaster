@@ -26,6 +26,13 @@ class ProfilController extends Controller
     public function change_preference(Request $request){
 
 
+        $user = User::where('id', auth()->user()->id)->firstOrFail();
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->save();
 
         return redirect('/users/preferences')->with('message', 'Préférences modifiées avec succès !');
 

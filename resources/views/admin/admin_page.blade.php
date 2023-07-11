@@ -27,18 +27,48 @@
 
         @foreach($users as $user)
             <tr>
-                <x-admin.user_admin
+                <th>
+                    <label>
+                        <div class="flex items-center space-x-3">
+                            <div class="avatar">
+                                <div class="mask mask-squircle w-12 h-12">
+                                    <img src="{{asset("storage/".$user->profil_picture)}}" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                            </div>
+                    </label>
+                </th>
+                <td>
+                    <div>
+                        <div class="font-bold">{{$user->id}}</div>
+                    </div>
+                </td>
 
-                    id="{{$user->id}}"
-                    pseudo="{{$user->username}}"
-                    prenom="{{$user->firstname}}"
-                    email="{{$user->email}}"
-                    status="{{$user->status}}"
+                <td>{{$user->username}}</td>
 
-                    pp="{{$user->profil_picture}}"
+                @if($user->firstname)
+                    <td>{{$user->firstname}}</td>
+                @else
+                    <td>Non renseigné</td>
+                @endif
 
-                />
-            </tr>
+
+                <td>{{$user->email}}</td>
+                <td>{{$user->role}}</td>
+                <th>
+                    <form action="/admin/modify/{{$user->id}}" method="POST">
+                        @csrf
+                        <button class="btn btn-accent p-1">Modifier</button>
+                    </form>
+                </th>
+                <th>
+                    <form action="/admin/delete/{{$user->id}}" method="POST">
+                        @csrf
+                        <button class="btn btn-error p-1">Supprimer</button>
+                    </form>
+                </th>
+                </tr>
+
+
             @endforeach
         </tbody>
     </table>

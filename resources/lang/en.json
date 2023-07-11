@@ -45,5 +45,15 @@
     "Ingrédients": "Ingredients",
     "Les ustensiles": "Utensils",
     "Gérez les outils et ustensiles": "Manage tools and utensils",
-    "Ustensiles": "Utensils"
+    "Ustensiles": "Utensils",
+    "Lundi":"Monday",
+    "Mardi" : "Tuesday",
+    "Mercredi" : "Wednesday",
+    "Jeudi":"Thursday",
+    "Vendredi":"Friday",
+    "Samedi":"Saturday",
+    "Dimanche" : "Sunday",
+    "Créer une recette": "Create a recipe",
+    "Créer une recette pour que tout le monde puisse se ravir de la merveilleuse jouissance de la vie. Essayez d'etre le plus complet possible." : "Create a recipe so that everyone can enjoy the wonderful enjoyment of life. Try to be as complete as possible.",
+    "Panier": "Cart"
 }

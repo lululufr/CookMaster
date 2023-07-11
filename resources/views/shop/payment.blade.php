@@ -6,7 +6,7 @@ $carts = App\Models\Carts::where('user_id', auth()->id())->get();
 $coupons = App\Models\Coupon::where('user_id', auth()->id())->get();
 $tt = 0
 @endphp
-
+<div class="grid place-content-center place-item-center">
 <div class="overflow-x-auto">
     <table class="table">
         <!-- head -->
@@ -54,12 +54,24 @@ $tt = 0
         </tbody>
     </table>
 </div>
-    @if(auth()->user()->buying_plan == 'master')
-        @php($tt =($tt * 0.9))
-        <b>TOTAL -10% avec master plan : {{$tt}} € </b>
-    @else
-        <b>TOTAL : {{$tt}} € </b>
-    @endif
+
+
+    <div class="stat">
+        <div class="stat-title">A PAYER :</div>
+
+        @if(auth()->user()->buying_plan == 'master')
+            @php($tt =($tt * 0.9))
+            <p>TOTAL -10% avec master plan : {{$tt}} € </p>
+        @else
+
+            <div class="stat-value">{{$tt}} €</div>
+        @endif
+
+    </div>
+</div>
+
+
+
 <div class="container mx-auto">
     <div class="flex justify-center">
         <div class="w-1/2">
