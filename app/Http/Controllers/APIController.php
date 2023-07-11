@@ -61,7 +61,7 @@ class APIController extends Controller
             //$messages = Messages::with('from_id')->where('from_id', $user->id)->orWhere('to_id', $id)->get();
 
             return response()->json([
-                'messages' => $messageData,
+                'messages' => $messages,
             ], 200);
         }
         return response()->json([
@@ -85,7 +85,9 @@ class APIController extends Controller
             $convs = User::whereIn('id', $conversation)->select('id','username','profil_picture')->get();
 //username id pdp
             return response()->json([
-                'convs' => $convs
+                'convs' => $convs,
+                'username' => $user->username,
+                'profil_picture' => $user->profil_picture
             ], 200);
         }
         return response()->json([
