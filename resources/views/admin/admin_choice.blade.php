@@ -57,7 +57,7 @@
             <h2 class="card-title">{{ __("Créer un événement")}}</h2>
             <p>{{ __("Créez une événement pour former de future cuisinier")}}</p>
             <div class="card-actions justify-end">
-                <a href="/event/create" class="btn btn-primary">{{ __("Formation Création")}}</a>
+                <a href="/admin/events" class="btn btn-primary">{{ __("Event Création")}}</a>
             </div>
         </div>
     </div>

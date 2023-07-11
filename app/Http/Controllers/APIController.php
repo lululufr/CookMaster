@@ -51,20 +51,34 @@ class APIController extends Controller
     public function api_message_get(Request $request, int $id){
 
         if($user = User::where('mobile_token', $request->bearerToken())->select('id','username','profil_picture')->first()){
-            $loggedInUserId = $user->id;
-            $messages = Messages::where(function ($query) use ($loggedInUserId, $id) {
-                $query->where('from_id', $loggedInUserId)
-                    ->where('to_id', $id);
-            })->orWhere(function ($query) use ($loggedInUserId, $id) {
-                $query->where('from_id', $id)
-                    ->where('to_id', $loggedInUserId);
-            })->get();
+            $messages = Messages::with('fromUser')
+                ->where(function ($query) use ($user, $id) {
+                    $query->where('from_id', $user)
+                        ->where('to_id', $id);
+                })
+                ->orWhere(function ($query) use ($user, $id) {
+                    $query->where('from_id', $id)
+                        ->where('to_id', $user);
+                })
+                ->get();
 
-            $otheruser = User::where('id', $id)->select('id','username','profil_picture')->firstOrFail();
+            $messageData = $messages->map(function ($message) {
+                return [
+                    'id' => $message->id,
+                    'to_id' => $message->to_id,
+                    'from_id' => $message->from_id,
+                    'content' => $message->content,
+                    'created_at' => $message->created_at,
+                    'updated_at' => $message->updated_at,
+                    'from_user' => [
+                        'username' => $message->fromUser->username,
+                        'profil_picture' => $message->fromUser->profil_picture,
+                    ],
+                ];
+            });
+
             return response()->json([
-                'messages' => $messages,
-                'user' => $user,
-                "otheruser" => $otheruser
+                'messages' => $messageData,
             ], 200);
         }
         return response()->json([
@@ -98,12 +112,12 @@ class APIController extends Controller
 
     public function api_send_messages(Request $request, int $id)
     {
-        if($this->is_connected($request->bearerToken())) {
+        if($user = User::where('mobile_token', $request->bearerToken())->first()) {
             $message = $request['message'];
 
             $entry = new Messages();
             $entry->to_id = $id;
-            $entry->from_id = auth()->user()->id;
+            $entry->from_id = $user->id ;
             $entry->content = $message;
             $entry->save();
         }

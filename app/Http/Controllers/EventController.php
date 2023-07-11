@@ -102,19 +102,15 @@ class EventController extends Controller
         return back();
     }
 
-    public function modifyEvent(){
-
-        return view('event.modify_event');
-    }
     public function modifyEventApply($id, Request $request){
 
     }
 
 
 
-    public function deleteEvent(Request $request)
+    public function deleteEvent($id)
     {
-        $event = Event::where('id', $request['event_id'])->firstOrFail();
+        $event = Event::where('id', $id)->firstOrFail();
         $event->delete();
         return back();
     }
@@ -151,4 +147,7 @@ class EventController extends Controller
         return Utensils::countByType($type) - UtensilEventUses::countUses($type, $when);
     }
 
+    public function get_all_events(){
+        return view('admin.admin_events', ['events' => Event::all()]);
+    }
 }

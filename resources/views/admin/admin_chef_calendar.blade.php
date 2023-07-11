@@ -1,9 +1,7 @@
 <x-header/>
-<?php use Illuminate\Support\Facades\Auth;
 
+<?php
 use App\Models\Event;
-
-//$events = Event::all()->toArray();
 
 $calendar = [
     'Monday' => [],
@@ -14,6 +12,7 @@ $calendar = [
     'Saturday' => [],
     'Sunday' => [],
 ];
+
 usort($events, function($a, $b) {
     return strtotime($a['start']) - strtotime($b['start']);
 });
@@ -29,7 +28,7 @@ foreach ($events as $event) {
     $cpt = 0;
     foreach ($calendar as $day => $events) {
         echo '<div class="grid grid-cols w-42 justify-items-center" >';
-        echo '<h1 class="">' . $day . '</h1>';
+        echo '<b class="title">' . __($day) . '</b>';
     foreach ($events as $event) {
         ?>
 
@@ -37,22 +36,28 @@ foreach ($events as $event) {
 
         <?php echo 'h-'.$event['duration'] * 16?>
 
-        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
-        <p><?php echo $event['title'];?></p>
-        <p><?php echo $event['start']; ?></p>
-        <p><?php echo $event['room_id']; ?></p>
+        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-500 to-blue-700 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
+        <b><?php echo $event['title'];?></b>
+        <p><?php echo "Oragnisé par : <b>".$event['chef_username']."</b>"; ?></p>
+        <p><?php //echo $event['room_id']; ?></p>
 
 
-        <p><?php echo strtotime($event['start']) - time()?></p> <!-- si event passé-->
+        <p><?php
 
-        <p><?php echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
+               if ((strtotime($event['start']) - time()) < 0){
+                   echo " Evénement passé";
+               }else{
+                   echo " Evénement à venir";
+               };
+
+               ?></p> <!-- si event passé-->
+
+
+        <p>Salle : <?php $event["room_id"]?></p>
+
+        <p><?php // echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
     </div>
     <dialog id="my_modal{{$event["id"]}}" class="modal">
-            <?php
-            //variable pour savoir si le chef a validé l'event
-
-                ;
-            ?>
         <div class="modal-box w-11/12 max-w-5xl">
             <h3 class="font-bold text-lg">Hello!</h3>
             <p class="py-4">{{$event["title"]}}</p>

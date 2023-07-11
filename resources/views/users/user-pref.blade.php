@@ -30,7 +30,7 @@ foreach ($events as $event) {
     $cpt = 0;
     foreach ($calendar as $day => $events) {
         echo '<div class="grid grid-cols w-42 justify-items-center" >';
-        echo '<h1 class="">' . $day . '</h1>';
+        echo '<b class="title">' . __($day) . '</b>';
     foreach ($events as $event) {
         ?>
 
@@ -38,15 +38,26 @@ foreach ($events as $event) {
 
         <?php echo 'h-'.$event['duration'] * 16?>
 
-        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-600 to-indigo-400 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
-        <p><?php echo $event['title'];?></p>
-        <p><?php echo $event['start']; ?></p>
-        <p><?php echo $event['room_id']; ?></p>
+        w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-500 to-blue-700 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
+        <b><?php echo $event['title'];?></b>
+        <p><?php echo "Oragnisé par : <b>".$event['chef_username']."</b>"; ?></p>
+        <p><?php //echo $event['room_id']; ?></p>
 
 
-        <p><?php echo strtotime($event['start']) - time()?></p> <!-- si event passé-->
+        <p><?php
 
-        <p><?php echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
+               if ((strtotime($event['start']) - time()) < 0){
+                   echo " Evénement passé";
+               }else{
+                   echo " Evénement à venir";
+               };
+
+               ?></p> <!-- si event passé-->
+
+
+        <p>Salle : <?php $event["room_id"]?></p>
+
+        <p><?php // echo strtotime($event['start']) % 24 ?></p> <!-- Pour placer les events-->
     </div>
 
 
@@ -60,19 +71,8 @@ foreach ($events as $event) {
             <h3 class="font-bold text-lg">Hello!</h3>
             <p class="py-4">{{$event["title"]}}</p>
             <p class="py-4">{{$event["description"]}}</p>
-            <?php
-                $tags = \App\Models\EventTags::where('event_id', $event['id'])->pluck('tag_name');
-                if($tags->contains('private')){ ?>
-                <form method="POST" action="/event/delete">
-                    @csrf
-                    <input type="hidden" name="event_id" value="{{ $event['id'] }}">
-                    <div>
-                        <button class="btn" type="submit">Annuler la leçon privée</button>
-                    </div>
-                </form>
-                <?php
-                //si l'event a dépassé le nombre de participants max
-                }elseif($event["max_participants"] <= \App\Models\EventParticipates::where('event_id', $event['id'])->count()){?>
+                <?php //si l'event a dépassé le nombre de participants max
+            if($event["max_participants"] <= \App\Models\EventParticipates::where('event_id', $event['id'])->count()){?>
             <button class="btn" >Cet évènement est complet</button>
             <?php }else{?>
             <form method="POST" action="/eventParticipate">
@@ -80,7 +80,7 @@ foreach ($events as $event) {
                 <input type="hidden" name="event_id" value="{{ $event['id'] }}">
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 <div>
-                    <button class="btn" type="submit"><?php echo $isParticipating? 'Se désinscrire':'Participer' ?></button>
+                    <button class="btn btn-primary m-5" type="submit"><?php echo $isParticipating? 'Se désinscrire':'Participer' ?></button>
                 </div>
             </form>
             <?php } ?>
@@ -96,6 +96,7 @@ foreach ($events as $event) {
     }
     ?>
 </div>
+
 
 
 

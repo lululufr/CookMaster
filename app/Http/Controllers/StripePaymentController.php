@@ -77,6 +77,7 @@ class StripePaymentController extends Controller
         $AMOUNT = 0;
         foreach($carts as $cart) {
             $AMOUNT += $cart->articles->prix;
+            $cart->nb--;
         }
 
 
