@@ -18,7 +18,7 @@
             <div class="chat chat-end">
                 <div class="chat-image avatar">
                     <div class="w-10 rounded-full">
-                        <img src="{{$message->user_from->profil_picture}}" />
+                        <img src="{{asset("storage/".$message->user_from->profil_picture)}}"/>
                     </div>
                 </div>
                 <div class="chat-bubble"> {{$message->content}}</div>
@@ -28,7 +28,7 @@
         <div class="chat chat-start">
             <div class="chat-image avatar">
                 <div class="w-10 rounded-full">
-                    <img src="{{$message->user_from->profil_picture}}" />
+                    <img src="{{asset("storage/".$message->user_from->profil_picture)}}" />
                 </div>
             </div>
             <div class="chat-bubble"> {{$message->content}}</div>

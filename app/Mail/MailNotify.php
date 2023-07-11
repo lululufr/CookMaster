@@ -21,7 +21,7 @@ class MailNotify extends Mailable
     public function build()
     {
         return $this->from("cookwithme867@gmail.com") // L'expéditeur
-        ->subject("Message via le SMTP Google") // Le sujet
+        ->subject("CookMaster vous informe !! ") // Le sujet
         ->view('email.notify'); // La vue
     }
 }

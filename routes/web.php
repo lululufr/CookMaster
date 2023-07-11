@@ -70,6 +70,7 @@ Route::get('/profil/{username}',[ProfilController::class, 'show_profil_page'])->
 //page des préférences & parametre
 Route::get('/users/preferences',[ProfilController::class, 'show_preference_page'])->middleware('auth');
 Route::post('/users/preferences/change',[ProfilController::class, 'change_preference'])->middleware('auth');
+Route::post('/users/preferences/pp/change/{id}',[ProfilController::class, 'change_pp'])->middleware('auth');
 
 
 //page des salles

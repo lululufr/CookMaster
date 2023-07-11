@@ -25,10 +25,22 @@ class ProfilController extends Controller
 
     public function change_preference(Request $request){
 
-        User::where('username', auth()->user()->username)->update([
-            'theme' => $request->theme,
-            'langue' => $request->langue
-        ]);
+
+
+        return redirect('/users/preferences')->with('message', 'Préférences modifiées avec succès !');
+
+    }
+
+    public function change_pp(Request $request, $id){
+
+        $user = User::where('id', $id)->firstOrFail();
+
+        if($request->hasFile('media')){
+            $mediaPath = $request->file('media')->store('profile','public');
+            $user->profil_picture = $mediaPath;
+            $user->save();
+        }
+
 
         return redirect('/users/preferences')->with('message', 'Préférences modifiées avec succès !');
 
