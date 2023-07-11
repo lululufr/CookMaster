@@ -19,7 +19,7 @@ class APIController extends Controller
 {
     public function api_event_get()
     {
-        $events = Event::with(['rooms', 'users_count'])->get();
+        $events = Event::with(['rooms', 'users_count'])->where('is_validated',1)->get();
 
         foreach ($events as $event) {
             $event->rooms;
@@ -93,9 +93,6 @@ class APIController extends Controller
 
     }
 
-
-
-
     public function api_connexion(Request $request)
     {
         $user = User::where('username', $request->username)->first();
@@ -117,8 +114,4 @@ class APIController extends Controller
             'id' => $user->id
         ], 200);
     }
-
-//récupérer id utilisateur + son type
-
-
 }
