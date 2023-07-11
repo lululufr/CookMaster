@@ -86,7 +86,7 @@ class APIController extends Controller
             $convs = User::whereIn('id', $conversation)->get();
 
             return response()->json([
-                '$convs' => $convs
+                'convs' => $convs
             ], 200);
         }
         return response()->json([
