@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'theme' => "dracula",
             'role'=> Arr::random(['chef','user','admin']),
             'buying_plan'=>Arr::random(['free','starter','master']),
-            'profil_picture'=>"profile/".fake()->image('public/storage/profile',640,480, null, false),
+            'profil_picture'=>null,
         ];
     }
 
