@@ -129,7 +129,6 @@ static void print_output (GtkWidget *widget,
             fprintf(stderr, "Error: %s\n", curl_easy_strerror(res));
         } else {
             json_t *value = extractValueFromJsonByKey(json_loads(output, 0, NULL), elementvalue);
-
             if (value != NULL) {
                 char *valueString = json_dumps(value, JSON_ENCODE_ANY);
                 gtk_text_buffer_set_text(buffer, indentJsonString(valueString), -1);
