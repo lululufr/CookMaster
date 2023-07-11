@@ -2,6 +2,9 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
+  <object class="GtkTextBuffer" id="ElementEntry">
+    <property name="text" translatable="yes">Enter a keyword</property>
+  </object>
   <object class="GtkTextBuffer" id="enter your API key">
     <property name="text" translatable="yes">enter your API key</property>
   </object>
@@ -72,6 +75,32 @@
           </packing>
         </child>
         <child>
+          <object class="GtkTextView">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="editable">False</property>
+            <property name="justification">center</property>
+            <property name="buffer">ElementEntry</property>
+            <property name="accepts-tab">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="ElementEntr">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="button">
             <property name="label" translatable="yes">Send request</property>
             <property name="visible">True</property>
@@ -81,7 +110,20 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Download">
+            <property name="label" translatable="yes">Download Output</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
           </packing>
         </child>
         <child>
@@ -95,7 +137,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="position">8</property>
           </packing>
         </child>
       </object>

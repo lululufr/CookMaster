@@ -3,18 +3,47 @@
 #include <curl/curl.h>
 #include <stdlib.h>
 #include <string.h>
+#include <jansson.h>
 
 const gchar *apiValue = NULL;
 const gchar *keyvalue = NULL;
+const gchar *elementvalue = NULL;
 
 typedef struct {
     GtkWidget * textOutput;
     GtkTextBuffer * buffer;
 }Data;
 
+json_t *extractValueFromJsonByKey(json_t *jsonRoot, const char *searchKey) {
+    if(searchKey == NULL){
+        return jsonRoot;
+    }
+    json_t *result = NULL;
+
+    if (jsonRoot && json_is_object(jsonRoot)) {
+        const char *key;
+        json_t *value;
+
+        json_object_foreach(jsonRoot, key, value) {
+            if (strcmp(key, searchKey) == 0) {
+                result = value;
+                break;
+            }
+
+            if (json_is_object(value) || json_is_array(value)) {
+                result = extractValueFromJsonByKey(value, searchKey);
+                if (result) {
+                    break;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
 size_t write_callback(void *ptr, size_t size, size_t nmemb, char *output) {
     size_t total_size = size * nmemb;
-    // Append the received data to the output buffer
     strncat(output, ptr, total_size);
     return total_size;
 }
@@ -27,21 +56,20 @@ char * indentJsonString(const char* jsonString) {
     int indentSize = 4;
     for (int i = 0; i < jsonStringLength; i++) {
         if (jsonString[i] == '{' || jsonString[i] == '[') {
-            // Ajouter une nouvelle ligne et l'indentation actuelle
+
             indentedJsonString[currentPosition++] = jsonString[i];
             indentedJsonString[currentPosition++] = '\n';
             indentLevel++;
 
             for (int j = 0; j < indentLevel * indentSize; j++) {
-                indentedJsonString[currentPosition++] = ' '; // Ajouter l'indentation
+                indentedJsonString[currentPosition++] = ' ';
             }
         } else if (jsonString[i] == '}' || jsonString[i] == ']') {
-            // Ajouter une nouvelle ligne et l'indentation actuelle
             indentedJsonString[currentPosition++] = '\n';
             indentLevel--;
 
             for (int j = 0; j < indentLevel * indentSize; j++) {
-                indentedJsonString[currentPosition++] = ' '; // Ajouter l'indentation
+                indentedJsonString[currentPosition++] = ' ';
             }
 
             indentedJsonString[currentPosition++] = jsonString[i];
@@ -50,19 +78,19 @@ char * indentJsonString(const char* jsonString) {
             indentedJsonString[currentPosition++] = '\n';
 
             for (int j = 0; j < indentLevel * indentSize; j++) {
-                indentedJsonString[currentPosition++] = ' '; // Ajouter l'indentation
+                indentedJsonString[currentPosition++] = ' ';
             }
         } else {
             indentedJsonString[currentPosition++] = jsonString[i];
         }
     }
 
-    indentedJsonString[currentPosition] = '\0'; // Terminer la chaîne
+    indentedJsonString[currentPosition] = '\0';
 
     return indentedJsonString;
 }
 
-static void print_hello (GtkWidget *widget,
+static void print_output (GtkWidget *widget,
              gpointer   data)
 {
     Data *viewData = (Data *)data;
@@ -72,17 +100,15 @@ static void print_hello (GtkWidget *widget,
 
     CURL *curl;
     CURLcode res;
-    char *key = "8299dbe30a5a5362b7e24b8adf23b20d";
     curl_global_init(CURL_GLOBAL_DEFAULT);
     curl = curl_easy_init();
-    char *output = malloc(sizeof(char) * 8192);
+    char *output = malloc(sizeof(char) * 16384);
     output[0] = '\0';  // Initialize the output buffer
 
-
-
     if (curl) {
+
         struct curl_slist *headers = NULL;
-        char * header = malloc(sizeof (char )*267);
+        char *header = malloc(sizeof(char) * 267);
         sprintf(header, "X-API-Key: %s", keyvalue);
 
         headers = curl_slist_append(headers, header);
@@ -102,7 +128,15 @@ static void print_hello (GtkWidget *widget,
         if (res != CURLE_OK) {
             fprintf(stderr, "Error: %s\n", curl_easy_strerror(res));
         } else {
-            gtk_text_buffer_set_text(buffer, indentJsonString(output) , -1);
+            json_t *value = extractValueFromJsonByKey(json_loads(output, 0, NULL), elementvalue);
+
+            if (value != NULL) {
+                char *valueString = json_dumps(value, JSON_ENCODE_ANY);
+                gtk_text_buffer_set_text(buffer, indentJsonString(valueString), -1);
+                free(valueString);
+            } else {
+                gtk_text_buffer_set_text(buffer, indentJsonString(output), -1);
+            }
 
             gtk_widget_queue_draw(textOutput);
         }
@@ -113,15 +147,25 @@ static void print_hello (GtkWidget *widget,
 
     curl_global_cleanup();
 
-    free(output); // Free the allocated memory for output
+    free(output);
 }
 
 void on_api_changed(GtkEntry *entry, gpointer data) {
     apiValue = gtk_entry_get_text(entry);
+    //printf("%s\n", apiValue);
+    //fflush(stdout);
 }
 void on_key_changed(GtkEntry *entry, gpointer data) {
     keyvalue = gtk_entry_get_text(entry);
+    //printf("%s\n", keyvalue);
+    //fflush(stdout);
 }
+void on_element_changed(GtkEntry *entry, gpointer data){
+    elementvalue = gtk_entry_get_text(entry);
+    //printf("%s\n", elementvalue);
+    //fflush(stdout);
+}
+
 
 int main (int   argc,
       char *argv[])
@@ -131,6 +175,7 @@ int main (int   argc,
     GObject *button;
     GtkWidget *APIEntry;
     GtkWidget *KeyEntry;
+    GtkWidget *ElementEntry;
     GtkWidget *textOutput;
     GtkTextBuffer *buffer;
     GError *error = NULL;
@@ -157,16 +202,19 @@ int main (int   argc,
     KeyEntry = GTK_WIDGET(gtk_builder_get_object(builder, "KeyEntry"));
     g_signal_connect(KeyEntry, "changed", G_CALLBACK(on_key_changed), (gpointer ) NULL);
 
+    ElementEntry = GTK_WIDGET(gtk_builder_get_object(builder, "ElementEntr"));
+    g_signal_connect(ElementEntry, "changed", G_CALLBACK(on_element_changed), (gpointer ) NULL);
+
+
     textOutput = GTK_WIDGET(gtk_builder_get_object(builder, "textOutput"));
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textOutput));
     Data data;
     data.textOutput = textOutput;
     data.buffer = buffer;
 
+
     button = gtk_builder_get_object (builder, "button");
-
-    g_signal_connect(button, "clicked", G_CALLBACK(print_hello), &data);
-
+    g_signal_connect(button, "clicked", G_CALLBACK(print_output), &data);
 
     gtk_main ();
 
