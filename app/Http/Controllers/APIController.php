@@ -72,16 +72,18 @@ class APIController extends Controller
 
     public function api_conversation_get(Request $request){
 
+
         if($this->is_connected($request->bearerToken())) {
-            $messages = Messages::where('to_id', auth()->user()->id)->orWhere('from_id', auth()->user()->id)->get();
+            $user = User::where('mobile_token', $request->bearerToken())->first();
+            $messages = Messages::where('to_id', $user->id)->orWhere('from_id', $user->id)->get();
 
             $conversation = array();
 
             foreach ($messages as $message) {
-                if (!in_array($message->from_id, $conversation) && $message->from_id != auth()->user()->id) {
+                if (!in_array($message->from_id, $conversation) && $message->from_id != $user->id) {
                     array_push($conversation, $message->from_id);
                 }
-                if (!in_array($message->to_id, $conversation) && $message->to_id != auth()->user()->id) {
+                if (!in_array($message->to_id, $conversation) && $message->to_id != $user->id) {
                     array_push($conversation, $message->to_id);
                 }
 
