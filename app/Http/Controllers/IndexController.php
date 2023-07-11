@@ -10,7 +10,7 @@ class IndexController extends Controller
     public function index(){
 
         if(auth()->user()){
-            $posts = Recipes::all()->sortByDesc('created_at')->take(10);
+            $posts = Recipes::paginate(24);//->sortByDesc('created_at');
             return view('auth_welcome', ['posts' => $posts]);
         }
         else{

@@ -20,9 +20,13 @@ class RecipesController extends Controller
 
     }
     public function detailed_recipe_view($id){
-        $article = Articles::where('id', $id)->firstOrFail();
-        return view('recipe/detailed_view', ['article' => $article]);
+        $recipe = Recipes::where('id', $id)->firstOrFail();
+        return view('recipe/detailed_view', ['recipe' => $recipe]);
     }
+
+
+
+
 
     public function create(Request $request)
     {
@@ -66,5 +70,7 @@ class RecipesController extends Controller
         return back();
 
     }
+
+
 }
 

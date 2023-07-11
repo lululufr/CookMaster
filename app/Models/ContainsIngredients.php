@@ -7,8 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContainsIngredients extends Model
 {
-    public function recipe()
-    {
-        return $this->belongsTo(Recipes::class, 'recipes_id');
-    }
+
 }
