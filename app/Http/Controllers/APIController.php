@@ -50,8 +50,8 @@ class APIController extends Controller
 
     public function api_message_get(Request $request, int $id){
 
-        if($this->is_connected($request->bearerToken())) {
-            $loggedInUserId = auth()->user()->id;
+        if($user = User::where('mobile_token', $request->bearerToken())->first()){
+            $loggedInUserId = $user->id;
             $messages = Messages::where(function ($query) use ($loggedInUserId, $id) {
                 $query->where('from_id', $loggedInUserId)
                     ->where('to_id', $id);
