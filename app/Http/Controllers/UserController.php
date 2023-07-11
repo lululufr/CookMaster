@@ -97,7 +97,7 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
-            if(auth()->user()->buying_plan_end_date<today()){
+            if(auth()->user()->buying_plan_end_date>today()){
                 auth()->user()->buying_plan = 'free';
                 auth()->user()->save();
             }

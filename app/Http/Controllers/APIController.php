@@ -121,7 +121,7 @@ class APIController extends Controller
                 'message' => 'Bad credentials'
             ], 401);
         }
-        if($user->buying_plan_expiration_date < today()){
+        if($user->buying_plan_expiration_date > today()){
             $user->buying_plan = 'free';
         }
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
