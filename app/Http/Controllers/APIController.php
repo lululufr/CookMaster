@@ -60,9 +60,11 @@ class APIController extends Controller
                     ->where('to_id', $loggedInUserId);
             })->get();
 
-
+            $otheruser = User::where('id', $id)->firstOrFail();
             return response()->json([
-                'messages' => $messages
+                'messages' => $messages,
+                'user' => $user,
+                "otheruser" => $otheruser
             ], 200);
         }
         return response()->json([
