@@ -50,8 +50,8 @@ class APIController extends Controller
 
     public function api_message_get(Request $request, int $id){
 
-        if($this->is_connected($request->bearerToken())) {
-            $loggedInUserId = auth()->user()->id;
+        if($user = User::where('mobile_token', $request->bearerToken())->select('id','username','profile_picture')->first()){
+            $loggedInUserId = $user->id;
             $messages = Messages::where(function ($query) use ($loggedInUserId, $id) {
                 $query->where('from_id', $loggedInUserId)
                     ->where('to_id', $id);
@@ -60,9 +60,11 @@ class APIController extends Controller
                     ->where('to_id', $loggedInUserId);
             })->get();
 
-
+            $otheruser = User::where('id', $id)->select('id','username','profile_picture')->firstOrFail();
             return response()->json([
-                'messages' => $messages
+                'messages' => $messages,
+                'user' => $user,
+                "otheruser" => $otheruser
             ], 200);
         }
         return response()->json([
@@ -83,10 +85,10 @@ class APIController extends Controller
                     array_push($conversation, $message->to_id);
                 }
             }
-            $convs = User::whereIn('id', $conversation)->get();
-
+            $convs = User::whereIn('id', $conversation)->select('id','username','profil_picture')->get();
+//username id pdp
             return response()->json([
-                '$convs' => $convs
+                'convs' => $convs
             ], 200);
         }
         return response()->json([
@@ -121,7 +123,7 @@ class APIController extends Controller
                 'message' => 'Bad credentials'
             ], 401);
         }
-        if($user->buying_plan_expiration_date < today()){
+        if($user->buying_plan_expiration_date > today()){
             $user->buying_plan = 'free';
         }
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
