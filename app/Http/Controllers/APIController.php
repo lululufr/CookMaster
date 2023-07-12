@@ -20,13 +20,28 @@ class APIController extends Controller
 {
     public function api_event_get(Request $request)
     {
-        if($this->is_connected($request->bearerToken())) {
-            $events = Event::with(['rooms', 'users_count'])->where('is_validated', 1)->get();
+        if($user = User::where('mobile_token', $request->bearerToken())->select('id','username','profil_picture')->first()) {
+            $events = Event::with('rooms','recipes')
+                ->where('is_validated', 1)
+                ->select('title','start','description','chef_username','room_id','recipe_id','id')
+                ->get();
 
-            foreach ($events as $event) {
-                $event->rooms;
-                $event->users_count;
-            }
+            $events = $events->map(function ($event) use ($user) {
+                $rooms = $event->rooms->makeHidden(['id', 'created_at', 'updated_at', 'room_id', 'salle_number', 'tags', 'description']);
+                $recipes = $event->recipes->makeHidden(['id', 'created_at', 'updated_at', 'description', 'image', 'user_id']);
+                $isParticipating = $event->isParticipating($user->id) ? 1 : 0;
+
+                return [
+                    'title' => $event->title,
+                    'start' => $event->start,
+                    'description' => $event->description,
+                    'chef_username' => $event->chef_username,
+                    'rooms' => $rooms,
+                    'recipes' => $recipes,
+                    'isParticipating' => $isParticipating,
+                ];
+            });
+
             return response()->json([
                 'events' => $events
             ], 200);
