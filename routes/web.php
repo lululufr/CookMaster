@@ -91,7 +91,6 @@ Route::get('/event/create', [EventController::class,'createEvent'])->middleware(
 Route::get('/user/event/create', [EventController::class,'createPrivateEvent'])->middleware('auth');
 Route::post('/event/create', [EventController::class,'createEventApply'])->middleware('auth');
 Route::get('/admin/events', [EventController::class,'get_all_events'])->middleware('auth');
-Route::post('/event/modify', [EventController::class,'modifyEventApply'])->middleware('auth');
 Route::post('/event/delete/{id}', [EventController::class,'deleteEvent'])->middleware('auth');
 
 
