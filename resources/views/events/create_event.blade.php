@@ -16,7 +16,7 @@
                 </select>
                 <div class="col-span-1"></div>
 
-                <button class="supprimerFormulaire" type="button">X</button>
+                <p class="supprimerFormulaire" type="button">X</p>
                 </div>
             </div>
 `;
@@ -38,7 +38,7 @@
                     </select>
                 <div class="col-span-1"></div>
 
-                <button class="supprimerFormulaire" type="button">X</button>
+                <p class="supprimerFormulaire" type="button">X</p>
                 </div>
             </div>
 `;
