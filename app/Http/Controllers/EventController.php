@@ -43,7 +43,7 @@ class EventController extends Controller
             })
             ->first();
         if ($existingEvent) {
-            return redirect('/event/create')->with('message', 'La salle est déjà réservée pendant cette période.');
+            return back()->with('message', 'La salle est déjà réservée pendant cette période.');
         }
         $event = new Event;
         $event->title = htmlspecialchars($request['title']);
