@@ -90,10 +90,10 @@ $tt = 0
                                 <p class="alert alert-{{$status}}">{{ Session::get($status) }}</p>
                             @endif
                         @endforeach
-                        <form role="form" method="POST" id="paymentForm" action="{{ url('/pay')}}">
+                        <form role="form" method="POST" id="paymentForm" action="/pay">
                             @csrf
                             <div class="mb-4">
-                                <label for="username">Nom complet (on the card)</label>
+                                <label for="username">Nom complet sur la carte</label>
                                 <input type="text" class="input form-input" name="fullName" placeholder="Full Name">
                             </div>
                             <div class="mb-4">
