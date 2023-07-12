@@ -70,7 +70,20 @@ class APIController extends Controller
 
 
 
-            $messages = Messages::where('from_id', $user->id)->orWhere('to_id', $id)->get();
+            //$messages = Messages::where('from_id', $user->id)->orWhere('to_id', $id)->get();
+
+
+            $loggedInUserId = auth()->user()->id;
+
+            $messages = Messages::where(function ($query) use ($loggedInUserId, $id) {
+                $query->where('from_id', $loggedInUserId)
+                    ->where('to_id', $id);
+            })->orWhere(function ($query) use ($loggedInUserId, $id) {
+                $query->where('from_id', $id)
+                    ->where('to_id', $loggedInUserId);
+            })->get();
+
+
 
             //a variable containing all message information and username, id and profil_pic from the sender of the message
             //$messages = Messages::with('from_id')->where('from_id', $user->id)->orWhere('to_id', $id)->get();
