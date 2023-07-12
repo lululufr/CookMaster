@@ -2,8 +2,9 @@
 
 
 <h2 class="title">Mes conversations</h2>
-
-<input type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
+<div class="grid place-item-center place-content-center">
+<input class="form form-control" type="text" id="searchInput" placeholder="Rechercher un utilisateur...">
+</div>
 <div>
 <div id="searchResults" ></div>
 
