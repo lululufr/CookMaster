@@ -98,7 +98,23 @@ class StripePaymentController extends Controller
             }
         }
 
+        //livraison
+        if(auth()->user()->buying_plan == 'free'){
+            $AMOUNT = $AMOUNT + 10;
+        }
+
+
         if($AMOUNT == 0){
+
+            $data = [
+                'name' => auth()->user()->firstname . ' ' . auth()->user()->lastname,
+                'message' => "Vous n'avez pas été facturé car votre panier etait vide"
+            ];
+
+            $mail = new MailNotify($data);
+
+            Mail::to(auth()->user()->email)->send($mail);
+
             return view('shop.success')->with('charge', 'Coupon');
 
             //envoyer un mail hihi

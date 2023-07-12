@@ -18,8 +18,14 @@ class PlanController extends Controller
     }
 
 
-    public static function plan_count_classes(View $v) : View
+    public static function free_plan()
     {
+        $user = auth()->user();
+
+        $user->buying_plan = "free";
+        $user->save();
+
+        return redirect('/')->with('message', 'Vous etes sur le plan gratuit.');
 
     }
 
