@@ -4,7 +4,7 @@
 
 <div class="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
 
-
+    @if(auth()->user()->role == "admin")
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
         <figure><img src="images/deco/undraw_completed_03xt.svg" alt="Article" /></figure>
         <div class="card-body">
@@ -15,8 +15,9 @@
             </div>
         </div>
     </div>
+    @endif
 
-
+        @if(auth()->user()->role == "admin")
     <div class="card  h-96 w-96 bg-base-100 shadow-xl image-full">
         <figure><img src="images/deco/salleadmindeco.svg" alt="Salles" /></figure>
         <div class="card-body">
@@ -27,8 +28,9 @@
             </div>
         </div>
     </div>
+        @endif
 
-
+        @if(auth()->user()->role == "admin")
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
         <figure><img src="images/deco/eventdeco.svg" alt="User" /></figure>
         <div class="card-body">
@@ -39,6 +41,8 @@
             </div>
         </div>
     </div>
+        @endif
+
 
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
         <figure><img src="images/deco/undraw_cooking_p7m1.svg" alt="Formation" /></figure>
@@ -95,6 +99,7 @@
         </div>
     </div>
 
+        @if(auth()->user()->role == "admin")
     <div class="card h-96 w-96 bg-base-100 shadow-xl image-full">
         <figure><img src="images/deco/yoga.png" alt="Coffe" /></figure>
         <div class="card-body">
@@ -105,7 +110,7 @@
             </div>
         </div>
     </div>
-
+        @endif
 </div>
 
 

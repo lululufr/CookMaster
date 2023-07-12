@@ -12,7 +12,7 @@ class RedirectIfNotAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->role != 'admin') {
+        if (auth()->check() && auth()->user()->role == 'user') {
             return redirect('/you/are/not/admin');
         }
 

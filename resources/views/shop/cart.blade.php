@@ -39,24 +39,33 @@
     </div>
 
 
-
-
     <div class="stat">
         <div class="stat-title">A PAYER :</div>
 
-        @if(auth()->user()->buying_plan == 'master')
-            @php($tt =($tt * 0.9))
-            <p>TOTAL -10% avec master plan : {{$tt}} € </p>
-        @else
 
+        @if(auth()->user()->buying_plan != 'free')
+
+            <b>Livraison offerte. </b>
+            @if(auth()->user()->buying_plan == 'master')
+                @php($tt =($tt * 0.9))
+                <b>TOTAL -10% avec master plan : {{$tt}} € </b>
+            @endif
+
+        @else
+            @php($tt =($tt + 10))
+            <b class="">Livraison + 10 €</b>
             <div class="stat-value">{{$tt}} €</div>
         @endif
+
+
+
 
 
         <div class="stat-actions">
             <a class="btn btn-primary" href="/pay">PAYER</a>
         </div>
     </div>
+
 
 </div>
 

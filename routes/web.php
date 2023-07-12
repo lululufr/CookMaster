@@ -196,6 +196,7 @@ Route::get('/class/{id}/delete', [AdminController::class,'delete_class'])->middl
 Route::get('/plan', [PlanController::class,'index'])->middleware('auth');
 Route::get('/plan/purchase/{plan}/{time}', [PlanController::class,'purchase_plan'])->middleware('auth');
 Route::post('/plan/purchase/{plan}/{time}', [PlanController::class,'pay_plan'])->middleware('auth');
+Route::get('/plan/purchase/free', [PlanController::class,'free_plan'])->middleware('auth');
 
 
 
