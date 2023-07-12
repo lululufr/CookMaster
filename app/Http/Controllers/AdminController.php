@@ -110,11 +110,6 @@ class AdminController extends Controller
             case 'description':
                 $rooms->description = $request->input('new_content');
                 break;
-
-            //case 'password':
-            //$user->username = $request->input('new_content');
-            //break;
-
         }
 
         $rooms->save();
@@ -146,8 +141,35 @@ class AdminController extends Controller
         return redirect('/admin/room')->with('message','Salle créée avec succes');
     }
 
+    public function get_articles(){
+        $articles = Articles::all();
+        return view('admin.admin_article_show',['articles'=>$articles]);
+    }
     public function create_article_page(){
         return view('admin.create_article');
+    }
+
+    public function delete_article($id){
+        Articles::where('id', $id)->delete();
+        return redirect('/admin/article')->with('success', 'Article supprimé avec succes');
+    }
+    public function modify_article($id, Request $request)
+    {
+        $article = Articles::where('id', $id)->firstOrFail();
+        $table = $request->input('change');
+
+        switch ($table) {
+            case 'stock':
+                $article->nb = $request->input('value');
+                break;
+            case 'price':
+                $article->prix = $request->input('value');
+                break;
+        }
+
+        $article->save();
+
+        return redirect('/admin/article')->with('success', 'Article modifié avec succes');
     }
 
     public function create_article_apply(Request $request){

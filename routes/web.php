@@ -114,6 +114,9 @@ Route::post('/admin/room/create/apply', [AdminController::class,'create_room_app
 Route::post('/admin/room/modify/{id}', [AdminController::class,'modify_room'])->middleware('isadmin');
 Route::post('/admin/room/modify/apply/{id}', [AdminController::class,'modify_room_apply'])->middleware('isadmin');
 
+Route::get('/admin/article', [AdminController::class,'get_articles'])->middleware('isadmin');
+Route::post('/admin/article/delete/{id}', [AdminController::class,'delete_article'])->middleware('isadmin');
+Route::post('/admin/article/modify/{id}', [AdminController::class,'modify_article'])->middleware('isadmin');
 Route::get('/admin/article/create', [AdminController::class,'create_article_page'])->middleware('isadmin');
 Route::post('/admin/article/create/apply', [AdminController::class,'create_article_apply'])->middleware('isadmin');
 
