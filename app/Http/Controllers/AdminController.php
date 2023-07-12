@@ -30,7 +30,7 @@ class AdminController extends Controller
     {
         User::where('id', $id)->delete();
 
-        return redirect('/admin')->with('success', 'User supprimé avec succes');
+        return redirect('/admin')->with('message', 'User supprimé avec succes');
 
     }
 
@@ -152,7 +152,7 @@ class AdminController extends Controller
 
     public function delete_article($id){
         Articles::where('id', $id)->delete();
-        return redirect('/admin/article')->with('success', 'Article supprimé avec succes');
+        return redirect('/admin/article')->with('message', 'Article supprimé avec succes');
     }
     public function modify_article($id, Request $request)
     {
@@ -170,7 +170,7 @@ class AdminController extends Controller
 
         $article->save();
 
-        return redirect('/admin/article')->with('success', 'Article modifié avec succes');
+        return redirect('/admin/article')->with('message', 'Article modifié avec succes');
     }
 
     public function create_article_apply(Request $request){
@@ -252,7 +252,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'La classe a été créée avec succès.');
+        return redirect()->back()->with('message', 'La classe a été créée avec succès.');
     }
         // Redirect or perform any other necessary actions
 
@@ -308,7 +308,7 @@ class AdminController extends Controller
     public function delete_ingredient($name){
         $contains = ContainsIngredients::where('ingredients_name',$name);
         if($contains){
-            return back()->with('error','Cet ingrédient est utilisé dans une recette');
+            return back()->with('message','Cet ingrédient est utilisé dans une recette');
         }
         $ingredient = Ingredients::where('name',$name);
         $ingredient->delete();
