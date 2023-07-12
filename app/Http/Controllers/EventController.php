@@ -43,7 +43,7 @@ class EventController extends Controller
             })
             ->first();
         if ($existingEvent) {
-            return redirect('/event/create')->with('error', 'La salle est déjà réservée pendant cette période.');
+            return redirect('/event/create')->with('message', 'La salle est déjà réservée pendant cette période.');
         }
         $event = new Event;
         $event->title = htmlspecialchars($request['title']);
@@ -85,13 +85,18 @@ class EventController extends Controller
         $i=0;
         if (isset($request['utensils'])) {
             foreach ($request['utensils'] as $utensil) {
-                if($this->utensilAvailable($utensil, Carbon::parse($start)->toDate()) <= 0){
+                if($this->utensilAvailable($utensil, Carbon::parse($start)->toDateString()) <= 0){
                     UtensilEventUses::where('event_id', $event->id)->delete();
                     $event->delete();
-                    return redirect('/event/create')->with('error', 'Il n\'y a pas assez d\'ustensiles disponibles pour cette date.');
+                    return back()->with('message', 'Il n\'y a pas assez d\'ustensiles disponibles pour cette date.');
                 }
                 $utensilsEvent = new UtensilEventUses;
-                $utensilsEvent->utensil_id = Utensils::whereNotIn('id',UtensilEventUses::all()->pluck('utensil_id'))->where('type',$utensil)->firstOrFail()->id;
+
+                $usedUtensilIds = UtensilEventUses::whereDate('date', Carbon::parse($start)->toDateString())->pluck('utensil_id')->toArray();
+                $utensilId = Utensils::whereNotIn('id', $usedUtensilIds)
+                    ->where('type', $utensil)
+                    ->first();
+                $utensilsEvent->utensil_id = $utensilId->id;
                 $utensilsEvent->event_id = $event->id;
                 $utensilsEvent->date = Carbon::parse($start)->toDate();
                 $utensilsEvent->save();
@@ -121,7 +126,7 @@ class EventController extends Controller
             ->first();
         $participantCount = EventParticipates::where('event_id', $eventId)->count();
         if($participantCount > Event::where('id', $eventId)->first()->max_participants){
-            return back()->with('error', 'The event is full.');
+            return back()->with('message', 'The event is full.');
         }
         if ($existingParticipation ) {
             $existingParticipation->delete();
