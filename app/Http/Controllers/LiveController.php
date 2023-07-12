@@ -24,4 +24,21 @@ class LiveController extends Controller
         return view('live.live')->with('live',$live);
     }
 
+    public function register(Request $r)
+    {
+        $live = new Lives();
+        $live->title = $r->titre;
+        $live->link = $r->chaine;
+        $live->user_id = auth()->user()->id;
+        $live->onlive = 1;
+        $live->save();
+        return redirect('/live/list');
+    }
+
+    public function register_show()
+    {
+        return view('live.create');
+    }
+
+
 }

@@ -227,6 +227,8 @@ Route::get('/locale/{lang}', [LocalizationController::class, 'setLang'])->name('
 Route::get('/live', [LiveController::class, 'index'])->middleware('auth');
 Route::get('/live/list', [LiveController::class, 'list'])->middleware('auth');
 Route::get('/live/list/{id}', [LiveController::class, 'show'])->middleware('auth');
+Route::get('/live/register', [LiveController::class, 'register_show'])->middleware('auth');
+Route::post('/live/register', [LiveController::class, 'register'])->middleware('auth');
 
 
 
