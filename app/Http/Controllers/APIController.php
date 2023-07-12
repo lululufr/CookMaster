@@ -73,7 +73,7 @@ class APIController extends Controller
             //$messages = Messages::where('from_id', $user->id)->orWhere('to_id', $id)->get();
 
 
-            $loggedInUserId = auth()->user()->id;
+            $loggedInUserId =$user->id;
 
             $messages = Messages::where(function ($query) use ($loggedInUserId, $id) {
                 $query->where('from_id', $loggedInUserId)
