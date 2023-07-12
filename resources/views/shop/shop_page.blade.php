@@ -20,7 +20,11 @@
                                 <i class="fa-solid fa-location-dot"></i> {{$article->nb}} articles restants
                             </p>
                             <div class="card-actions justify-end">
-                                <a class="btn btn-primary" href="/shop/cart/add/{{$article->id}}">Ajouter au panier</a>
+                                @if($article->nb == 0)
+                                    <a class="btn btn-primary" href="/shop/cart/add/{{$article->id}}" disabled>Ajouter au panier</a>
+                                    @else
+                                    <a class="btn btn-primary" href="/shop/cart/add/{{$article->id}}">Ajouter au panier</a>
+                                @endif
                             </div>
                         </div>
                     </div>

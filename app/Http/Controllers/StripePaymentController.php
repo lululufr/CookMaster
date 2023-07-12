@@ -73,7 +73,7 @@ class StripePaymentController extends Controller
 
 
     public function carts_payment(Request $request){
-        $carts = Carts::where('user_id', auth()->user()->id)->get();
+        $carts = Carts::where('user_id', auth()->id())->get();
         $AMOUNT = 0;
         foreach($carts as $cart) {
             $AMOUNT += $cart->articles->prix;

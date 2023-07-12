@@ -11,7 +11,7 @@
             <h2 class="card-title">{{ __("Articles Administrations")}}</h2>
             <p>{{ __("Modifier et ajouter des articles dans la boutique")}} </p>
             <div class="card-actions justify-end">
-                <a href="/admin/article/create" class="btn btn-primary">{{ __("Articles Administrations")}}</a>
+                <a href="/admin/article" class="btn btn-primary">{{ __("Articles Administrations")}}</a>
             </div>
         </div>
     </div>
