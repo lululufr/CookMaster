@@ -38,7 +38,7 @@
     @csrf
     <?php
     if(auth()->user()->buying_plan === 'master'){
-        echo '<button id="toggleButton">Faire une leçon privée</button>';
+        echo '<button id="toggleButton">Faire une réservation de salle</button>';
     }?>
     <div id="myDiv" class="form-control w-full max-w-xs m-5">
         <label for="chef_username">Choisir un chef:</label>
