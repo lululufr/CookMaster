@@ -43,7 +43,7 @@ class EventController extends Controller
             })
             ->first();
         if ($existingEvent) {
-            return back()->with('error', 'La salle est déjà réservée pendant cette période.');
+            return redirect('/event/create')->with('error', 'La salle est déjà réservée pendant cette période.');
         }
         $event = new Event;
         $event->title = htmlspecialchars($request['title']);
@@ -88,7 +88,7 @@ class EventController extends Controller
                 if($this->utensilAvailable($utensil, Carbon::parse($start)->toDate()) <= 0){
                     UtensilEventUses::where('event_id', $event->id)->delete();
                     $event->delete();
-                    return back()->with('error', 'Il n\'y a pas assez d\'ustensiles disponibles pour cette date.');
+                    return redirect('/event/create')->with('error', 'Il n\'y a pas assez d\'ustensiles disponibles pour cette date.');
                 }
                 $utensilsEvent = new UtensilEventUses;
                 $utensilsEvent->utensil_id = Utensils::whereNotIn('id',UtensilEventUses::all()->pluck('utensil_id'))->where('type',$utensil)->firstOrFail()->id;
@@ -102,9 +102,6 @@ class EventController extends Controller
         return back();
     }
 
-    public function modifyEventApply($id, Request $request){
-
-    }
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Articles;
 use App\Models\Chapters;
 use App\Models\Classes;
+use App\Models\ContainsIngredients;
 use App\Models\Ingredients;
 use App\Models\Questions;
 use App\Models\Rooms;
@@ -305,7 +306,7 @@ class AdminController extends Controller
     }
 
     public function delete_ingredient($name){
-        $contains = Contains::where('ingredients_name',$name);
+        $contains = ContainsIngredients::where('ingredients_name',$name);
         if($contains){
             return back()->with('error','Cet ingrédient est utilisé dans une recette');
         }

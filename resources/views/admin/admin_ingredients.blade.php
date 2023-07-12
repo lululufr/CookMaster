@@ -7,7 +7,7 @@
 
     <form action="/admin/create/ingredients" method="post">
         @csrf
-        <input type="text" name="name" placeholder="tag">
+        <input type="text" name="name" placeholder="ingrédient">
         <button type="submit" class="btn btn-accent">Ajouter un ingrédient</button>
     </form>
 
