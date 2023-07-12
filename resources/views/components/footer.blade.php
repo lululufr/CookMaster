@@ -2,7 +2,7 @@
 @yield('content')
 
 
-<footer class="w-full border-t bg-white pb-12">
+<footer class="w-full border-t bg-white pb-12" style="position: fixed;bottom: 0">
 
     <div class="w-full container mx-auto flex flex-col items-center">
         <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">

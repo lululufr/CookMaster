@@ -158,6 +158,7 @@ Route::get('/shop', [ShopController::class,'show_shop_page'])->middleware('auth'
 Route::get('/shop/{id}', [ShopController::class,'show_item'])->middleware('auth');
 
 Route::get('/shop/cart/add/{id}', [ShopController::class,'add_item_cart'])->middleware('auth');
+Route::post('/shop/cart/remove/{id}', [ShopController::class,'remove_item_cart'])->middleware('auth');
 Route::get('/shop/cart/show', [ShopController::class,'show_cart'])->middleware('auth');
 
 //paiement

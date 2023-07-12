@@ -24,11 +24,15 @@ class ShopController extends Controller
 
         return view('shop.item', ['article' => $article]);
     }
-    public function delete_item_cart($id){
+    public function remove_item_cart($id){
 
-        $cart = Carts::where('articles_id', $id)->where('user_id',auth()->id())->firstOrFail();
+        $cart = Carts::where('id', $id)->firstOrFail();
         $cart->delete();
-        return redirect('/cart')->with('message', 'Article supprimé du panier');
+
+        $item = Articles::where('id', $id)->firstOrFail();
+        $item->nb ++;
+        $item->save();
+        return back()->with('message', 'Article supprimé du panier');
     }
 
     public function add_item_cart($id){
@@ -39,6 +43,9 @@ class ShopController extends Controller
         $cart->type = 'article';
         $cart->save();
 
+        $item = Articles::where('id', $id)->firstOrFail();
+        $item->nb --;
+        $item->save();
         return redirect('/shop')->with('message', 'Article ajouté au panier');
     }
 
