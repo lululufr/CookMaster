@@ -28,7 +28,7 @@ class APIController extends Controller
 
             $events = $events->map(function ($event) use ($user) {
                 $rooms = $event->rooms->makeHidden(['id', 'created_at', 'updated_at', 'room_id', 'salle_number', 'tags', 'description']);
-                $recipes = $event->recipes->makeHidden(['id', 'created_at', 'updated_at', 'description', 'image', 'user_id']);
+                $recipes = $event->recipes->makeHidden(['id', 'created_at', 'updated_at', 'description', 'user_id']);
                 $isParticipating = $event->isParticipating($user->id) ? 1 : 0;
 
                 return [
