@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
 
-    public function create_event(){
+    public function createEvent(){
 
         return view('events.create_event');
     }
