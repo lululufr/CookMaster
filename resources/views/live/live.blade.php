@@ -13,4 +13,11 @@
     });
 </script>
 
+<iframe
+    id="chat_embed"
+    src="https://www.twitch.tv/embed/"{{$live->link}}"/chat?parent=www.example.com"
+    height="500"
+    width="350">
+</iframe>
+
 <x-footer/>
