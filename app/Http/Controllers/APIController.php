@@ -10,6 +10,7 @@ use App\Models\Recipes;
 use App\Models\RecipeTags;
 use App\Models\Rooms;
 use App\Models\User;
+use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -150,7 +151,7 @@ class APIController extends Controller
                 'message' => 'Bad credentials'
             ], 401);
         }
-        if($user->buying_plan_expiration_date > today()){
+        if((Carbon::parse($user->buying_plan_end_date)->toDateString())<today()){
             $user->buying_plan = 'free';
         }
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

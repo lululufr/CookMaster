@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\MailNotify;
 use App\Models\Cooptation;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
@@ -97,7 +98,7 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
-            if(auth()->user()->buying_plan_end_date<today()){
+            if((Carbon::parse(auth()->user()->buying_plan_end_date)->toDateString())<today()){
                 auth()->user()->buying_plan = 'free';
                 auth()->user()->save();
             }

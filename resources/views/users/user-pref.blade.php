@@ -40,7 +40,10 @@ foreach ($events as $event) {
 
         w-42 p-4 border-4 box-decoration-slice bg-gradient-to-r from-blue-500 to-blue-700 text-white px-2 m-2 " <?php echo 'onclick="my_modal'.$event["id"].'.showModal()"';?>>
         <b><?php echo $event['title'];?></b>
-        <p><?php echo "Oragnisé par : <b>".$event['chef_username']."</b>"; ?></p>
+        <p><?php echo "Oragnisé par : <b>";
+        if ($event['chef_username'] == null){?> {{auth()->user()->username}} <?php }
+        else{echo auth()->user()->username;}
+        echo"</b>"; ?></p>
         <p><?php //echo $event['room_id']; ?></p>
 
 
@@ -98,41 +101,45 @@ foreach ($events as $event) {
 </div>
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+    FORMATION CRÉÉE
 
+    <div class="m-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        @if($formations)
+        @foreach($formations as $class)
 
-FORMATION CREEE
-<div class="m-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div class="card bg-base-100 shadow-xl image-full mb-4">
+                <figure>
+                    <img src="{{asset("storage/".$class->img)}}" alt="Cuisine" class="img-fluid">
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title">{{$class->name}}</h2>
+                    <p>{{$class->description}}</p>
+                    <b>Formation réalisée par le chef {{$class->chef->username}}</b>
+                    <div class="card-actions justify-end">
 
-    @if($formations)
-    @foreach($formations as $class)
+                        <form action="/class/{{$class->id}}/show" method="GET">
+                            @csrf
+                            <button class="btn btn-primary">Suivre la formation</button>
 
-        <div class="card bg-base-100 shadow-xl image-full mb-4">
-            <figure>
-                <img src="{{asset("storage/".$class->img)}}" alt="Cuisine" class="img-fluid">
-            </figure>
-            <div class="card-body">
-                <h2 class="card-title">{{$class->name}}</h2>
-                <p>{{$class->description}}</p>
-                <b>Formation réalisée par le chef {{$class->chef->username}}</b>
-                <div class="card-actions justify-end">
+                        </form>
 
-                    <form action="/class/{{$class->id}}/show" method="GET">
-                        @csrf
-                        <button class="btn btn-primary">Suivre la formation</button>
+                        @if($class->chef->id == auth()->user()->id)
+                            <a href="/class/{{$class->id}}/edit" class="btn">Modifier la formation</a>
+                        @endif
 
-                    </form>
-
-                    @if($class->chef->id == auth()->user()->id)
-                        <a href="/class/{{$class->id}}/edit" class="btn">Modifier la formation</a>
-                    @endif
-
+                    </div>
                 </div>
             </div>
-        </div>
 
-    @endforeach
-    @endif
+        @endforeach
+        @endif
+    </div>
 </div>
-
 
 <x-footer/>
