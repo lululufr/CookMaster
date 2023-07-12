@@ -7,31 +7,30 @@
 
     @if($chapter->type == "lecon")
 
-    <form class ="flex grid grid-cols-1 place-content-center place-items-center" action="/class/chapter/{{$chapter->id}}/edit/submit" method="POST">
-        @csrf
-        <div class = "card m-5 p-5 w-full bg-base-300 shadow-xl place-content-center place-items-center">
-            <h2 class="card-title"> >Chapitre <?php echo $cmp ?></h2>
-
-            <div class="card-body place-content-center place-items-center">
-                <input class="textarea w-full input" type="text" name="title" placeholder="{{ $chapter->title }}" value="{{ $chapter->title }} " required>
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content flex-col lg:flex-row">
                 @if(isset($chapter->media))
                     <img src="{{asset("storage/".$chapter->media)}}" alt="Cuisine" class="img-fluid w-3/5">
-
                 @endif
-                <textarea class="textarea w-full place-content-center place-items-center" name="content" placeholder="Description de la formation" required>
-                    {{ $chapter->content }}
-                </textarea>
+                <div>
+                    <form class ="flex grid grid-cols-1 place-content-center place-items-center" action="/class/chapter/{{$chapter->id}}/edit/submit" method="POST">
+                        @csrf
+                        <h1 class="text-5xl font-bold">Chapitre <?php echo $cmp ?></h1>
+                        <input class="textarea w-full input" type="text" name="title" placeholder="{{ $chapter->title }}" value="{{ $chapter->title }} " required>
+                        <textarea class="textarea w-full place-content-center place-items-center" name="content" placeholder="Description de la formation" required>
+                            {{ $chapter->content }}
+                        </textarea>
+                        <button class="btn btn-primary" type="submit">Modifier ce chapitre</button>
+                    </form>
+                </div>
             </div>
-
         </div>
-        <button class="btn btn-primary" type="submit">Modifier ce chapitre</button>
-    </form>
 
         @elseif($chapter->type == "question")
 
 
 
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center place-items-center" >
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 place-content-center place-items-center" >
 
             @foreach(\App\Models\Questions::where('chapters_id',$chapter->id)->get() as $question)
                     <div class="card bg-base-300 p-0 ">
