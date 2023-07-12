@@ -26,6 +26,7 @@ class LiveController extends Controller
 
     public function register(Request $r)
     {
+
         $live = new Lives();
         $live->title = $r->titre;
         $live->link = $r->chaine;
@@ -40,5 +41,27 @@ class LiveController extends Controller
         return view('live.create');
     }
 
+    public function setonline()
+    {
+        $lives = Lives::where('user_id',auth()->user()->id);
+
+        $lives->onlive = 0;
+
+        $lives->save();
+
+       return redirect('/live/list/'.$lives->id);
+    }
+
+    public function setoffline()
+    {
+        $lives = Lives::where('user_id',auth()->user()->id);
+
+        $lives->onlive = 0;
+
+        $lives->save();
+
+
+        return redirect('/live/list/'.$lives->id);
+    }
 
 }

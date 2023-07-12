@@ -230,5 +230,8 @@ Route::get('/live/list/{id}', [LiveController::class, 'show'])->middleware('auth
 Route::get('/live/register', [LiveController::class, 'register_show'])->middleware('auth');
 Route::post('/live/register', [LiveController::class, 'register'])->middleware('auth');
 
+Route::get('/live/setonline', [LiveController::class, 'setonline'])->middleware('auth');
+Route::get('/live/setoffline', [LiveController::class, 'setoffline'])->middleware('auth');
+
 
 
