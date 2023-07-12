@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
 
-    public function createEvent(){
+    public function create_event(){
 
         return view('events.create_event');
     }
@@ -43,7 +43,7 @@ class EventController extends Controller
             })
             ->first();
         if ($existingEvent) {
-            return back()->with('error', 'La salle est déjà réservée pendant cette période.');
+            return redirect('/event/create')->with('error', 'La salle est déjà réservée pendant cette période.');
         }
         $event = new Event;
         $event->title = htmlspecialchars($request['title']);

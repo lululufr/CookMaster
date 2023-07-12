@@ -65,7 +65,7 @@
                         <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2" href="/conversation">{{ __("Messages") }}</a></li>
                     @endif
 
-                    @if(auth()->user()->admin != 'user')
+                    @if(auth()->user()->role != 'user')
                         <li><a class="hover:bg-gray-400 rounded py-2 px-4 mx-2 text" href="/admin_choice">ADMIN</a></li>
                     @endif
 

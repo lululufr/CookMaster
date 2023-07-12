@@ -3,14 +3,6 @@
     <a href="/event/create" class="btn btn-primary">{{ __("Event Création")}}</a>
 </div>
 <div class="overflow-x-auto w-full">
-
-    <form action="/admin/create/tags" method="post">
-        @csrf
-        <input type="text" name="name" placeholder="tag">
-        <button type="submit" class="btn btn-accent">Ajouter un tag</button>
-    </form>
-
-
     <table class="table w-full">
         <!-- head -->
         <thead>
