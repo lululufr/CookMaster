@@ -19,7 +19,7 @@ class Messages extends Model
     public function user_to(): BelongsTo
     {
 
-        return $this->belongsTo(User::class, 'chef_id');
+        return $this->belongsTo(User::class, 'to_id');
     }
 
 

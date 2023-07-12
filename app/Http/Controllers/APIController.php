@@ -10,6 +10,7 @@ use App\Models\Recipes;
 use App\Models\RecipeTags;
 use App\Models\Rooms;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -66,34 +67,16 @@ class APIController extends Controller
     public function api_message_get(Request $request, int $id){
 
         if($user = User::where('mobile_token', $request->bearerToken())->select('id','username','profil_picture')->first()){
-            $messages = Messages::with('fromUser')
-                ->where(function ($query) use ($user, $id) {
-                    $query->where('from_id', $user)
-                        ->where('to_id', $id);
-                })
-                ->orWhere(function ($query) use ($user, $id) {
-                    $query->where('from_id', $id)
-                        ->where('to_id', $user);
-                })
-                ->get();
 
-            $messageData = $messages->map(function ($message) {
-                return [
-                    'id' => $message->id,
-                    'to_id' => $message->to_id,
-                    'from_id' => $message->from_id,
-                    'content' => $message->content,
-                    'created_at' => $message->created_at,
-                    'updated_at' => $message->updated_at,
-                    'from_user' => [
-                        'username' => $message->fromUser->username,
-                        'profil_picture' => $message->fromUser->profil_picture,
-                    ],
-                ];
-            });
+
+
+            $messages = Messages::where('from_id', $user->id)->orWhere('to_id', $id)->get();
+
+            //a variable containing all message information and username, id and profil_pic from the sender of the message
+            //$messages = Messages::with('from_id')->where('from_id', $user->id)->orWhere('to_id', $id)->get();
 
             return response()->json([
-                'messages' => $messageData,
+                'messages' => $messages,
             ], 200);
         }
         return response()->json([
@@ -117,7 +100,9 @@ class APIController extends Controller
             $convs = User::whereIn('id', $conversation)->select('id','username','profil_picture')->get();
 //username id pdp
             return response()->json([
-                'convs' => $convs
+                'convs' => $convs,
+                'username' => $user->username,
+                'profil_picture' => $user->profil_picture
             ], 200);
         }
         return response()->json([
