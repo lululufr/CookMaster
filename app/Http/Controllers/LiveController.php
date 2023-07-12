@@ -27,13 +27,25 @@ class LiveController extends Controller
     public function register(Request $r)
     {
 
-        $live = new Lives();
-        $live->title = $r->titre;
-        $live->link = $r->chaine;
-        $live->user_id = auth()->user()->id;
-        $live->onlive = 1;
-        $live->save();
-        return redirect('/live/list');
+        $live = Lives::where('user_id', auth()->user()->id)->first();
+
+        if ($live) {
+            $live->title = $r->titre;
+            $live->link = $r->chaine;
+            $live->user_id = auth()->user()->id;
+            $live->onlive = 1;
+            $live->save();
+            return redirect('/live/list');
+        }else{
+            $live = new Lives();
+            $live->title = $r->titre;
+            $live->link = $r->chaine;
+            $live->user_id = auth()->user()->id;
+            $live->onlive = 1;
+            $live->save();
+            return redirect('/live/list');
+        }
+
     }
 
     public function register_show()
@@ -41,27 +53,40 @@ class LiveController extends Controller
         return view('live.create');
     }
 
-    public function setonline()
+    public function setOnline()
     {
-        $lives = Lives::where('user_id',auth()->user()->id);
+        $lives = Lives::where('user_id', auth()->user()->id)->first();
 
-        $lives->onlive = 0;
+        if ($lives) {
+            $lives->onlive = 1;
+            $lives->save();
 
-        $lives->save();
-
-       return redirect('/live/list/'.$lives->id);
+            return redirect('/live/list/'.$lives->id);
+        } else {
+            return redirect('/live/list');
+        }
     }
 
     public function setoffline()
     {
-        $lives = Lives::where('user_id',auth()->user()->id);
+        $lives = Lives::where('user_id', auth()->user()->id)->first();
 
-        $lives->onlive = 0;
+        if ($lives) {
+            $lives->onlive = 0;
+            $lives->save();
 
-        $lives->save();
-
-
-        return redirect('/live/list/'.$lives->id);
+            return redirect('/live/list/'.$lives->id);
+        } else {
+            return redirect('/live/list');
+        }
     }
+
+    public function mylive()
+    {
+        $live = Lives::where('user_id', auth()->user()->id)->first();
+
+        return view('live.live')->with('live',$live);
+    }
+
 
 }
