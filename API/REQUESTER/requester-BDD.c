@@ -7,38 +7,38 @@
 #include <mysql/mysql.h>
 #include "log.h"
 
-//gcc -o requester-bdd requester-BDD.c -lmysqlclient <<<<<<<<<<<<<<< pour compiler
 
-
-int main(int argc, char* argv[]){
+int main(void)
+{
     MYSQL *conn;
     MYSQL_RES *result;
     MYSQL_ROW row;
 
-    char query[1000]; // a rendre dynamique
+    char query[1000];
 
 
     conn = mysql_init(NULL);
-    mysql_real_connect(conn, DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306, NULL, 0);
+    if (!mysql_real_connect(conn, DB_HOST, DB_USER, DB_PASS, DB_NAME, 0, NULL, 0)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        return 1;
+    }
 
-    sprintf(query, "SELECT username FROM USER"); // a mettre avec la concatenation argc
-
-   mysql_query(conn, query);
-
+    sprintf(query, "SELECT * FROM USER");
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        mysql_close(conn);
+        return 1;
+    }
 
     result = mysql_store_result(conn);
-
-
-    //boucle de rendu
-
-    row = mysql_fetch_row(result);
-
-    printf("%s \n",*row); // a faire boucler en fonction
+    if (!result) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        mysql_close(conn);
+        return 1;
+    }
 
     mysql_free_result(result);
     mysql_close(conn);
 
-    printf("programme fini\n");
-
-
+    return 0;
 }
