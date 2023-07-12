@@ -37,7 +37,7 @@
 
 @if(session('message'))
     <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
-         class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-blue-400 text-white px-8 py-4 rounded-lg shadow-lg">
+         class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-blue-400 text-white px-8 py-4 rounded-lg shadow-lg secondary">
         <p class="text-center">
             {{ session('message') }}
         </p>
@@ -134,7 +134,7 @@
 
             <a href="/shop" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Boutique")}}</a>
 
-            <a href="/live" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Live")}}(BETA)</a>
+            <a href="/live" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Live")}}</a>
         </div>
     </div>
 </nav>

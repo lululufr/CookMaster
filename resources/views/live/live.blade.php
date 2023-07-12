@@ -6,9 +6,9 @@
     @if($live->user_id == Auth::user()->id)
 
         @if($live->onlive == 0)
-            <a class="btn btn-sucess" href="/live/setonline">PASSER EN LIGNE</a>
+            <a class="btn btn-info" href="/live/setonline">PASSER EN LIGNE</a>
         @else
-            <a class="btn btn-danger" href="/live/setoffline">PASSER EN HORS LIGNE</a>
+            <a class="btn btn-error" href="/live/setoffline">PASSER EN HORS LIGNE</a>
         @endif
 
     @endif
