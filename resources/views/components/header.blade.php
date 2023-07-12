@@ -9,6 +9,10 @@
 
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeE-hEnAAAAAFMnwnaFL3fFx2VZFvEuM0RqB2qi"></script>
 
+
+
+
+
     <!-- Tailwind -->
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -127,6 +131,8 @@
             <a href="/" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Recette")}}</a>
 
             <a href="/shop" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Boutique")}}</a>
+
+            <a href="/live" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{__("Live")}}(BETA)</a>
         </div>
     </div>
 </nav>

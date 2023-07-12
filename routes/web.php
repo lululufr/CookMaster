@@ -7,6 +7,7 @@ use App\Http\Controllers\ErrController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventParticipateController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\LiveController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SearchController;
@@ -219,5 +220,13 @@ Route::get('/locale', [LocalizationController::class, 'getLang'])->name('getlang
 
 // Route qui permet de modifier la langue
 Route::get('/locale/{lang}', [LocalizationController::class, 'setLang'])->name('setlang');
+
+
+
+//les lives
+Route::get('/live', [LiveController::class, 'index'])->middleware('auth');
+Route::get('/live/list', [LiveController::class, 'list'])->middleware('auth');
+Route::get('/live/list/{id}', [LiveController::class, 'show'])->middleware('auth');
+
 
 
